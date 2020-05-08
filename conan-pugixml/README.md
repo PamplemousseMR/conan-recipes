@@ -1,6 +1,6 @@
-# conan-resipes
+# conan-pugixml
 
-this repository contains conan recipes.
+conan recipes for pugixml.
 
 ## Getting Started
 
@@ -22,10 +22,14 @@ CHANNEL:
 	in a wide range of configurations).
 
 OPTIONS: 
-	- shared={'True'|'False'}
+	- pugixml:shared={'True'|'False'}
 		Set to 'True' to build shared library, default to 'False'.
-	- fPIC={'True'|'False'}
+	- pugixml:fPIC={'True'|'False'}
 		Set to 'True' to build position independent code, default to 'True'.
+	- pugixml:header_only={'True'|'False'}
+		Set to 'True' to enable header-only mode, default to 'False'.
+	- pugixml:wchar_mode={'True'|'False'}
+		Set to 'True' to define toggles between UTF-8 style interface (the in-memory text encoding is assumed to be UTF-8, most functions use char as character type) and UTF-16/32 style interface (the in-memory text encoding is assumed to be UTF-16/32, depending on wchar_t size, most functions use wchar_t as character type), default to 'False'.
 ```
 
 ## Authors

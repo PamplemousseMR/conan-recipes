@@ -1,6 +1,6 @@
-# conan-resipes
+# conan-zlib
 
-this repository contains conan recipes.
+conan recipes for zlib.
 
 ## Getting Started
 
@@ -22,9 +22,9 @@ CHANNEL:
 	in a wide range of configurations).
 
 OPTIONS: 
-	- shared={'True'|'False'}
+	- zlib:shared={'True'|'False'}
 		Set to 'True' to build shared library, default to 'False'.
-	- fPIC={'True'|'False'}
+	- zlib:fPIC={'True'|'False'}
 		Set to 'True' to build position independent code, default to 'True'.
 ```
 

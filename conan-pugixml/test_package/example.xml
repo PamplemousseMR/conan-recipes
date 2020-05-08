@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conan>
+    <package category="parser">
+        <name>pugixml</name>
+        <author>pamplemousse</author>
+        <language>cpp</language>
+    </package>
+</conan>

@@ -1,0 +1,98 @@
+from conans import ConanFile, tools, CMake
+import os
+import shutil 
+
+class FreetypeConan(ConanFile):
+    name = "freetype"
+    version = "2.10.1"
+    description = "FreeType is a freely available software library to render fonts"
+    homepage = "https://download.savannah.gnu.org/releases/freetype/"
+    url = "https://github.com/PamplemousseMR/conan-freetype"
+    license = "BSD"
+    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
+    generators = "cmake"
+    settings = "os", "arch", "compiler", "build_type"
+    options = {
+        "shared": [True, False],
+        "fPIC": [True, False],
+        "with_zlib": [True, False],
+        "with_bzip2": [True, False],
+        "with_png": [True, False],
+        "with_harfbuzz": [True, False]
+    }
+    default_options = {
+        "shared": True,
+        "fPIC": True,
+        "with_zlib": True,
+        "with_bzip2": True,
+        "with_png": True,
+        "with_harfbuzz": False
+    }
+    exports = "LICENSE.md"
+    exports_sources = os.path.join("patches", "CMakeLists.txt")
+    short_paths = True
+    
+    _source_folder = "{0}-{1}_sources".format(name, version)
+    _build_folder = "{0}-{1}_build".format(name, version)
+
+    def config_options(self):
+        if tools.os_info.is_windows:
+            del self.options.fPIC
+
+    def configure(self):
+        del self.settings.compiler.libcxx
+
+    def requirements(self):
+        if self.options.with_bzip2:
+            self.requires.add("bzip2/1.0.8@{0}/{1}".format(self.user, self.channel))
+        if self.options.with_png:
+            self.requires.add("libpng/1.6.37@{0}/{1}".format(self.user, self.channel))
+        if self.options.with_harfbuzz:
+            self.requires.add("harfbuzz/2.6.2@{0}/{1}".format(self.user, self.channel))
+        if tools.os_info.is_windows:
+            if self.options.with_zlib:
+                self.requires.add("zlib/1.2.11@{0}/{1}".format(self.user, self.channel))
+
+    def source(self):
+        tools.get("{0}/{1}-{2}.tar.gz".format(self.homepage, self.name, self.version), sha256="3a60d391fd579440561bf0e7f31af2222bc610ad6ce4d9d7bd2165bca8669110")
+        os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
+        os.rename(os.path.join(self._source_folder, "CMakeLists.txt"), os.path.join(self._source_folder, "WrappedCMakeLists.txt"))
+        shutil.copy(self.exports_sources, self._source_folder)
+
+    def build(self):
+        cmake = CMake(self)
+        cmake.definitions["FT_CONAN_INFO_DIR"] = self.build_folder
+
+        cmake.definitions["FT_WITH_ZLIB"] = self.options.with_zlib
+        cmake.definitions["CMAKE_DISABLE_FIND_PACKAGE_ZLIB"] = not self.options.with_zlib
+
+        cmake.definitions["FT_WITH_BZIP2"] = self.options.with_bzip2
+        cmake.definitions["CMAKE_DISABLE_FIND_PACKAGE_BZip2"] = not self.options.with_bzip2
+
+        cmake.definitions["FT_WITH_PNG"] = self.options.with_png
+        cmake.definitions["CMAKE_DISABLE_FIND_PACKAGE_PNG"] = not self.options.with_png
+
+        cmake.definitions["FT_WITH_HARFBUZZ"] = self.options.with_harfbuzz
+        cmake.definitions["CMAKE_DISABLE_FIND_PACKAGE_HarfBuzz"] = not self.options.with_harfbuzz
+        
+        cmake.configure(source_folder=self._source_folder, build_folder=self._build_folder)
+        cmake.build()
+        cmake.install()
+
+    def package(self):
+        self.copy(pattern="*.pdb", dst="bin", keep_path=False)        
+        for export in self.exports:
+            self.copy(export, keep_path=False)
+
+    def package_info(self):
+        self.cpp_info.libs = tools.collect_libs(self)
+        self.cpp_info.includedirs.append(os.path.join(self.cpp_info.includedirs[0], "freetype2"))
+        if not tools.os_info.is_windows:
+            if self.options.with_bzip2:
+                self.cpp_info.libs.append('bz2')
+            if self.options.with_zlib:
+                self.cpp_info.libs.append('z')
+            if self.options.with_png:
+                self.cpp_info.libs.append('png')
+            if self.options.with_harfbuzz:
+                self.cpp_info.libs.append('harfbuzz')

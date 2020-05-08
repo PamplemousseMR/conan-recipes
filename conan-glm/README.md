@@ -1,6 +1,6 @@
-# conan-resipes
+# conan-glm
 
-this repository contains conan recipes.
+conan recipes for glm.
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Generation
 
-Generate using conan: `conan create . <USER>/<CHANNEL> [-o OPTIONS]`.
+Generate using conan: `conan create . <USER>/<CHANNEL>`.
 ```
 USER:
 	This term in a Conan reference is basically a namespace to avoid collisions of libraries with the same
@@ -20,12 +20,6 @@ CHANNEL:
 	Normally, package creators use `testing` when developing a recipe (e.g. it compiles only in few
 	configurations) and `stable` when the recipe is ready enough to be used (e.g. it is built and tested
 	in a wide range of configurations).
-
-OPTIONS: 
-	- shared={'True'|'False'}
-		Set to 'True' to build shared library, default to 'False'.
-	- fPIC={'True'|'False'}
-		Set to 'True' to build position independent code, default to 'True'.
 ```
 
 ## Authors

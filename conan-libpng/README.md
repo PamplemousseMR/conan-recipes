@@ -1,10 +1,14 @@
-# conan-resipes
+# conan-libpng
 
-this repository contains conan recipes.
+conan recipes for libpng.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites for linux
+
+- [zlib](https://www.zlib.net/) : A massively spiffy yet delicately unobtrusive compression library.
 
 ### Generation
 
@@ -22,10 +26,12 @@ CHANNEL:
 	in a wide range of configurations).
 
 OPTIONS: 
-	- shared={'True'|'False'}
+	- libpng:shared={'True'|'False'}
 		Set to 'True' to build shared library, default to 'False'.
-	- fPIC={'True'|'False'}
+	- libpng:fPIC={'True'|'False'}
 		Set to 'True' to build position independent code, default to 'True'.
+	- libpng:hardware_optimizations={'True'|'False'}
+		Set to 'True' to build the library with hardware optimizations, default to 'True'.
 ```
 
 ## Authors
