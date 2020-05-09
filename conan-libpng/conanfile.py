@@ -66,6 +66,9 @@ class LibpngConan(ConanFile):
             self.copy(export, keep_path=False)
         tools.rmdir(os.path.join(self.package_folder, 'lib', 'libpng'))
         tools.rmdir(os.path.join(self.package_folder, 'lib', 'pkgconfig'))
+        if tools.os_info.is_windows:
+            os.remove(os.path.join(self.package_folder, 'bin', 'pngfix.exe'))
+            os.remove(os.path.join(self.package_folder, 'bin', 'png-fix-itxt.exe'))
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)

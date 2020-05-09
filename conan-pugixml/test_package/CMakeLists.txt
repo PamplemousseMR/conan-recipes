@@ -35,11 +35,11 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(${TEST_PACKAGE_PROJECT_NAME} ${TEST_PACKAGE_SRC_FILES})
 
 #---------------------------------------
-#                 ZLIB                 
+#                 PugiXML                 
 #---------------------------------------
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_BINARY_DIR})
-find_package(pugixml REQUIRED)
+find_package(PugiXML REQUIRED)
 
-target_include_directories(${TEST_PACKAGE_PROJECT_NAME} PRIVATE ${pugixml_INCLUDE_DIRS})
-target_link_libraries(${TEST_PACKAGE_PROJECT_NAME} pugixml::pugixml)
+target_include_directories(${TEST_PACKAGE_PROJECT_NAME} PRIVATE ${PugiXML_INCLUDE_DIRS})
+target_link_libraries(${TEST_PACKAGE_PROJECT_NAME} PugiXML::PugiXML)

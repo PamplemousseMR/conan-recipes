@@ -62,3 +62,5 @@ class ZzipConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
+        self.cpp_info.names["cmake_find_package"] = "ZZip"
+        self.cpp_info.names["cmake_find_package_multi"] = "ZZip"

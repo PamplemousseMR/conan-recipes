@@ -37,7 +37,7 @@ add_executable(${TEST_PACKAGE_PROJECT_NAME} ${TEST_PACKAGE_SRC_FILES})
 #---------------------------------------
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_BINARY_DIR})
-find_package(zlib REQUIRED)
+find_package(ZLIB REQUIRED)
 
-target_include_directories(${TEST_PACKAGE_PROJECT_NAME} PRIVATE ${zlib_INCLUDE_DIRS})
-target_link_libraries(${TEST_PACKAGE_PROJECT_NAME} zlib::zlib)
+target_include_directories(${TEST_PACKAGE_PROJECT_NAME} PRIVATE ${ZLIB_INCLUDE_DIRS})
+target_link_libraries(${TEST_PACKAGE_PROJECT_NAME} ZLIB::ZLIB)

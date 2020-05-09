@@ -52,6 +52,8 @@ class SoilConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
+        self.cpp_info.names["cmake_find_package"] = "SOIL"
+        self.cpp_info.names["cmake_find_package_multi"] = "SOIL"
         if tools.os_info.is_linux:
             self.cpp_info.libs.append('GL')
         elif tools.os_info.is_macos:

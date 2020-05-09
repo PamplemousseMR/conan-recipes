@@ -71,6 +71,8 @@ class PubixmlConan(ConanFile):
             self.copy(export, keep_path=False)
 
     def package_info(self):
+        self.cpp_info.names["cmake_find_package"] = "PugiXML"
+        self.cpp_info.names["cmake_find_package_multi"] = "PugiXML"
         if self.options.header_only:
             self.cpp_info.defines = ["PUGIXML_HEADER_ONLY"]
         else:
