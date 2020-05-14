@@ -6,7 +6,7 @@ class ZlibConan(ConanFile):
     version = "1.2.11"
     description = "A massively spiffy yet delicately unobtrusive compression library. http://zlib.net/"
     homepage = "https://github.com/madler/zlib"
-    url = "https://github.com/PamplemousseMR/conan-zlib"
+    url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "Zlib"
     author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
     generators = "cmake"
@@ -32,6 +32,7 @@ class ZlibConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
 
     def source(self):
         tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version), sha256="629380c90a77b964d896ed37163f5c3a34f6e6d897311f1df2a7016355c45eff")

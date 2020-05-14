@@ -7,7 +7,7 @@ class GlmConan(ConanFile):
     version = "0.9.9.7"
     description = "OpenGL Mathematics (GLM)"
     homepage = "https://github.com/g-truc/glm"
-    url = "https://github.com/PamplemousseMR/conan-glm"
+    url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "MIT"
     author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
     generators = "cmake"

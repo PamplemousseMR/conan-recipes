@@ -29,7 +29,7 @@ class BoostConan(ConanFile):
     version = "1.72.0"
     description = "Boost provides free peer-reviewed portable C++ source libraries"
     homepage = "https://www.boost.org"
-    url = "https://github.com/PamplemousseMR/conan-boost"
+    url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "BSL-1.0"
     author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
     settings = "os", "arch", "compiler", "build_type"

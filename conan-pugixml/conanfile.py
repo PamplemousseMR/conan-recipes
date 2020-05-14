@@ -6,7 +6,7 @@ class PubixmlConan(ConanFile):
     version = "1.10"
     description = "Light-weight, simple and fast XML parser for C++ with XPath support"
     homepage = "https://github.com/zeux/pugixml"
-    url = "https://github.com/PamplemousseMR/conan-pugixml"
+    url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "MIT"
     author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
     generators = "cmake"
@@ -30,14 +30,15 @@ class PubixmlConan(ConanFile):
     _build_folder = "{0}-{1}_build".format(name, version)
 
     def config_options(self):
-        del self.settings.compiler.libcxx
-
         if tools.os_info.is_windows:
             del self.options.fPIC
 
         if self.options.header_only:
             self.settings.clear()
 
+    def configure(self):
+        del self.settings.compiler.libcxx
+        
     def package_id(self):
         if self.options.header_only:
             self.info.header_only()

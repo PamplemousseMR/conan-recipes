@@ -7,7 +7,7 @@ class LibpngConan(ConanFile):
     version = "1.6.37"
     description = "LIBPNG: Portable Network Graphics support, official libpng repository http://libpng.sf.net"
     homepage = "https://github.com/glennrp/libpng"
-    url = "https://github.com/PamplemousseMR/conan-libpng"
+    url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "libpng-2.0"
     author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
     generators = "cmake"
@@ -35,6 +35,7 @@ class LibpngConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
 
     def requirements(self):
         if tools.os_info.is_windows:

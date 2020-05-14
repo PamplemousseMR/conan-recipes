@@ -7,7 +7,7 @@ class Bzip2Conan(ConanFile):
     version = "1.0.8"
     description = "bzip2 is a free and open-source file compression program that uses the Burrows-Wheeler algorithm"
     homepage = "https://sourceware.org/pub/bzip2"
-    url = "https://github.com/PamplemousseMR/conan-bzip2"
+    url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "bzip2"
     author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
     generators = "cmake"
@@ -35,6 +35,7 @@ class Bzip2Conan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
 
     def source(self):
         tools.get("{0}/{1}-{2}.tar.gz".format(self.homepage, self.name, self.version), sha256="ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269")

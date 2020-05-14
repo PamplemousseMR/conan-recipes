@@ -7,7 +7,7 @@ class Soil2Conan(ConanFile):
     version = "1.11"
     description = "Simple OpenGL Image Library"
     homepage = "https://github.com/SpartanJ/SOIL2"
-    url = "https://github.com/PamplemousseMR/conan-bzp2"
+    url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "Public Domain"
     author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
     generators = "cmake"
@@ -33,6 +33,7 @@ class Soil2Conan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
 
     def source(self):
         tools.get("{0}/archive/release-{1}.tar.gz".format(self.homepage, self.version), sha256="104a2de5bb74b58b7b7cda7592b174d9aa0585eeb73d0bec4901f419321358bc")

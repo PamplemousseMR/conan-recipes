@@ -7,7 +7,7 @@ class FreetypeConan(ConanFile):
     version = "2.10.1"
     description = "FreeType is a freely available software library to render fonts"
     homepage = "https://download.savannah.gnu.org/releases/freetype/"
-    url = "https://github.com/PamplemousseMR/conan-freetype"
+    url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "BSD"
     author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
     generators = "cmake"
@@ -41,6 +41,7 @@ class FreetypeConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
 
     def requirements(self):
         if self.options.with_bzip2:

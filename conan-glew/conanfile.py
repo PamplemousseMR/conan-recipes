@@ -33,7 +33,8 @@ class GlewConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
-
+        del self.settings.compiler.cppstd
+        
     def source(self):
         tools.get("{0}/releases/download/{1}-{2}/{1}-{2}.tgz".format(self.homepage, self.name, self.version), sha256="04de91e7e6763039bc11940095cd9c7f880baba82196a7765f727ac05a993c95")
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)

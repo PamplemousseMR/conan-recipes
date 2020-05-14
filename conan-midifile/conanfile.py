@@ -6,7 +6,7 @@ class MidifileConan(ConanFile):
     version = "1.0"
     description = "C++ classes for reading/writing Standard MIDI Files http://midifile.sapp.org"
     homepage = "https://github.com/craigsapp/midifile"
-    url = "https://github.com/PamplemousseMR/conan-midifile"
+    url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "BSD-2-Clause"
     author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
     generators = "cmake"
@@ -32,7 +32,7 @@ class MidifileConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
-
+        
     def source(self):
         tools.get("{0}/archive/master.tar.gz".format(self.homepage), sha256="5d51d9e7ad5648a14287d391e0fba5c254898565a934a0b2b9720b34773a81be")
         os.rename("{0}-master".format(self.name), self._source_folder)

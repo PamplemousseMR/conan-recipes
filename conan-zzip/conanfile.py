@@ -7,7 +7,7 @@ class ZzipConan(ConanFile):
     version = "0.13.69"
     description = "The ZZIPlib provides read access on ZIP-archives and unpacked data. It features an additional simplified API following the standard Posix API for file access"
     homepage = "https://github.com/gdraheim/zziplib"
-    url = "https://github.com/PamplemousseMR/conan-zzip"
+    url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "LGPL"
     author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
     generators = "cmake"
@@ -37,7 +37,8 @@ class ZzipConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
-
+        del self.settings.compiler.cppstd
+        
     def requirements(self):
         if tools.os_info.is_windows:
             self.requires.add("zlib/1.2.11@{0}/{1}".format(self.user, self.channel))

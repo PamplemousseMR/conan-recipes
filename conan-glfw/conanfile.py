@@ -6,7 +6,7 @@ class GlfwConan(ConanFile):
     version = "3.3.2"
     description = "A multi-platform library for OpenGL, OpenGL ES, Vulkan, window and input https://www.glfw.org/"
     homepage = "https://github.com/glfw/glfw"
-    url = "https://github.com/PamplemousseMR/conan-glfw"
+    url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "Zlib"
     author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
     generators = "cmake"
@@ -31,6 +31,7 @@ class GlfwConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
 
     def source(self):
         tools.get("{0}/archive/{1}.tar.gz".format(self.homepage, self.version), sha256="98768e12e615fbe9f3386f5bbfeb91b5a3b45a8c4c77159cef06b1f6ff749537")
