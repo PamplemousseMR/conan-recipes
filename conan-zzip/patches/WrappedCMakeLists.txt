@@ -2,16 +2,31 @@
 #                PROJECT                
 #=======================================
 
-cmake_minimum_required(VERSION 2.8)
-project(zziplib C)
+cmake_minimum_required(VERSION 3.0)
+project(zziplib VERSION 1.2.11 LANGUAGES C)
+
+#=======================================
+#                SETTINGS               
+#=======================================
+
+set(ZZIP_NAME "zzip")
+set(ZZIPFSEEKO_NAME "zzipfseeko")
+
+# Set the C standard.
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(C_STANDARD 11)
+
+# Set standard installation directories.
+set(ZZIPLIB_RUNTIME_DESTINATION "bin")
+set(ZZIPLIB_LIBRARY_DESTINATION "lib")
+set(ZZIPLIB_ARCHIVE_DESTINATION "lib")
+set(ZZIPLIB_INCLUDES_DIR "include")
+set(ZZIPLIB_INCLUDES_DESTINATION "${ZZIPLIB_INCLUDES_DIR}/${ZZIP_NAME}")
 
 #=======================================
 #                 INIT                 
 #=======================================
 
-#---------------------------------------
-#                CONFIG                
-#---------------------------------------
 include(CheckIncludeFiles)
 include(CheckFunctionExists)
 include(CheckSymbolExists)
@@ -61,11 +76,29 @@ test_big_endian(ZZIP_WORDS_BIGENDIAN)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/_config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/zzip/_config.h)
 add_definitions(-DHAVE_CONFIG_H)
 
-#---------------------------------------
-#                 FILES                 
-#---------------------------------------
+#=======================================
+#              LIBRARY ZZip             
+#=======================================
 
-set(ZZIP_SRC_FILES 
+if(BUILD_SHARED_LIBS)
+    add_definitions(-DZZIP_EXPORTS)
+endif()
+
+# Store header files.
+set(
+    ZZIP_HEADER_FILES
+    zzip/zzip.h
+    zzip/types.h
+    zzip/conf.h 
+    zzip/_msvc.h 
+    zzip/plugin.h 
+    zzip/fetch.h
+    ${CMAKE_CURRENT_BINARY_DIR}/zzip/_config.h
+    )
+
+# Create the library (headers are here since some IDE need them here).
+add_library(
+    ${ZZIP_NAME} 
     zzip/dir.c
     zzip/err.c 
     zzip/file.c 
@@ -74,58 +107,103 @@ set(ZZIP_SRC_FILES
     zzip/stat.c
     zzip/write.c 
     zzip/zip.c 
-    zzip/fetch.c)
+    zzip/fetch.c
+    ${ZZIP_HEADER_FILES}
+    )
 
-set(ZZIP_HEADER_FILES
-    zzip/zzip.h
-    zzip/types.h
-    zzip/conf.h 
-    zzip/_msvc.h 
-    zzip/plugin.h 
+# Add include directory (includes may not be at the same place between build and install).
+target_include_directories(
+    ${ZZIP_NAME}
+    PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<INSTALL_INTERFACE:${ZZIPLIB_INCLUDES_DIR}>
+)
+
+#=======================================
+#           LIBRARY ZZipFSeeko          
+#=======================================
+
+# Store header files.
+set(
+    ZZIPFSEEKO_HEADER_FILES
+    zzip/fseeko.h
     zzip/fetch.h
-    ${CMAKE_CURRENT_BINARY_DIR}/zzip/_config.h)
+    )
 
-#=======================================
-#                CREATE                
-#=======================================
+# Create the library (headers are here since some IDE need them here).
+add_library(
+    ${ZZIPFSEEKO_NAME} 
+    zzip/fseeko.c 
+    zzip/fetch.c
+    ${ZZIPFSEEKO_HEADER_FILES}
+    )
 
-#---------------------------------------
-#                 LIBS                 
-#---------------------------------------
-   
-if(BUILD_SHARED_LIBS)
-    add_definitions(-DZZIP_EXPORTS)
+# Export all symbols on Windows.
+if(MSVC OR MSVC90 OR MSVC10)
+  set_target_properties(${ZZIPFSEEKO_NAME} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
 endif()
 
-add_library(zzip ${ZZIP_SRC_FILES})
-target_include_directories(zzip PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 
-add_library(zzipfseeko zzip/fseeko.c zzip/fetch.c)
-target_include_directories(zzipfseeko PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+# Add include directory (includes may not be at the same place between build and install).
+target_include_directories(
+    ${ZZIPFSEEKO_NAME}
+    PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<INSTALL_INTERFACE:${ZZIPLIB_INCLUDES_DIR}>
+)
+
+#=======================================
+#           LIBRARY ZZipMMapped         
+#=======================================
 
 if(NOT MSVC)
-    add_library(zzipmmapped zzip/mmapped.c zzip/memdisk.c zzip/fetch.c)
-    target_include_directories(zzipmmapped PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+    #add_library(zzipmmapped zzip/mmapped.c zzip/memdisk.c zzip/fetch.c)
+    #target_include_directories(zzipmmapped PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 endif()
 
-#---------------------------------------
-#                 ZLIB                 
-#---------------------------------------
+#=======================================
+#                PACKAGE                
+#=======================================
 
 find_package(ZLIB REQUIRED)
 
-target_link_libraries(zzip ZLIB::ZLIB)
-target_link_libraries(zzipfseeko ZLIB::ZLIB)
+target_include_directories(${ZZIP_NAME} PRIVATE ${ZLIB_INCLUDE_DIRS})
+target_link_libraries(${ZZIP_NAME} ${ZLIB_LIBRARIES})
+
+target_include_directories(${ZZIPFSEEKO_NAME} PRIVATE ${ZLIB_INCLUDE_DIRS})
+target_link_libraries(${ZZIPFSEEKO_NAME} ${ZLIB_LIBRARIES})
+
 if(NOT MSVC)
-    target_link_libraries(zzipmmapped ZLIB::ZLIB)
+    #target_include_directories(zzipmmapped PRIVATE ${ZLIB_INCLUDE_DIRS})
+    #target_link_libraries(zzipmmapped ${ZLIB_LIBRARIES})
 endif()
 
-#---------------------------------------
+#=======================================
 #                INSTALL                
-#---------------------------------------
+#=======================================
 
-install(FILES ${ZZIP_HEADER_FILES} DESTINATION include/zzip)
-install(TARGETS zzip 
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib 
-    ARCHIVE DESTINATION lib)
+# Install the library.
+install(
+    FILES ${ZZIP_HEADER_FILES} 
+    DESTINATION ${ZZIPLIB_INCLUDES_DESTINATION}
+    )
+
+install(
+    TARGETS ${ZZIP_NAME}
+    RUNTIME DESTINATION ${ZZIPLIB_RUNTIME_DESTINATION}
+    LIBRARY DESTINATION ${ZZIPLIB_LIBRARY_DESTINATION}
+    ARCHIVE DESTINATION ${ZZIPLIB_ARCHIVE_DESTINATION}
+    )
+
+# Install the library.
+install(
+    FILES ${ZZIPFSEEKO_HEADER_FILES} 
+    DESTINATION ${ZZIPLIB_INCLUDES_DESTINATION}
+    )
+
+install(
+    TARGETS ${ZZIPFSEEKO_NAME}
+    RUNTIME DESTINATION ${ZZIPLIB_RUNTIME_DESTINATION}
+    LIBRARY DESTINATION ${ZZIPLIB_LIBRARY_DESTINATION}
+    ARCHIVE DESTINATION ${ZZIPLIB_ARCHIVE_DESTINATION}
+    )

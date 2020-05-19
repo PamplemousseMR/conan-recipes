@@ -24,7 +24,8 @@ class ZzipConan(ConanFile):
     exports_sources = [
         os.path.join("patches", "CMakeLists.txt"), 
         os.path.join("patches", "WrappedCMakeLists.txt"),
-        os.path.join("patches", "_config.h.cmake")
+        os.path.join("patches", "_config.h.cmake"),
+        os.path.join("patches", "fseeko.h.patch")
     ]
     short_paths=True
     
@@ -50,6 +51,7 @@ class ZzipConan(ConanFile):
             shutil.copy(export_source, self._source_folder)
 
     def build(self):
+        tools.patch(base_path=self._source_folder, patch_file=self.exports_sources[3], strip=0)
         cmake = CMake(self)
         cmake.definitions["ZZIP_CONAN_INFO_DIR"] = self.build_folder
         cmake.configure(source_folder=self._source_folder, build_folder=self._build_folder)

@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <zzip/zzip.h>
+#include <zzip/fseeko.h>
 
 int main (int argc, char * argv[]) 
 {
@@ -10,5 +11,8 @@ int main (int argc, char * argv[])
 		zzip_dir_read(dir,&dirent);
 		zzip_dir_close(dir);
 	}
+
+	ZZIP_ENTRY* entry = nullptr;
+	zzip_entry_fopen(entry, 0);
     return EXIT_SUCCESS;
 }
