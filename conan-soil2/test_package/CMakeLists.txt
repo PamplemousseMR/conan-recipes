@@ -36,8 +36,6 @@ add_executable(${TEST_PACKAGE_PROJECT_NAME} ${TEST_PACKAGE_SRC_FILES})
 #                 SOIL2                 
 #---------------------------------------
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_BINARY_DIR})
-find_package(SOIL2 REQUIRED)
+find_package(SOIL2 REQUIRED CONFIG)
 
-target_include_directories(${TEST_PACKAGE_PROJECT_NAME} PRIVATE ${SOIL2_INCLUDE_DIRS})
 target_link_libraries(${TEST_PACKAGE_PROJECT_NAME} SOIL2::SOIL2)
