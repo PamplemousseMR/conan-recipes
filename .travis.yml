@@ -338,20 +338,20 @@ script:
   - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
   - cd ..
 
-  #- cd conan-soil2
-  #- conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
-  #- conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
-  #- cd ..
+  - cd conan-soil2
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - cd ..
 
   - cd conan-zlib
   - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
   - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
   - cd ..
 
-  - cd conan-zzip
-  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
-  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
-  - cd ..
+  #- cd conan-zzip
+  #- conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  #- conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  #- cd ..
 
   - cd conan-libpng
   - conan create -o *:shared=True  -o libpng:hardware_optimizations=True -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing

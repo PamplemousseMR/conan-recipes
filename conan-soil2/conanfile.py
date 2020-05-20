@@ -9,7 +9,6 @@ class Soil2Conan(ConanFile):
     homepage = "https://github.com/SpartanJ/SOIL2"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "Public Domain"
-    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
     generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
@@ -30,7 +29,7 @@ class Soil2Conan(ConanFile):
     _build_folder = "{0}-{1}_build".format(name, version)
 
     def config_options(self):
-        if tools.os_info.is_windows:
+        if self.settings.os == "Windows":
             del self.options.fPIC
 
     def configure(self):
@@ -60,9 +59,9 @@ class Soil2Conan(ConanFile):
         self.cpp_info.names["cmake_find_package_multi"] = "SOIL2"
         # Set the package folder as CMAKE_PREFIX_PATH to find SOIL2Config.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
-        if tools.os_info.is_linux:
+        if self.settings.os == "Linux":
             self.cpp_info.libs.append('GL')
-        elif tools.os_info.is_macos:
+        elif self.settings.os == "Macos":
             self.cpp_info.frameworks.extend(["OpenGL", "CoreFoundation"])
-        elif tools.os_info.is_windows:
+        elif self.settings.os == "Windows":
             self.cpp_info.libs.append('opengl32')

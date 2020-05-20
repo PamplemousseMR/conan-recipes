@@ -2,40 +2,34 @@
 #                PROJECT                
 #=======================================
 
-cmake_minimum_required(VERSION 2.8)
-project(test_package CXX)
+cmake_minimum_required(VERSION 3.0)
+project("test_package" VERSION 1.0 LANGUAGES CXX)
 
 #=======================================
-#                 INIT                 
+#               EXECUTABLE              
 #======================================= 
 
-#---------------------------------------
-#                 FILES                 
-#---------------------------------------
-
-set(TEST_PACKAGE_PROJECT_NAME "test_package")
-set(TEST_PACKAGE_SRC_FILES "test_package.cpp")
-
-#--------------------------------------- 
-#                COMPILER                
-#---------------------------------------
-
-set(CMAKE_CXX_STANDARD 14)
+add_executable(
+	${PROJECT_NAME}
+	test_package.cpp
+	)
 
 #=======================================
-#                CREATE                
+#                SETTINGS               
 #=======================================
 
-#---------------------------------------
-#                  EXE                  
-#---------------------------------------
+set_target_properties(
+	${PROJECT_NAME} PROPERTIES
+    CXX_STANDARD 11
+    CXX_STANDARD_REQUIRED ON
+    CXX_EXTENSIONS OFF
+    )
 
-add_executable(${TEST_PACKAGE_PROJECT_NAME} ${TEST_PACKAGE_SRC_FILES})
-
-#---------------------------------------
-#                 SOIL2                 
-#---------------------------------------
+#=======================================
+#                PACKAGE                
+#=======================================
 
 find_package(SOIL2 REQUIRED CONFIG)
 
-target_link_libraries(${TEST_PACKAGE_PROJECT_NAME} SOIL2::SOIL2)
+target_include_directories(${PROJECT_NAME} PRIVATE ${SOIL_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} SOIL2::SOIL2)
