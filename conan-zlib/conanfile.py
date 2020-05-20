@@ -8,7 +8,6 @@ class ZlibConan(ConanFile):
     homepage = "https://github.com/madler/zlib"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "Zlib"
-    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
     generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
@@ -27,7 +26,7 @@ class ZlibConan(ConanFile):
     _build_folder = "{0}-{1}_build".format(name, version)
 
     def config_options(self):
-        if tools.os_info.is_windows:
+        if self.settings.os == "Windows":
             del self.options.fPIC
 
     def configure(self):
