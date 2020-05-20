@@ -2,10 +2,6 @@
 
 conan recipes for soil.
 
-## Travis
-
-[![Build Status](https://travis-ci.com/PamplemousseMR/conan-soil.svg?branch=master)](https://travis-ci.com/PamplemousseMR/conan-soil)
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
