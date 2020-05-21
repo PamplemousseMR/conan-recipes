@@ -8,8 +8,6 @@ class PubixmlConan(ConanFile):
     homepage = "https://github.com/zeux/pugixml"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "MIT"
-    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
-    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -23,8 +21,7 @@ class PubixmlConan(ConanFile):
         "header_only": False,
         "wchar_mode": False
     }
-    exports = "LICENSE.md"
-    short_paths=True
+    short_paths=False
 
     _source_folder = "{0}-{1}_sources".format(name, version)
     _build_folder = "{0}-{1}_build".format(name, version)
@@ -38,7 +35,8 @@ class PubixmlConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
-        
+        del self.settings.compiler.cppstd
+
     def package_id(self):
         if self.options.header_only:
             self.info.header_only()
@@ -62,19 +60,22 @@ class PubixmlConan(ConanFile):
             cmake.install()
 
     def package(self):
+        self.copy("LICENSE.md", src=self._source_folder, dst="licenses", keep_path=False)
         if self.options.header_only:
             source_dir = os.path.join(self._source_folder, "src")
             self.copy(pattern="*", dst="include", src=source_dir)
         else:
             self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
-        for export in self.exports:
-            self.copy(export, keep_path=False)
-
     def package_info(self):
-        self.cpp_info.names["cmake_find_package"] = "PugiXML"
-        self.cpp_info.names["cmake_find_package_multi"] = "PugiXML"
+        # Set the name of conan auto generated Findpugixml.cmake.
+        self.cpp_info.names["cmake_find_package"] = "pugixml"
+        self.cpp_info.names["cmake_find_package_multi"] = "pugixml"        
+        # Set the package folder as CMAKE_PREFIX_PATH to find pugixmlConfig.cmake.
+        self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
         if self.options.header_only:
             self.cpp_info.defines = ["PUGIXML_HEADER_ONLY"]
         else:
             self.cpp_info.libs = tools.collect_libs(self)
+
+            

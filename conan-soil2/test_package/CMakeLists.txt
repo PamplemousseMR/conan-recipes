@@ -31,5 +31,4 @@ set_target_properties(
 
 find_package(SOIL2 REQUIRED CONFIG)
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${SOIL_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} SOIL2::SOIL2)

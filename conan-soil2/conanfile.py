@@ -9,7 +9,6 @@ class Soil2Conan(ConanFile):
     homepage = "https://github.com/SpartanJ/SOIL2"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "Public Domain"
-    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -19,7 +18,6 @@ class Soil2Conan(ConanFile):
         "shared": True,
         "fPIC": True
     }
-    exports = "LICENSE.md"
     exports_sources = [
         os.path.join("patches", "CMakeLists.txt"),
         os.path.join("patches", "SOIL2Config.cmake.in")
@@ -50,9 +48,7 @@ class Soil2Conan(ConanFile):
 
     def package(self):
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)        
-        for export in self.exports:
-            self.copy(export, keep_path=False)
-
+        
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
         self.cpp_info.names["cmake_find_package"] = "SOIL2"

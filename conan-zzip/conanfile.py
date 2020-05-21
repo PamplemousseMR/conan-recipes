@@ -20,7 +20,6 @@ class ZZipConan(ConanFile):
         "shared": True,
         "fPIC": True,
     }
-    exports = "LICENSE.md"
     exports_sources = [
         os.path.join("patches", "CMakeLists.txt"), 
         os.path.join("patches", "_config.h.cmake"),
@@ -58,8 +57,6 @@ class ZZipConan(ConanFile):
 
     def package(self):
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)        
-        for export in self.exports:
-            self.copy(export, keep_path=False)
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)

@@ -9,6 +9,9 @@ class TestPackageConan(ConanFile):
     def configure(self):
         del self.settings.compiler.libcxx
 
+    def configure(self):
+        del self.settings.compiler.libcxx
+
     def build(self):
         cmake = CMake(self)
         cmake.configure()
