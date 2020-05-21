@@ -2,7 +2,7 @@ from conans import ConanFile, tools, CMake
 import os
 import shutil
 
-class ZzipConan(ConanFile):
+class ZZipConan(ConanFile):
     name = "zzip"
     version = "0.13.69"
     description = "The ZZIPlib provides read access on ZIP-archives and unpacked data. It features an additional simplified API following the standard Posix API for file access"
@@ -10,7 +10,7 @@ class ZzipConan(ConanFile):
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "LGPL"
     author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
-    generators = "cmake"
+    generators = "cmake_find_package"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -23,7 +23,6 @@ class ZzipConan(ConanFile):
     exports = "LICENSE.md"
     exports_sources = [
         os.path.join("patches", "CMakeLists.txt"), 
-        os.path.join("patches", "WrappedCMakeLists.txt"),
         os.path.join("patches", "_config.h.cmake"),
         os.path.join("patches", "fseeko.h.patch")
     ]
@@ -39,10 +38,9 @@ class ZzipConan(ConanFile):
     def configure(self):
         del self.settings.compiler.libcxx
         del self.settings.compiler.cppstd
-        
+
     def requirements(self):
-        if tools.os_info.is_windows:
-            self.requires.add("zlib/1.2.11@{0}/{1}".format(self.user, self.channel))
+        self.requires.add("zlib/1.2.11@{0}/{1}".format(self.user, self.channel))
 
     def source(self):
         tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version), sha256="846246d7cdeee405d8d21e2922c6e97f55f24ecbe3b6dcf5778073a88f120544")
@@ -51,9 +49,9 @@ class ZzipConan(ConanFile):
             shutil.copy(export_source, self._source_folder)
 
     def build(self):
-        tools.patch(base_path=self._source_folder, patch_file=self.exports_sources[3], strip=0)
+        # Patch fseeko.h
+        tools.patch(base_path=self._source_folder, patch_file=self.exports_sources[2], strip=0)
         cmake = CMake(self)
-        cmake.definitions["ZZIP_CONAN_INFO_DIR"] = self.build_folder
         cmake.configure(source_folder=self._source_folder, build_folder=self._build_folder)
         cmake.build()
         cmake.install()
