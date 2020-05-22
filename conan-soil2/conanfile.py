@@ -1,6 +1,6 @@
-from conans import ConanFile, tools, CMake
 import os
 import shutil
+from conans import ConanFile, tools, CMake
 
 
 class Soil2Conan(ConanFile):

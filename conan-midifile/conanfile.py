@@ -1,5 +1,6 @@
-from conans import ConanFile, tools, CMake
 import os
+from conans import ConanFile, tools, CMake
+
 
 class MidifileConan(ConanFile):
     name = "midifile"
@@ -8,8 +9,6 @@ class MidifileConan(ConanFile):
     homepage = "https://github.com/craigsapp/midifile"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "BSD-2-Clause"
-    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
-    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -19,10 +18,9 @@ class MidifileConan(ConanFile):
         "shared": True,
         "fPIC": True
     }
-    exports = "LICENSE.md"
     exports_sources = os.path.join("patches", "CMakeLists.txt.patch")
-    short_paths=True
-    
+    short_paths = True
+
     _source_folder = "{0}-{1}_sources".format(name, version)
     _build_folder = "{0}-{1}_build".format(name, version)
 
@@ -32,9 +30,10 @@ class MidifileConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
-        
+
     def source(self):
-        tools.get("{0}/archive/master.tar.gz".format(self.homepage), sha256="5d51d9e7ad5648a14287d391e0fba5c254898565a934a0b2b9720b34773a81be")
+        tools.get("{0}/archive/master.tar.gz".format(self.homepage),
+                  sha256="5d51d9e7ad5648a14287d391e0fba5c254898565a934a0b2b9720b34773a81be")
         os.rename("{0}-master".format(self.name), self._source_folder)
 
     def build(self):
@@ -45,9 +44,7 @@ class MidifileConan(ConanFile):
         cmake.install()
 
     def package(self):
-        self.copy(pattern="*.pdb", dst="bin", keep_path=False)        
-        for export in self.exports:
-            self.copy(export, keep_path=False)
+        self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)

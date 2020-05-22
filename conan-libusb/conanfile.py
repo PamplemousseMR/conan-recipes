@@ -1,6 +1,6 @@
-from conans import ConanFile, tools, AutoToolsBuildEnvironment, MSBuild
 import os
-import shutil
+from conans import ConanFile, tools, AutoToolsBuildEnvironment, MSBuild
+
 
 class LibUSBConan(ConanFile):
     name = "libusb"
@@ -20,8 +20,8 @@ class LibUSBConan(ConanFile):
         "fPIC": True,
         "enable_udev": True
     }
-    short_paths=True
-    
+    short_paths = True
+
     _source_folder = "{0}-{1}_sources".format(name, version)
 
     @property
@@ -43,7 +43,8 @@ class LibUSBConan(ConanFile):
         del self.settings.compiler.cppstd
 
     def source(self):
-        tools.get("{0}/releases/download/v{1}/libusb-{1}.tar.bz2".format(self.homepage, self.version), sha256="db11c06e958a82dac52cf3c65cb4dd2c3f339c8a988665110e0d24d19312ad8d")
+        tools.get("{0}/releases/download/v{1}/libusb-{1}.tar.bz2".format(self.homepage, self.version),
+                  sha256="db11c06e958a82dac52cf3c65cb4dd2c3f339c8a988665110e0d24d19312ad8d")
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def _build_visual_studio(self):
@@ -61,7 +62,7 @@ class LibUSBConan(ConanFile):
             elif self.settings.compiler.version == "11":
                 solution_file = "libusb_2012.sln"
             solution_file = os.path.join("msvc", solution_file)
-            platforms = {"x86":"Win32"}
+            platforms = {"x86": "Win32"}
             # Generate the sln project.
             msbuild = MSBuild(self)
             msbuild.build(solution_file, platforms=platforms, upgrade_project=False)
@@ -73,7 +74,7 @@ class LibUSBConan(ConanFile):
         configure_args.append("--enable-static" if not self.options.shared else "--disable-static")
         if self.settings.os == "Linux":
             configure_args.append("--enable-udev" if self.options.enable_udev else "--disable-udev")
-        elif self._is_mingw :
+        elif self._is_mingw:
             if self.settings.arch == "x86_64":
                 configure_args.append("--host=x86_64-w64-mingw32")
             elif self.settings.arch == "x86":
@@ -84,11 +85,13 @@ class LibUSBConan(ConanFile):
         autotools.install()
 
     def build(self):
-        if self._is_msvc :
+        if self._is_msvc:
             # Patch all vcxproj.
-            for vcxproj in ["fxload_2017", "getopt_2017", "hotplugtest_2017", "libusb_dll_2017", "libusb_static_2017", "listdevs_2017", "stress_2017", "testlibusb_2017", "xusb_2017"]:
+            for vcxproj in ["fxload_2017", "getopt_2017", "hotplugtest_2017", "libusb_dll_2017", "libusb_static_2017",
+                            "listdevs_2017", "stress_2017", "testlibusb_2017", "xusb_2017"]:
                 vcxproj_path = os.path.join(self._source_folder, "msvc", "%s.vcxproj" % vcxproj)
-                tools.replace_in_file(vcxproj_path, "<WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>", "")
+                tools.replace_in_file(vcxproj_path,
+                                      "<WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>", "")
             self._build_visual_studio()
         else:
             self._build_autotools()
@@ -96,11 +99,13 @@ class LibUSBConan(ConanFile):
     def package(self):
         # Copying the license file.
         self.copy("COPYING", src=self._source_folder, dst="licenses", keep_path=False)
-        if self._is_msvc :
+        if self._is_msvc:
             # Package header, lib, dll and pdb.
-            self.copy(pattern="libusb.h", dst=os.path.join("include", "libusb-1.0"), src=os.path.join(self._source_folder, "libusb"), keep_path=False)
+            self.copy(pattern="libusb.h", dst=os.path.join("include", "libusb-1.0"),
+                      src=os.path.join(self._source_folder, "libusb"), keep_path=False)
             arch = "x64" if self.settings.arch == "x86_64" else "Win32"
-            source_dir = os.path.join(self._source_folder, arch, str(self.settings.build_type), "dll" if self.options.shared else "lib")
+            source_dir = os.path.join(self._source_folder, arch, str(self.settings.build_type),
+                                      "dll" if self.options.shared else "lib")
             self.copy(pattern="*.pdb", dst="bin", src=source_dir, keep_path=False)
             self.copy(pattern="libusb-usbdk-1.0.dll", dst="bin", src=source_dir, keep_path=False)
             self.copy(pattern="libusb-usbdk-1.0.lib", dst="lib", src=source_dir, keep_path=False)
