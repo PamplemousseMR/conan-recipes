@@ -1,11 +1,12 @@
 from conans import ConanFile, CMake, tools
 import os
 
+
 class TestPackageConan(ConanFile):
     name = "test_package"
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake_find_package"
-    
+
     def configure(self):
         del self.settings.compiler.libcxx
 
@@ -19,4 +20,4 @@ class TestPackageConan(ConanFile):
             bin_path = os.path.join(str(self.settings.build_type), self.name)
         else:
             bin_path = self.name
-        self.run(os.path.join(".",bin_path) + " --help", run_environment=True)
+        self.run(os.path.join(".", bin_path) + " --help", run_environment=True)

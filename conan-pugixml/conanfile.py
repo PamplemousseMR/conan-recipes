@@ -1,5 +1,6 @@
-from conans import ConanFile, tools, CMake
 import os
+from conans import ConanFile, tools, CMake
+
 
 class PubixmlConan(ConanFile):
     name = "pugixml"
@@ -21,7 +22,7 @@ class PubixmlConan(ConanFile):
         "header_only": False,
         "wchar_mode": False
     }
-    short_paths=False
+    short_paths = False
 
     _source_folder = "{0}-{1}_sources".format(name, version)
     _build_folder = "{0}-{1}_build".format(name, version)
@@ -42,19 +43,20 @@ class PubixmlConan(ConanFile):
             self.info.header_only()
 
     def source(self):
-        tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version), sha256="10f1f0a32b559ca8435d95855928d990cfbb9796e339efb638080c897728174c")
+        tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version),
+                  sha256="10f1f0a32b559ca8435d95855928d990cfbb9796e339efb638080c897728174c")
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def build(self):
         header_file = os.path.join(self._source_folder, "src", "pugiconfig.hpp")
-        
+
         if self.options.wchar_mode:
             tools.replace_in_file(header_file, "// #define PUGIXML_WCHAR_MODE", '''#define PUGIXML_WCHAR_MODE''')
-        
+
         if self.options.header_only:
             tools.replace_in_file(header_file, "// #define PUGIXML_HEADER_ONLY", '''#define PUGIXML_HEADER_ONLY''')
         else:
-            cmake = CMake(self)            
+            cmake = CMake(self)
             cmake.configure(source_folder=self._source_folder, build_folder=self._build_folder)
             cmake.build()
             cmake.install()
@@ -70,12 +72,8 @@ class PubixmlConan(ConanFile):
     def package_info(self):
         # Set the name of conan auto generated Findpugixml.cmake.
         self.cpp_info.names["cmake_find_package"] = "pugixml"
-        self.cpp_info.names["cmake_find_package_multi"] = "pugixml"        
-        # Set the package folder as CMAKE_PREFIX_PATH to find pugixmlConfig.cmake.
-        self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
+        self.cpp_info.names["cmake_find_package_multi"] = "pugixml"
         if self.options.header_only:
             self.cpp_info.defines = ["PUGIXML_HEADER_ONLY"]
         else:
             self.cpp_info.libs = tools.collect_libs(self)
-
-            

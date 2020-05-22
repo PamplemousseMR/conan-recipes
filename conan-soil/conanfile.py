@@ -2,6 +2,7 @@ from conans import ConanFile, tools, CMake
 import os
 import shutil
 
+
 class SoilConan(ConanFile):
     name = "soil"
     version = "1.0"
@@ -22,7 +23,7 @@ class SoilConan(ConanFile):
         os.path.join("patches", "CMakeLists.txt"),
         os.path.join("patches", "SOILConfig.cmake.in")
     ]
-    
+
     _source_folder = "{0}-{1}_sources".format(name, version)
     _build_folder = "{0}-{1}_build".format(name, version)
 
@@ -35,7 +36,8 @@ class SoilConan(ConanFile):
         del self.settings.compiler.cppstd
 
     def source(self):
-        tools.get("http://www.lonesock.net/files/soil.zip", sha256="a2305b8d64f6d636e36d669bbdb0ca5445d1345c754b3d61d3f037dad2e5f701")
+        tools.get("http://www.lonesock.net/files/soil.zip",
+                  sha256="a2305b8d64f6d636e36d669bbdb0ca5445d1345c754b3d61d3f037dad2e5f701")
         os.rename("Simple OpenGL Image Library", self._source_folder)
         for export_source in self.exports_sources:
             shutil.copy(export_source, self._source_folder)
@@ -47,7 +49,7 @@ class SoilConan(ConanFile):
         cmake.install()
 
     def package(self):
-        self.copy(pattern="*.pdb", dst="bin", keep_path=False)        
+        self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)

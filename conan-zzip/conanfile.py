@@ -2,6 +2,7 @@ from conans import ConanFile, tools, CMake
 import os
 import shutil
 
+
 class ZZipConan(ConanFile):
     name = "zzip"
     version = "0.13.69"
@@ -21,12 +22,12 @@ class ZZipConan(ConanFile):
         "fPIC": True,
     }
     exports_sources = [
-        os.path.join("patches", "CMakeLists.txt"), 
+        os.path.join("patches", "CMakeLists.txt"),
         os.path.join("patches", "_config.h.cmake"),
         os.path.join("patches", "fseeko.h.patch")
     ]
-    short_paths=True
-    
+    short_paths = True
+
     _source_folder = "{0}-{1}_sources".format(name, version)
     _build_folder = "{0}-{1}_build".format(name, version)
 
@@ -42,7 +43,8 @@ class ZZipConan(ConanFile):
         self.requires.add("zlib/1.2.11@{0}/{1}".format(self.user, self.channel))
 
     def source(self):
-        tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version), sha256="846246d7cdeee405d8d21e2922c6e97f55f24ecbe3b6dcf5778073a88f120544")
+        tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version),
+                  sha256="846246d7cdeee405d8d21e2922c6e97f55f24ecbe3b6dcf5778073a88f120544")
         os.rename("{0}lib-{1}".format(self.name, self.version), self._source_folder)
         for export_source in self.exports_sources:
             shutil.copy(export_source, self._source_folder)
@@ -56,7 +58,7 @@ class ZZipConan(ConanFile):
         cmake.install()
 
     def package(self):
-        self.copy(pattern="*.pdb", dst="bin", keep_path=False)        
+        self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)

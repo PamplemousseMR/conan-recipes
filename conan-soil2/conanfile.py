@@ -2,6 +2,7 @@ from conans import ConanFile, tools, CMake
 import os
 import shutil
 
+
 class Soil2Conan(ConanFile):
     name = "soil2"
     version = "1.11"
@@ -22,7 +23,7 @@ class Soil2Conan(ConanFile):
         os.path.join("patches", "CMakeLists.txt"),
         os.path.join("patches", "SOIL2Config.cmake.in")
     ]
-    
+
     _source_folder = "{0}-{1}_sources".format(name, version)
     _build_folder = "{0}-{1}_build".format(name, version)
 
@@ -35,7 +36,8 @@ class Soil2Conan(ConanFile):
         del self.settings.compiler.cppstd
 
     def source(self):
-        tools.get("{0}/archive/release-{1}.tar.gz".format(self.homepage, self.version), sha256="104a2de5bb74b58b7b7cda7592b174d9aa0585eeb73d0bec4901f419321358bc")
+        tools.get("{0}/archive/release-{1}.tar.gz".format(self.homepage, self.version),
+                  sha256="104a2de5bb74b58b7b7cda7592b174d9aa0585eeb73d0bec4901f419321358bc")
         os.rename("SOIL2-release-{0}".format(self.version), self._source_folder)
         for export_source in self.exports_sources:
             shutil.copy(export_source, self._source_folder)
@@ -47,8 +49,8 @@ class Soil2Conan(ConanFile):
         cmake.install()
 
     def package(self):
-        self.copy(pattern="*.pdb", dst="bin", keep_path=False)        
-        
+        self.copy(pattern="*.pdb", dst="bin", keep_path=False)
+
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
         self.cpp_info.names["cmake_find_package"] = "SOIL2"

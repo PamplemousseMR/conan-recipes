@@ -20,7 +20,6 @@ class LibUSBConan(ConanFile):
         "fPIC": True,
         "enable_udev": True
     }
-    exports = "LICENSE.md"
     short_paths=True
     
     _source_folder = "{0}-{1}_sources".format(name, version)

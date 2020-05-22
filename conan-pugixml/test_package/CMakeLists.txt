@@ -13,6 +13,8 @@ add_executable(
 	${PROJECT_NAME}
 	test_package.cpp
 	)
+	
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/example.xml DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 #=======================================
 #                SETTINGS               
@@ -29,6 +31,6 @@ set_target_properties(
 #                PACKAGE                
 #=======================================
 
-pkg_check_modules(pugixml REQUIRED pugixml)
+find_package(pugixml REQUIRED) 
 
-target_link_libraries(${PROJECT_NAME} PkgConfig::pugixml)
+target_link_libraries(${PROJECT_NAME} pugixml::pugixml)
