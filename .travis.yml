@@ -317,71 +317,100 @@ script:
 
   - cd conan-bzip2
   - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - cd ..
 
   - cd conan-glew
   - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - cd ..
 
   - cd conan-glfw
   - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - cd ..
 
   - cd conan-glm
   - conan create -s build_type=Debug   -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -s build_type=Debug   -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - cd ..
 
   - cd conan-midifile
   - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - cd ..
 
   - cd conan-pugixml
   - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - cd ..
 
   - cd conan-soil
   - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - cd ..
 
   - cd conan-soil2
   - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - cd ..
 
   - cd conan-zlib
   - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - cd ..
 
   - cd conan-zzip
   - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - cd ..
 
   - cd conan-libpng
   - conan create -o *:shared=True  -o libpng:hardware_optimizations=True -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=True  -o libpng:hardware_optimizations=True -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - conan create -o *:shared=False -o libpng:hardware_optimizations=True -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=False -o libpng:hardware_optimizations=True -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - conan create -o *:shared=True  -o libpng:hardware_optimizations=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=True  -o libpng:hardware_optimizations=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - conan create -o *:shared=False -o libpng:hardware_optimizations=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=False -o libpng:hardware_optimizations=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - cd ..
 
   #- cd conan-boost
   #- conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  #- conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   #- conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  #- conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   #- cd ..
 
   #- cd conan-freetype
   #- conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  #- conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   #- conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  #- conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   #- cd ..
 
   - cd conan-libusb
   - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} -tf test_package_0 . pamplemousseMR/testing
   - cd ..

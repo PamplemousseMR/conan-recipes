@@ -21,6 +21,8 @@ add_executable(
 	../test_package/test_package.cpp
 	)
 
+file(COPY "../test_package/example.xml" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 #=======================================
 #                SETTINGS               
 #=======================================

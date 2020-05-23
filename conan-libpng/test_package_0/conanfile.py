@@ -1,10 +1,14 @@
-from conans import ConanFile, CMake, tools
 import os
+from conans import ConanFile, CMake
+
 
 class TestPackageConan(ConanFile):
     name = "test_package"
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
+
+    def configure(self):
+        del self.settings.compiler.libcxx
 
     def configure(self):
         del self.settings.compiler.libcxx
