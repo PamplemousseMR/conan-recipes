@@ -41,14 +41,20 @@ class FreetypeConan(ConanFile):
         del self.settings.compiler.cppstd
 
     def requirements(self):
-        if self.options.with_zlib:
-            self.requires.add("zlib/1.2.11@{0}/{1}".format(self.user, self.channel))
         if self.options.with_bzip2:
             self.requires.add("bzip2/1.0.8@{0}/{1}".format(self.user, self.channel))
-        if self.options.with_png:
-            self.requires.add("libpng/1.6.37@{0}/{1}".format(self.user, self.channel))
+
         if self.options.with_harfbuzz:
             self.requires.add("harfbuzz/2.6.2@{0}/{1}".format(self.user, self.channel))
+
+        if self.options.with_png:
+            self.requires.add("libpng/1.6.37@{0}/{1}".format(self.user, self.channel))
+            if not self.options.with_zlib:
+                self.output.warn("libpng needs zlib, with_png is sets to True.")
+                self.options.with_zlib = True
+
+        if self.options.with_zlib:
+            self.requires.add("zlib/1.2.11@{0}/{1}".format(self.user, self.channel))
 
     def source(self):
         tools.get("{0}/{1}-{2}.tar.gz".format(self.homepage, self.name, self.version),
