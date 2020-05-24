@@ -46,19 +46,26 @@ class GlfwConan(ConanFile):
         cmake.install()
 
     def package(self):
+        # Copying the license file.
         self.copy("LICENSE.md", src=self._source_folder, dst="licenses", ignore_case=True, keep_path=False)
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
+
+        # Remove the pkg config, it contains absoluts paths. Let conan generate it.
         tools.rmdir(os.path.join(self.package_folder, 'lib', 'pkgconfig'))
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
+
         # Set the name of conan auto generated Findglfw3.cmake.
         self.cpp_info.names["cmake_find_package"] = "glfw3"
         self.cpp_info.names["cmake_find_package_multi"] = "glfw3"
+
         # Set the name of conan auto generated glfw3.pc.
         self.cpp_info.names["pkg_config"] = "glfw3"
+
         # Set the package folder as CMAKE_PREFIX_PATH to find glfw3Config.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
+
         if tools.os_info.is_linux:
             self.cpp_info.libs.extend(['Xi', 'dl', 'X11', 'pthread'])
         elif tools.os_info.is_macos:

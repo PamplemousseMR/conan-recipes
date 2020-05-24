@@ -18,7 +18,7 @@ class GlewConan(ConanFile):
         "shared": True,
         "fPIC": True
     }
-    short_paths = False
+    short_paths = True
 
     _source_folder = "{0}-{1}_sources".format(name, version)
     _build_folder = "{0}-{1}_build".format(name, version)
@@ -40,24 +40,26 @@ class GlewConan(ConanFile):
         cmakeFile = os.path.join(self._source_folder, "build", "cmake")
         cmake = CMake(self)
         cmake.definitions["BUILD_UTILS"] = False
-        cmake.definitions["GLEW_REGAL"] = self.options.regal
-        cmake.definitions["GLEW_OSMESA"] = self.options.osmesa
         cmake.configure(source_folder=cmakeFile, build_folder=self._build_folder)
         cmake.build()
         cmake.install()
 
     def package(self):
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
+        
         # Remove the pkg config, it contains absoluts paths. Let conan generate it.
         tools.rmdir(os.path.join(self.package_folder, 'lib', 'pkgconfig'))
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
+
         # Set the name of conan auto generated FindSOIL.cmake.
         self.cpp_info.names["cmake_find_package"] = "GLEW"
         self.cpp_info.names["cmake_find_package_multi"] = "GLEW"
+
         # Set the name of conan auto generated glew.pc.
         self.cpp_info.names["pkg_config"] = "glew"
+
         # Set the package folder as CMAKE_PREFIX_PATH to find glew-config.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
 

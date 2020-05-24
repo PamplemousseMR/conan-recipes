@@ -122,11 +122,14 @@ class LibUSBConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
+
         # Set the name of conan auto generated FindLibUSB.cmake.
         self.cpp_info.names["cmake_find_package"] = "LibUSB"
         self.cpp_info.names["cmake_find_package_multi"] = "LibUSB"
+
         # Set the name of conan auto generated libusb-1.0.pc.
         self.cpp_info.names["pkg_config"] = "libusb-1.0"
+        
         if self.settings.os == "Linux":
             self.cpp_info.system_libs.append("pthread")
             if self.options.enable_udev:

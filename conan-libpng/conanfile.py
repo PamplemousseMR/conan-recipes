@@ -61,15 +61,18 @@ class LibpngConan(ConanFile):
     def package(self):
         self.copy("LICENSE", src=self._source_folder, dst="licenses", ignore_case=True, keep_path=False)
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
-        tools.rmdir(os.path.join(self.package_folder, 'share'))
-        tools.rmdir(os.path.join(self.package_folder, 'lib', 'libpng'))
-        tools.rmdir(os.path.join(self.package_folder, 'lib', 'pkgconfig'))
+
+        # Remove executables.
         if tools.os_info.is_windows:
             os.remove(os.path.join(self.package_folder, 'bin', 'pngfix.exe'))
             os.remove(os.path.join(self.package_folder, 'bin', 'png-fix-itxt.exe'))
 
+        tools.rmdir(os.path.join(self.package_folder, 'share'))
+        tools.rmdir(os.path.join(self.package_folder, 'lib', 'libpng'))
+
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
+
         # Set the name of conan auto generated FindPNG.cmake.
         self.cpp_info.names["cmake_find_package"] = "PNG"
         self.cpp_info.names["cmake_find_package_multi"] = "PNG"

@@ -22,7 +22,7 @@ class PubixmlConan(ConanFile):
         "header_only": False,
         "wchar_mode": False
     }
-    short_paths = False
+    short_paths = True
 
     _source_folder = "{0}-{1}_sources".format(name, version)
     _build_folder = "{0}-{1}_build".format(name, version)
@@ -62,7 +62,13 @@ class PubixmlConan(ConanFile):
             cmake.install()
 
     def package(self):
+        # Copy the license file.
         self.copy("LICENSE.md", src=self._source_folder, dst="licenses", keep_path=False)
+
+        # Remove the pkg config, it contains absoluts paths. Let conan generate it.
+        tools.rmdir(os.path.join(self.package_folder, 'lib', 'pkgconfig'))
+        tools.rmdir(os.path.join(self.package_folder, 'lib', 'cmake'))
+
         if self.options.header_only:
             source_dir = os.path.join(self._source_folder, "src")
             self.copy(pattern="*", dst="include", src=source_dir)
@@ -73,6 +79,7 @@ class PubixmlConan(ConanFile):
         # Set the name of conan auto generated Findpugixml.cmake.
         self.cpp_info.names["cmake_find_package"] = "pugixml"
         self.cpp_info.names["cmake_find_package_multi"] = "pugixml"
+        
         if self.options.header_only:
             self.cpp_info.defines = ["PUGIXML_HEADER_ONLY"]
         else:

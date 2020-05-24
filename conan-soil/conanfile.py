@@ -23,6 +23,7 @@ class SoilConan(ConanFile):
         os.path.join("patches", "CMakeLists.txt"),
         os.path.join("patches", "SOILConfig.cmake.in")
     ]
+    short_paths = True
 
     _source_folder = "{0}-{1}_sources".format(name, version)
     _build_folder = "{0}-{1}_build".format(name, version)
@@ -53,11 +54,14 @@ class SoilConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
+
         # Set the name of conan auto generated FindSOIL.cmake.
         self.cpp_info.names["cmake_find_package"] = "SOIL"
         self.cpp_info.names["cmake_find_package_multi"] = "SOIL"
+
         # Set the package folder as CMAKE_PREFIX_PATH to find SOILConfig.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
+        
         if self.settings.os == "Linux":
             self.cpp_info.libs.append('GL')
         elif self.settings.os == "Macos":
