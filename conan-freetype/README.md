@@ -1,10 +1,6 @@
 # conan-freetype
 
-conan recipes for zlib.
-
-## Travis
-
-[![Build Status](https://travis-ci.com/PamplemousseMR/conan-freetype.svg?branch=master)](https://travis-ci.com/PamplemousseMR/conan-freetype)
+conan recipes for freetype.
 
 ## Getting Started
 
