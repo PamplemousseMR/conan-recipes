@@ -31,4 +31,8 @@ set_target_properties(
 
 find_package(glew REQUIRED CONFIG)
 
-target_link_libraries(${PROJECT_NAME} GLEW::glew)
+if(TARGET GLEW::glew)
+	target_link_libraries(${PROJECT_NAME} GLEW::glew)
+else()
+	target_link_libraries(${PROJECT_NAME} GLEW::glew_s)
+endif()
