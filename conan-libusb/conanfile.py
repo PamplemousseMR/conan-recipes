@@ -129,7 +129,7 @@ class LibUSBConan(ConanFile):
 
         # Set the name of conan auto generated libusb-1.0.pc.
         self.cpp_info.names["pkg_config"] = "libusb-1.0"
-        
+
         if self.settings.os == "Linux":
             self.cpp_info.system_libs.append("pthread")
             if self.options.enable_udev:

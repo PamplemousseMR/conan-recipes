@@ -61,7 +61,7 @@ class SoilConan(ConanFile):
 
         # Set the package folder as CMAKE_PREFIX_PATH to find SOILConfig.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
-        
+
         if self.settings.os == "Linux":
             self.cpp_info.libs.append('GL')
         elif self.settings.os == "Macos":

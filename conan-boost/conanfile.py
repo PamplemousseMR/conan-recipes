@@ -1,12 +1,12 @@
+import sys
+
+import os
+import shutil
 from conans import ConanFile
 from conans import tools
 from conans.client.build.cppstd_flags import cppstd_flag
-from conans.model.version import Version
 from conans.errors import ConanException
-
-import os
-import sys
-import shutil
+from conans.model.version import Version
 
 try:
     from cStringIO import StringIO
@@ -556,7 +556,7 @@ class BoostConan(ConanFile):
                 self.settings.get_safe("compiler.version"),
                 self.settings.get_safe("compiler.cppstd")
             )
-            )
+                         )
 
         # CXX FLAGS
         cxx_flags = []
@@ -706,7 +706,7 @@ class BoostConan(ConanFile):
 
         if not self.options.without_python:
             # https://www.boost.org/doc/libs/1_70_0/libs/python/doc/html/building/configuring_boost_build.html
-            contents += "\nusing python : {version} : {executable} : {includes} :  {libraries} ;"\
+            contents += "\nusing python : {version} : {executable} : {includes} :  {libraries} ;" \
                 .format(version=self._python_version,
                         executable=self._python_executable,
                         includes=self._python_includes,

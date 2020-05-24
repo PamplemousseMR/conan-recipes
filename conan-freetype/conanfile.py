@@ -27,7 +27,7 @@ class FreetypeConan(ConanFile):
         "with_png": True,
         "with_harfbuzz": False
     }
-    short_paths = False
+    short_paths = True
 
     _source_folder = "{0}-{1}_sources".format(name, version)
     _build_folder = "{0}-{1}_build".format(name, version)

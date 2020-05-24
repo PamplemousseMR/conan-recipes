@@ -79,7 +79,7 @@ class PubixmlConan(ConanFile):
         # Set the name of conan auto generated Findpugixml.cmake.
         self.cpp_info.names["cmake_find_package"] = "pugixml"
         self.cpp_info.names["cmake_find_package_multi"] = "pugixml"
-        
+
         if self.options.header_only:
             self.cpp_info.defines = ["PUGIXML_HEADER_ONLY"]
         else:

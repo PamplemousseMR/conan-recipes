@@ -109,7 +109,7 @@ matrix:
             - python3-setuptools
             - g++-4.8
       env: MATRIX_EVAL="CXX=g++-4.8 && COMPILER_NAME=gcc && COMPILER_VERSION=4.8"
-      
+
     - os: linux
       dist: xenial
       compiler: gcc-4.9
@@ -128,7 +128,7 @@ matrix:
             - python3-setuptools
             - g++-4.9
       env: MATRIX_EVAL="CXX=g++-4.9 && COMPILER_NAME=gcc && COMPILER_VERSION=4.9"
-      
+
     - os: linux
       dist: xenial
       compiler: gcc-5
@@ -147,7 +147,7 @@ matrix:
             - python3-setuptools
             - g++-5
       env: MATRIX_EVAL="CXX=g++-5 && COMPILER_NAME=gcc && COMPILER_VERSION=5"
-      
+
     - os: linux
       dist: xenial
       compiler: gcc-6
@@ -166,7 +166,7 @@ matrix:
             - python3-setuptools
             - g++-6
       env: MATRIX_EVAL="CXX=g++-6 && COMPILER_NAME=gcc && COMPILER_VERSION=6"
-      
+
     - os: linux
       dist: xenial
       compiler: gcc-7
@@ -185,7 +185,7 @@ matrix:
             - python3-setuptools
             - g++-7
       env: MATRIX_EVAL="CXX=g++-7 && COMPILER_NAME=gcc && COMPILER_VERSION=7"
-      
+
     - os: linux
       dist: xenial
       compiler: gcc-8
@@ -204,7 +204,7 @@ matrix:
             - python3-setuptools
             - g++-8
       env: MATRIX_EVAL="CXX=g++-8 && COMPILER_NAME=gcc && COMPILER_VERSION=8"
-      
+
     - os: linux
       dist: xenial
       compiler: gcc-9
@@ -403,9 +403,23 @@ script:
 
   - cd conan-freetype
   - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
-  - test create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/asf@pamplemousseMR/testing
+  - conan test -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
   - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
-  - test create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/asf@pamplemousseMR/testing
+  - conan test -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
+  - conan create -o *:shared=True -o freetype:with_zlib=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True -o freetype:with_zlib=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
+  - conan create -o *:shared=True -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
+  - conan create -o *:shared=True -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
+  - conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
+  - conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
+  - conan create -o *:shared=True -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
+  - conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing 
   - cd ..
 
   - cd conan-libusb

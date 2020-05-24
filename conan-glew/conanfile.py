@@ -46,7 +46,7 @@ class GlewConan(ConanFile):
 
     def package(self):
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
-        
+
         # Remove the pkg config, it contains absoluts paths. Let conan generate it.
         tools.rmdir(os.path.join(self.package_folder, 'lib', 'pkgconfig'))
 
@@ -76,7 +76,7 @@ class GlewConan(ConanFile):
                         self.cpp_info.exelinkflags.append('-NODEFAULTLIB:LIBCMT')
             else:
                 self.cpp_info.libs.append("opengl32")
-                
+
         else:
             if self.settings.os == "Macos":
                 self.cpp_info.exelinkflags.append("-framework OpenGL")
