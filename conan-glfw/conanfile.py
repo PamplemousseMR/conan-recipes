@@ -1,5 +1,6 @@
-from conans import ConanFile, tools, CMake
 import os
+from conans import ConanFile, tools, CMake
+
 
 class GlfwConan(ConanFile):
     name = "glfw"
@@ -8,8 +9,6 @@ class GlfwConan(ConanFile):
     homepage = "https://github.com/glfw/glfw"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "Zlib"
-    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
-    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -19,9 +18,8 @@ class GlfwConan(ConanFile):
         "shared": True,
         "fPIC": True
     }
-    exports = "LICENSE.md"
-    short_paths=True
-    
+    short_paths = True
+
     _source_folder = "{0}-{1}_sources".format(name, version)
     _build_folder = "{0}-{1}_build".format(name, version)
 
@@ -34,7 +32,8 @@ class GlfwConan(ConanFile):
         del self.settings.compiler.cppstd
 
     def source(self):
-        tools.get("{0}/archive/{1}.tar.gz".format(self.homepage, self.version), sha256="98768e12e615fbe9f3386f5bbfeb91b5a3b45a8c4c77159cef06b1f6ff749537")
+        tools.get("{0}/archive/{1}.tar.gz".format(self.homepage, self.version),
+                  sha256="98768e12e615fbe9f3386f5bbfeb91b5a3b45a8c4c77159cef06b1f6ff749537")
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def build(self):
@@ -47,12 +46,19 @@ class GlfwConan(ConanFile):
         cmake.install()
 
     def package(self):
-        self.copy(pattern="*.pdb", dst="bin", keep_path=False)        
-        for export in self.exports:
-            self.copy(export, keep_path=False)
+        self.copy("LICENSE.md", src=self._source_folder, dst="licenses", ignore_case=True, keep_path=False)
+        self.copy(pattern="*.pdb", dst="bin", keep_path=False)
+        tools.rmdir(os.path.join(self.package_folder, 'lib', 'pkgconfig'))
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
+        # Set the name of conan auto generated Findglfw3.cmake.
+        self.cpp_info.names["cmake_find_package"] = "glfw3"
+        self.cpp_info.names["cmake_find_package_multi"] = "glfw3"
+        # Set the name of conan auto generated glfw3.pc.
+        self.cpp_info.names["pkg_config"] = "glfw3"
+        # Set the package folder as CMAKE_PREFIX_PATH to find glfw3Config.cmake.
+        self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
         if tools.os_info.is_linux:
             self.cpp_info.libs.extend(['Xi', 'dl', 'X11', 'pthread'])
         elif tools.os_info.is_macos:
