@@ -33,7 +33,7 @@ class MidifileConan(ConanFile):
 
     def source(self):
         tools.get("{0}/archive/master.tar.gz".format(self.homepage),
-                  sha256="5d51d9e7ad5648a14287d391e0fba5c254898565a934a0b2b9720b34773a81be")
+                  sha256="6dce0f303c4da6ae6df2ab5424d287ffb3e77a40d19c7ce6665513f83ad42a9c")
         os.rename("{0}-master".format(self.name), self._source_folder)
 
     def build(self):
