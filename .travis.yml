@@ -1,0 +1,423 @@
+language: cpp
+sudo: false
+
+matrix:
+  include:
+
+    #==============================
+    #
+    #          osx gcc
+    #
+    #==============================
+
+    #- os: osx
+    #  osx_image: xcode11.4
+    #  compiler: gcc-4.9
+    #  env: MATRIX_EVAL="brew install gcc@4.9 && CXX=g++-4.9 && COMPILER_NAME=gcc && COMPILER_VERSION=4.9"
+
+    #- os: osx
+    #  osx_image: xcode11.4
+    #  compiler: gcc-5
+    #  env: MATRIX_EVAL="brew install gcc@5 && CXX=g++-5 && COMPILER_NAME=gcc && COMPILER_VERSION=5"
+
+    - os: osx
+      osx_image: xcode11.4
+      compiler: gcc-6
+      env: MATRIX_EVAL="brew install gcc@6 && CXX=g++-6 && COMPILER_NAME=gcc && COMPILER_VERSION=6"
+
+    - os: osx
+      osx_image: xcode11.4
+      compiler: gcc-7
+      env: MATRIX_EVAL="brew install gcc@7 && CXX=g++-7 && COMPILER_NAME=gcc && COMPILER_VERSION=7"
+
+    - os: osx
+      osx_image: xcode11.4
+      compiler: gcc-8
+      env: MATRIX_EVAL="brew install gcc@8 && CXX=g++-8 && COMPILER_NAME=gcc && COMPILER_VERSION=8"
+
+    #==============================
+    #
+    #          osx clang
+    #
+    #==============================
+
+    #- os: osx
+    #  osx_image: xcode8.3
+    #  env: MATRIX_EVAL="CXX=clang++ && COMPILER_NAME=apple-clang && COMPILER_VERSION=8.1"
+
+    #- os: osx
+    #  osx_image: xcode9.2
+    #  env: MATRIX_EVAL="CXX=clang++ && COMPILER_NAME=apple-clang && COMPILER_VERSION=9.0"
+
+    - os: osx
+      osx_image: xcode9.4
+      env: MATRIX_EVAL="CXX=clang++ && COMPILER_NAME=apple-clang && COMPILER_VERSION=9.1"
+
+    - os: osx
+      osx_image: xcode10.1
+      env: MATRIX_EVAL="CXX=clang++ && COMPILER_NAME=apple-clang && COMPILER_VERSION=10.0"
+
+    - os: osx
+      osx_image: xcode10.2
+      env: MATRIX_EVAL="CXX=clang++ && COMPILER_NAME=apple-clang && COMPILER_VERSION=10.0"
+
+    - os: osx
+      osx_image: xcode10.3
+      env: MATRIX_EVAL="CXX=clang++ && COMPILER_NAME=apple-clang && COMPILER_VERSION=10.0"
+
+    - os: osx
+      osx_image: xcode11
+      env: MATRIX_EVAL="CXX=clang++ && COMPILER_NAME=apple-clang && COMPILER_VERSION=11.0"
+
+    - os: osx
+      osx_image: xcode11.1
+      env: MATRIX_EVAL="CXX=clang++ && COMPILER_NAME=apple-clang && COMPILER_VERSION=11.0"
+
+    - os: osx
+      osx_image: xcode11.2
+      env: MATRIX_EVAL="CXX=clang++ && COMPILER_NAME=apple-clang && COMPILER_VERSION=11.0"
+
+    - os: osx
+      osx_image: xcode11.3
+      env: MATRIX_EVAL="CXX=clang++ && COMPILER_NAME=apple-clang && COMPILER_VERSION=11.0"
+
+    - os: osx
+      osx_image: xcode11.4
+      env: MATRIX_EVAL="CXX=clang++ && COMPILER_NAME=apple-clang && COMPILER_VERSION=11.0"
+
+    #==============================
+    #
+    #          linux gcc 
+    #
+    #==============================
+
+    - os: linux
+      dist: xenial
+      compiler: gcc-4.8
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - libudev-dev
+            - libxrandr-dev
+            - libxinerama-dev
+            - libxcursor-dev
+            - libxi-dev
+            - libglu1-mesa-dev
+            - python3-pip
+            - python3-setuptools
+            - g++-4.8
+      env: MATRIX_EVAL="CXX=g++-4.8 && COMPILER_NAME=gcc && COMPILER_VERSION=4.8"
+
+    - os: linux
+      dist: xenial
+      compiler: gcc-4.9
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - libudev-dev
+            - libxrandr-dev
+            - libxinerama-dev
+            - libxcursor-dev
+            - libxi-dev
+            - libglu1-mesa-dev
+            - python3-pip
+            - python3-setuptools
+            - g++-4.9
+      env: MATRIX_EVAL="CXX=g++-4.9 && COMPILER_NAME=gcc && COMPILER_VERSION=4.9"
+
+    - os: linux
+      dist: xenial
+      compiler: gcc-5
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - libudev-dev
+            - libxrandr-dev
+            - libxinerama-dev
+            - libxcursor-dev
+            - libxi-dev
+            - libglu1-mesa-dev
+            - python3-pip
+            - python3-setuptools
+            - g++-5
+      env: MATRIX_EVAL="CXX=g++-5 && COMPILER_NAME=gcc && COMPILER_VERSION=5"
+
+    - os: linux
+      dist: xenial
+      compiler: gcc-6
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - libudev-dev
+            - libxrandr-dev
+            - libxinerama-dev
+            - libxcursor-dev
+            - libxi-dev
+            - libglu1-mesa-dev
+            - python3-pip
+            - python3-setuptools
+            - g++-6
+      env: MATRIX_EVAL="CXX=g++-6 && COMPILER_NAME=gcc && COMPILER_VERSION=6"
+
+    - os: linux
+      dist: xenial
+      compiler: gcc-7
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - libudev-dev
+            - libxrandr-dev
+            - libxinerama-dev
+            - libxcursor-dev
+            - libxi-dev
+            - libglu1-mesa-dev
+            - python3-pip
+            - python3-setuptools
+            - g++-7
+      env: MATRIX_EVAL="CXX=g++-7 && COMPILER_NAME=gcc && COMPILER_VERSION=7"
+
+    - os: linux
+      dist: xenial
+      compiler: gcc-8
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - libudev-dev
+            - libxrandr-dev
+            - libxinerama-dev
+            - libxcursor-dev
+            - libxi-dev
+            - libglu1-mesa-dev
+            - python3-pip
+            - python3-setuptools
+            - g++-8
+      env: MATRIX_EVAL="CXX=g++-8 && COMPILER_NAME=gcc && COMPILER_VERSION=8"
+
+    - os: linux
+      dist: xenial
+      compiler: gcc-9
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - libudev-dev
+            - libxrandr-dev
+            - libxinerama-dev
+            - libxcursor-dev
+            - libxi-dev
+            - libglu1-mesa-dev
+            - python3-pip
+            - python3-setuptools
+            - g++-9
+      env: MATRIX_EVAL="CXX=g++-9 && COMPILER_NAME=gcc && COMPILER_VERSION=9"
+
+    #==============================
+    #
+    #          linux clang 
+    #
+    #==============================
+
+    - os: linux
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.6
+          packages:
+            - libudev-dev
+            - libxrandr-dev
+            - libxinerama-dev
+            - libxcursor-dev
+            - libxi-dev
+            - libglu1-mesa-dev
+            - python3-pip
+            - python3-setuptools
+            - clang-3.6
+      env:
+        - MATRIX_EVAL="CXX=clang++-3.6 && COMPILER_NAME=clang && COMPILER_VERSION=3.6"
+
+    - os: linux
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-4.0
+          packages:
+            - libudev-dev
+            - libxrandr-dev
+            - libxinerama-dev
+            - libxcursor-dev
+            - libxi-dev
+            - libglu1-mesa-dev
+            - python3-pip
+            - python3-setuptools
+            - clang-4.0
+      env:
+        - MATRIX_EVAL="CXX=clang++-4.0 && COMPILER_NAME=clang && COMPILER_VERSION=4.0"
+
+    - os: linux
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-xenial-5.0
+          packages:
+            - libudev-dev
+            - libxrandr-dev
+            - libxinerama-dev
+            - libxcursor-dev
+            - libxi-dev
+            - libglu1-mesa-dev
+            - python3-pip
+            - python3-setuptools
+            - clang-5.0
+      env:
+        - MATRIX_EVAL="CXX=clang++-5.0 && COMPILER_NAME=clang && COMPILER_VERSION=5.0"
+
+    - os: linux
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-xenial-6.0
+          packages:
+            - libudev-dev
+            - libxrandr-dev
+            - libxinerama-dev
+            - libxcursor-dev
+            - libxi-dev
+            - libglu1-mesa-dev
+            - python3-pip
+            - python3-setuptools
+            - clang-6.0
+      env:
+        - MATRIX_EVAL="CXX=clang++-6.0 && COMPILER_NAME=clang && COMPILER_VERSION=6.0"
+
+before_install:
+  - eval ${MATRIX_EVAL}
+
+script:
+  - sudo pip3 install conan
+  - sudo pip3 install --upgrade urllib3
+  - sudo pip3 install --upgrade jinja2
+
+  - cd conan-bzip2
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 bzip2/1.0.8@pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 bzip2/1.0.8@pamplemousseMR/testing
+  - cd ..
+
+  - cd conan-glew
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 glew/2.1.0@pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 glew/2.1.0@pamplemousseMR/testing
+  - cd ..
+
+  - cd conan-glfw
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 glfw/3.3.2@pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 glfw/3.3.2@pamplemousseMR/testing
+  - cd ..
+
+  - cd conan-glm
+  - conan create -s build_type=Debug   -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -s build_type=Debug   -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 glm/0.9.9.8@pamplemousseMR/testing
+  - cd ..
+
+  - cd conan-midifile
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 midifile/1.0@pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 midifile/1.0@pamplemousseMR/testing
+  - cd ..
+
+  - cd conan-pugixml
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 pugixml/1.10@pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 pugixml/1.10@pamplemousseMR/testing
+  - cd ..
+
+  - cd conan-soil
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 soil/1.0@pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 soil/1.0@pamplemousseMR/testing
+  - cd ..
+
+  - cd conan-soil2
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 soil2/1.11@pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 soil2/1.11@pamplemousseMR/testing
+  - cd ..
+
+  - cd conan-zlib
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 zlib/1.2.11@pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 zlib/1.2.11@pamplemousseMR/testing
+  - cd ..
+
+  - cd conan-zzip
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 zzip/0.13.69@pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 zzip/0.13.69@pamplemousseMR/testing
+  - cd ..
+
+  - cd conan-libpng
+  - conan create -o *:shared=True  -o libpng:hardware_optimizations=True -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True  -o libpng:hardware_optimizations=True -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 libpng/1.6.37@pamplemousseMR/testing
+  - conan create -o *:shared=False -o libpng:hardware_optimizations=True -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=False -o libpng:hardware_optimizations=True -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 libpng/1.6.37@pamplemousseMR/testing
+  - conan create -o *:shared=True  -o libpng:hardware_optimizations=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True  -o libpng:hardware_optimizations=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 libpng/1.6.37@pamplemousseMR/testing
+  - conan create -o *:shared=False -o libpng:hardware_optimizations=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=False -o libpng:hardware_optimizations=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 libpng/1.6.37@pamplemousseMR/testing
+  - cd ..
+  
+  - cd conan-freetype
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
+  - conan create -o *:shared=True -o freetype:with_zlib=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True -o freetype:with_zlib=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
+  - conan create -o *:shared=True -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
+  - conan create -o *:shared=True -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
+  - conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
+  - conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
+  - conan create -o *:shared=True -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing
+  - conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 freetype/2.10.1@pamplemousseMR/testing 
+  - cd ..
+
+  - cd conan-libusb
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 libusb/1.0.23@pamplemousseMR/testing
+  - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 libusb/1.0.23@pamplemousseMR/testing
+  - cd ..

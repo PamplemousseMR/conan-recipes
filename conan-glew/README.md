@@ -1,14 +1,14 @@
-# conan-resipes
+# conan-glew
 
-this repository contains conan recipes.
-
-## Travis
-
-[![Build Status](https://travis-ci.com/PamplemousseMR/conan-recipes.svg?branch=master)](https://travis-ci.com/PamplemousseMR/conan-recipes)
+conan recipes for glew.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+- [OpenGL](https://www.opengl.org/) : An environment for developing portable, interactive 2D and 3D graphics applications.
 
 ### Generation
 
@@ -26,10 +26,10 @@ CHANNEL:
 	in a wide range of configurations).
 
 OPTIONS: 
-	- shared={'True'|'False'}
+	- glew:shared={'True'|'False'}
 		Set to 'True' to build shared library, default to 'False'.
-	- fPIC={'True'|'False'}
-		Set to 'True' to build position independent code, default to 'True'.
+	- glew:fPIC={'True'|'False'}
+		Set to 'True' to build position independent code, default to 'True'.		
 ```
 
 ## Authors

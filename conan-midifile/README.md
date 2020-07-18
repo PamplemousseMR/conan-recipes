@@ -1,10 +1,6 @@
-# conan-resipes
+# conan-midifile
 
-this repository contains conan recipes.
-
-## Travis
-
-[![Build Status](https://travis-ci.com/PamplemousseMR/conan-recipes.svg?branch=master)](https://travis-ci.com/PamplemousseMR/conan-recipes)
+conan recipes for midifile.
 
 ## Getting Started
 
@@ -26,9 +22,9 @@ CHANNEL:
 	in a wide range of configurations).
 
 OPTIONS: 
-	- shared={'True'|'False'}
+	- midifile:shared={'True'|'False'}
 		Set to 'True' to build shared library, default to 'False'.
-	- fPIC={'True'|'False'}
+	- midifile:fPIC={'True'|'False'}
 		Set to 'True' to build position independent code, default to 'True'.
 ```
 

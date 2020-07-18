@@ -1,14 +1,14 @@
-# conan-resipes
+# conan-zzip
 
-this repository contains conan recipes.
-
-## Travis
-
-[![Build Status](https://travis-ci.com/PamplemousseMR/conan-recipes.svg?branch=master)](https://travis-ci.com/PamplemousseMR/conan-recipes)
+conan recipes for zzip.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites for linux
+
+- [zlib](https://www.zlib.net/) : A massively spiffy yet delicately unobtrusive compression library.
 
 ### Generation
 
@@ -26,10 +26,22 @@ CHANNEL:
 	in a wide range of configurations).
 
 OPTIONS: 
-	- shared={'True'|'False'}
+	- zzip:shared={'True'|'False'}
 		Set to 'True' to build shared library, default to 'False'.
-	- fPIC={'True'|'False'}
+	- zzip:fPIC={'True'|'False'}
 		Set to 'True' to build position independent code, default to 'True'.
+	- zzip:zlib=<ZLIB_VERSION>@<ZLIB_USER>/<ZLIB_CHANNEL>
+		Sets the zlib recipe used, default to '1.2.11@{USER}/{CHANNEL}' on Windows. On Unix the systeme
+		library will be used.
+
+		ZLIB_VERSION:
+			The version of the used zlib.
+
+		ZLIB_USER:
+			The user of the used zlib.
+
+		ZLIB_CHANNEL:
+			The channel of the used zlib.			
 ```
 
 ## Authors

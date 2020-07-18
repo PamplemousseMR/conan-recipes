@@ -1,14 +1,17 @@
-# conan-resipes
+# conan-freetype
 
-this repository contains conan recipes.
-
-## Travis
-
-[![Build Status](https://travis-ci.com/PamplemousseMR/conan-recipes.svg?branch=master)](https://travis-ci.com/PamplemousseMR/conan-recipes)
+conan recipes for freetype.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Optionals prerequisites for linux
+
+- [zlib](https://www.zlib.net/) : A massively spiffy yet delicately unobtrusive compression library.
+- [bzip2](http://www.bzip.org/) : A free and open-source file compression program that uses the Burrows–Wheeler algorithm.
+- [libpng](http://www.libpng.org/pub/png/libpng.html) : The official PNG reference library.
+- [harfbuzz](https://www.freedesktop.org/wiki/Software/HarfBuzz/) : A text shaping engine.
 
 ### Generation
 
@@ -26,10 +29,18 @@ CHANNEL:
 	in a wide range of configurations).
 
 OPTIONS: 
-	- shared={'True'|'False'}
+	- freetype:shared={'True'|'False'}
 		Set to 'True' to build shared library, default to 'False'.
-	- fPIC={'True'|'False'}
+	- freetype:fPIC={'True'|'False'}
 		Set to 'True' to build position independent code, default to 'True'.
+	- freetype:with_zlib={'True'|'False'}
+	    Set to 'True' to build zlib dependent component, default to 'True'.
+	- freetype:with_bzip2={'True'|'False'}
+	    Set to 'True' to build bzip2 dependent component, default to 'True'.
+	- freetype:with_png={'True'|'False'}
+	    Set to 'True' to build libpng dependent component, default to 'True'.
+	- freetype:with_harfbuzz={'True'|'False'}
+	    Set to 'True' to build harfbuzz dependent component, default to 'False'.
 ```
 
 ## Authors

@@ -1,0 +1,35 @@
+# Generates PACKAGE_<var...> relative to the installed location of the package, these variable come from PATH_VARS of configure_package_config_file.
+@PACKAGE_INIT@
+
+#=======================================
+#                SETTINGS               
+#=======================================
+
+set_and_check(BZIP2_INCLUDE_DIRS "@PACKAGE_BZIP2_INCLUDES_DESTINATION@")
+set_and_check(BZIP2_INCLUDE_DIR ${BZIP2_INCLUDE_DIRS})
+set_and_check(BZIP2_INCLUDE ${BZIP2_INCLUDE_DIRS})
+
+set_and_check(BZIP2_LIBRARY_DIRS "@PACKAGE_BZIP2_LIBRARY_DESTINATION@")
+set_and_check(BZIP2_LIBRARY_DIR ${BZIP2_LIBRARY_DIRS})
+
+set(BZIP2_LIBRARIES "@PACKAGE_BZIP2_TARGET_NAME@")
+set(BZIP2_LIBS ${BZIP2_LIBRARIES})
+
+set_and_check(BZIP2_CONFIG_DIR "@PACKAGE_BZIP2_CMAKE_CONFIG_DESTINATION@")
+
+#=======================================
+#                PACKAGE                
+#=======================================
+
+include(CMakeFindDependencyMacro)
+find_dependency(OpenGL)
+
+#=======================================
+#                TARGET                
+#=======================================
+
+# Includes BZIP2 target.
+include("${CMAKE_CURRENT_LIST_DIR}/@BZIP2_CMAKE_TARGETS_EXPORT_NAME@.cmake")
+
+# Checks whether BZIP2 components have been found, and if this is not the case, sets the BZIP2_FOUND variable to FALSE.
+check_required_components(BZIP2)
