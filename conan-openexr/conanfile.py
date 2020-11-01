@@ -4,7 +4,7 @@ from conans import ConanFile, tools, CMake
 
 class OpenEXRConan(ConanFile):
     name = "openexr"
-    version = "2.5.1"
+    version = "2.5.3"
     description = "The OpenEXR project provides the specification and reference implementation of the EXR file format, the professional-grade image storage format of the motion picture industry"
     homepage = "https://github.com/AcademySoftwareFoundation/openexr"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -36,7 +36,7 @@ class OpenEXRConan(ConanFile):
 
     def source(self):
         tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version),
-                  sha256="11f806bf256453e39fc33bd1cf1fa576a54f144cedcdd3e6935a177e5a89d02e")
+                  sha256="6a6525e6e3907715c6a55887716d7e42d09b54d2457323fcee35a0376960bebf")
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def _patch_files(self):
