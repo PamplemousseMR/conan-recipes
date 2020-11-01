@@ -30,6 +30,7 @@ class OpenEXRConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
 
     def requirements(self):
         self.requires.add("zlib/1.2.11@{0}/{1}".format(self.user, self.channel))

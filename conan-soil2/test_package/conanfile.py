@@ -9,6 +9,7 @@ class TestPackageConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
 
     def build(self):
         cmake = CMake(self)
@@ -20,4 +21,4 @@ class TestPackageConan(ConanFile):
             bin_path = os.path.join(str(self.settings.build_type), self.name)
         else:
             bin_path = self.name
-        self.run(os.path.join(".", bin_path) + " --help", run_environment=True)
+        self.run(os.path.join(".", bin_path), run_environment=True)

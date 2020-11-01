@@ -33,7 +33,7 @@ class PubixmlConan(ConanFile):
 
         if self.options.header_only:
             self.settings.clear()
-
+            
     def configure(self):
         del self.settings.compiler.libcxx
         del self.settings.compiler.cppstd

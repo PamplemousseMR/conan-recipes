@@ -30,6 +30,7 @@ class MidifileConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
 
     def source(self):
         tools.get("{0}/archive/master.tar.gz".format(self.homepage),

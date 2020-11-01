@@ -415,8 +415,6 @@ void testMatrix()
 
 int main (int argc, char *argv[])
 {
-    if (argc < 2)
-        return EXIT_FAILURE;
     Imf::RgbaInputFile input_file("comp_short_decode_piz.exr");
     const Imf::Header& header = input_file.header();
     size_t width = header.dataWindow().max.x - header.dataWindow().min.x + 1;
