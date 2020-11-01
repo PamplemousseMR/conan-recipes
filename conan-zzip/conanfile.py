@@ -5,7 +5,7 @@ from conans import ConanFile, tools, CMake
 
 class ZZipConan(ConanFile):
     name = "zzip"
-    version = "0.13.69"
+    version = "0.13.71"
     description = "The ZZIPlib provides read access on ZIP-archives and unpacked data. It features an additional simplified API following the standard Posix API for file access"
     homepage = "https://github.com/gdraheim/zziplib"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -44,7 +44,7 @@ class ZZipConan(ConanFile):
 
     def source(self):
         tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version),
-                  sha256="846246d7cdeee405d8d21e2922c6e97f55f24ecbe3b6dcf5778073a88f120544")
+                  sha256="2ee1e0fbbb78ec7cc46bde5b62857bc51f8d665dd265577cf93584344b8b9de2")
         os.rename("{0}lib-{1}".format(self.name, self.version), self._source_folder)
         for export_source in self.exports_sources:
             shutil.copy(export_source, self._source_folder)
