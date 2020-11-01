@@ -5,7 +5,7 @@ from conans import ConanFile, tools, CMake
 
 class Soil2Conan(ConanFile):
     name = "soil2"
-    version = "1.11"
+    version = "1.20"
     description = "Simple OpenGL Image Library"
     homepage = "https://github.com/SpartanJ/SOIL2"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -38,7 +38,7 @@ class Soil2Conan(ConanFile):
 
     def source(self):
         tools.get("{0}/archive/release-{1}.tar.gz".format(self.homepage, self.version),
-                  sha256="104a2de5bb74b58b7b7cda7592b174d9aa0585eeb73d0bec4901f419321358bc")
+                  sha256="abf32ed4dc3c713992d87a4fa8c9f0cce83c41f9b5dbf3a6fd0815659a3eee5e")
         os.rename("SOIL2-release-{0}".format(self.version), self._source_folder)
         for export_source in self.exports_sources:
             shutil.copy(export_source, self._source_folder)
