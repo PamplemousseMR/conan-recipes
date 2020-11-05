@@ -45,6 +45,8 @@ class GlewConan(ConanFile):
         cmake.install()
 
     def package(self):
+        # Copying the license file.
+        self.copy("LICENSE.txt", src=self._source_folder, dst="licenses", ignore_case=True, keep_path=False)
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
         # Remove the pkg config, it contains absoluts paths. Let conan generate it.

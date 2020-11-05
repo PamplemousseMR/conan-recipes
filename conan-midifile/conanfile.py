@@ -45,6 +45,9 @@ class MidifileConan(ConanFile):
         cmake.install()
 
     def package(self):
+        # Copy the license file.
+        self.copy("LICENSE.txt", src=self._source_folder, dst="licenses", keep_path=False)
+
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
