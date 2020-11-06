@@ -92,3 +92,6 @@ class FreetypeConan(ConanFile):
         # Set the name of conan auto generated FindFreetype.cmake.
         self.cpp_info.names["cmake_find_package"] = "Freetype"
         self.cpp_info.names["cmake_find_package_multi"] = "Freetype"
+
+        # Set the package folder as CMAKE_PREFIX_PATH to find freetype-config.cmake.
+        self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
