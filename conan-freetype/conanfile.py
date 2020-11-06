@@ -4,7 +4,7 @@ from conans import ConanFile, tools, CMake
 
 class FreetypeConan(ConanFile):
     name = "freetype"
-    version = "2.10.1"
+    version = "2.10.4"
     description = "FreeType is a freely available software library to render fonts"
     homepage = "https://download.savannah.gnu.org/releases/freetype/"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -58,7 +58,7 @@ class FreetypeConan(ConanFile):
 
     def source(self):
         tools.get("{0}/{1}-{2}.tar.gz".format(self.homepage, self.name, self.version),
-                  sha256="3a60d391fd579440561bf0e7f31af2222bc610ad6ce4d9d7bd2165bca8669110")
+                  sha256="5eab795ebb23ac77001cfb68b7d4d50b5d6c7469247b0b01b2c953269f658dac")
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def build(self):
@@ -81,6 +81,8 @@ class FreetypeConan(ConanFile):
         cmake.install()
 
     def package(self):
+        # Copying the license file.
+        self.copy(os.path.join("docs", "LICENSE.TXT"), src=self._source_folder, dst="licenses", keep_path=False)
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
@@ -90,3 +92,6 @@ class FreetypeConan(ConanFile):
         # Set the name of conan auto generated FindFreetype.cmake.
         self.cpp_info.names["cmake_find_package"] = "Freetype"
         self.cpp_info.names["cmake_find_package_multi"] = "Freetype"
+
+        # Set the package folder as CMAKE_PREFIX_PATH to find freetype-config.cmake.
+        self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)

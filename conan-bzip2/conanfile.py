@@ -53,6 +53,8 @@ class Bzip2Conan(ConanFile):
         cmake.install()
 
     def package(self):
+        # Copying the license file.
+        self.copy("LICENSE", src=self._source_folder, dst="licenses", keep_path=False)
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):

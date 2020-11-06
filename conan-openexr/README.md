@@ -1,14 +1,10 @@
-# conan-soil
+# conan-OpenEXR
 
-conan recipes for soil.
+conan recipes for OpenEXR.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-### Prerequisites
-
-- [OpenGL](https://www.opengl.org/) : An environment for developing portable, interactive 2D and 3D graphics applications.
 
 ### Generation
 
@@ -26,10 +22,10 @@ CHANNEL:
 	in a wide range of configurations).
 
 OPTIONS: 
-	- soil:shared={'True'|'False'}
+	- OpenEXR:shared={'True'|'False'}
 		Set to 'True' to build shared library, default to 'False'.
-	- soil:fPIC={'True'|'False'}
-		Set to 'True' to build position independent code, default to 'True'.		
+	- OpenEXR:fPIC={'True'|'False'}
+		Set to 'True' to build position independent code, default to 'True'.
 ```
 
 ## Authors

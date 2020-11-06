@@ -50,7 +50,6 @@ endif()
 # Store header files.
 set(
 	SOIL2_HEADER_FILES
-	src/SOIL2/etc1_utils.h
 	src/SOIL2/image_DXT.h
 	src/SOIL2/image_helper.h
 	src/SOIL2/jo_jpeg.h
@@ -67,12 +66,13 @@ set(
 	src/SOIL2/stbi_pvr_c.h
 	src/SOIL2/stb_image.h
 	src/SOIL2/stb_image_write.h
+	src/SOIL2/wfETC.h
 	)
 
 # Create the library (headers are here since some IDE need them here).
 add_library(
 	${SOIL2_TARGET_NAME} 
-	src/SOIL2/etc1_utils.c
+	src/SOIL2/wfETC.c
 	src/SOIL2/image_DXT.c
 	src/SOIL2/image_helper.c
 	src/SOIL2/SOIL2.c
