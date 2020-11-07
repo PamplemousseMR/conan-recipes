@@ -1,0 +1,9 @@
+[requires]
+zlib/1.2.11@pamplemousse/stable
+
+[generators]
+cmake
+
+[imports]
+bin, *.dll -> ./
+lib, *.dylib* -> ./
