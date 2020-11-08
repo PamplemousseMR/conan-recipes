@@ -79,7 +79,7 @@ class OpenEXRConan(ConanFile):
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
 
-        self.cpp_info.includedirs = [os.path.join("include", "OpenEXR"), "include"]
+        self.cpp_info.includedirs.append(os.path.join(self.cpp_info.includedirs[0], "OpenEXR"))
 
         # Set the name of conan auto generated FindOpenEXR.cmake.
         self.cpp_info.names["cmake_find_package"] = "OpenEXR"
