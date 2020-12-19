@@ -1,4 +1,4 @@
-# conan-resipes
+# conan-recipes
 
 this repository contains conan recipes.
 
