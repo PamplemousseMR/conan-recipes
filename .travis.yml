@@ -107,6 +107,7 @@ matrix:
             - libglu1-mesa-dev
             - python3-pip
             - python3-setuptools
+            - libxaw7-dev
             - g++-4.8
       env: MATRIX_EVAL="CXX=g++-4.8 && COMPILER_NAME=gcc && COMPILER_VERSION=4.8"
 
@@ -126,6 +127,7 @@ matrix:
             - libglu1-mesa-dev
             - python3-pip
             - python3-setuptools
+            - libxaw7-dev
             - g++-4.9
       env: MATRIX_EVAL="CXX=g++-4.9 && COMPILER_NAME=gcc && COMPILER_VERSION=4.9"
 
@@ -145,6 +147,7 @@ matrix:
             - libglu1-mesa-dev
             - python3-pip
             - python3-setuptools
+            - libxaw7-dev
             - g++-5
       env: MATRIX_EVAL="CXX=g++-5 && COMPILER_NAME=gcc && COMPILER_VERSION=5"
 
@@ -164,6 +167,7 @@ matrix:
             - libglu1-mesa-dev
             - python3-pip
             - python3-setuptools
+            - libxaw7-dev
             - g++-6
       env: MATRIX_EVAL="CXX=g++-6 && COMPILER_NAME=gcc && COMPILER_VERSION=6"
 
@@ -183,6 +187,7 @@ matrix:
             - libglu1-mesa-dev
             - python3-pip
             - python3-setuptools
+            - libxaw7-dev
             - g++-7
       env: MATRIX_EVAL="CXX=g++-7 && COMPILER_NAME=gcc && COMPILER_VERSION=7"
 
@@ -202,6 +207,7 @@ matrix:
             - libglu1-mesa-dev
             - python3-pip
             - python3-setuptools
+            - libxaw7-dev
             - g++-8
       env: MATRIX_EVAL="CXX=g++-8 && COMPILER_NAME=gcc && COMPILER_VERSION=8"
 
@@ -221,6 +227,7 @@ matrix:
             - libglu1-mesa-dev
             - python3-pip
             - python3-setuptools
+            - libxaw7-dev
             - g++-9
       env: MATRIX_EVAL="CXX=g++-9 && COMPILER_NAME=gcc && COMPILER_VERSION=9"
 
@@ -246,6 +253,7 @@ matrix:
             - libglu1-mesa-dev
             - python3-pip
             - python3-setuptools
+            - libxaw7-dev
             - clang-3.6
       env:
         - MATRIX_EVAL="CXX=clang++-3.6 && COMPILER_NAME=clang && COMPILER_VERSION=3.6"
@@ -265,6 +273,7 @@ matrix:
             - libglu1-mesa-dev
             - python3-pip
             - python3-setuptools
+            - libxaw7-dev
             - clang-4.0
       env:
         - MATRIX_EVAL="CXX=clang++-4.0 && COMPILER_NAME=clang && COMPILER_VERSION=4.0"
@@ -284,6 +293,7 @@ matrix:
             - libglu1-mesa-dev
             - python3-pip
             - python3-setuptools
+            - libxaw7-dev
             - clang-5.0
       env:
         - MATRIX_EVAL="CXX=clang++-5.0 && COMPILER_NAME=clang && COMPILER_VERSION=5.0"
@@ -303,6 +313,7 @@ matrix:
             - libglu1-mesa-dev
             - python3-pip
             - python3-setuptools
+            - libxaw7-dev
             - clang-6.0
       env:
         - MATRIX_EVAL="CXX=clang++-6.0 && COMPILER_NAME=clang && COMPILER_VERSION=6.0"
@@ -441,5 +452,13 @@ script:
   - conan test -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 irrxml/1.2@pamplemousseMR/testing
   - conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
   - conan test -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 irrxml/1.2@pamplemousseMR/testing
+  - cd ..
+  
+
+  - cd conan-ogre
+  - conan create -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  - conan test -o *:shared=True  -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 ogre/1.12.9@pamplemousseMR/testing
+  #- conan create -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} . pamplemousseMR/testing
+  #- conan test -o *:shared=False -s build_type=Debug -s compiler=${COMPILER_NAME} -s compiler.version=${COMPILER_VERSION} test_package_0 ogre/1.12.9@pamplemousseMR/testing
   - cd ..
   
