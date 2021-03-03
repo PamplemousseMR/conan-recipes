@@ -1,0 +1,35 @@
+# Generates PACKAGE_<var...> relative to the installed location of the package, these variable come from PATH_VARS of configure_package_config_file.
+@PACKAGE_INIT@
+
+#=======================================
+#                SETTINGS               
+#=======================================
+
+set_and_check(IRRXML_INCLUDE_DIRS "@PACKAGE_IRRXML_INCLUDES_DESTINATION@")
+set_and_check(IRRXML_INCLUDE_DIR ${IRRXML_INCLUDE_DIRS})
+set_and_check(IRRXML_INCLUDE ${IRRXML_INCLUDE_DIRS})
+
+set_and_check(IRRXML_LIBRARY_DIRS "@PACKAGE_IRRXML_LIBRARY_DESTINATION@")
+set_and_check(IRRXML_LIBRARY_DIR ${IRRXML_LIBRARY_DIRS})
+
+set(IRRXML_LIBRARIES "@PACKAGE_IRRXML_TARGET_NAME@")
+set(IRRXML_LIBS ${IRRXML_LIBRARIES})
+
+set_and_check(IRRXML_CONFIG_DIR "@PACKAGE_IRRXML_CMAKE_CONFIG_DESTINATION@")
+
+#=======================================
+#                PACKAGE                
+#=======================================
+
+include(CMakeFindDependencyMacro)
+find_dependency(OpenGL)
+
+#=======================================
+#                TARGET                
+#=======================================
+
+# Includes SOIL target.
+include("${CMAKE_CURRENT_LIST_DIR}/@IRRXML_CMAKE_TARGETS_EXPORT_NAME@.cmake")
+
+# Checks whether SOIL components have been found, and if this is not the case, sets the IRRXML_FOUND variable to FALSE.
+check_required_components(SOIL)
