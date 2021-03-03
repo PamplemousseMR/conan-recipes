@@ -1,0 +1,10 @@
+[requires]
+bzip2/1.0.8@pamplemousse/stable
+
+[generators]
+cmake_find_package
+cmake_paths
+
+[imports]
+bin, *.dll -> ./
+lib, *.dylib* -> ./
