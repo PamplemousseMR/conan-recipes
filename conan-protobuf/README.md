@@ -1,6 +1,6 @@
-# conan-opencv
+# conan-protobuf
 
-conan recipes for OpenCV.
+conan recipes for Protobuf.
 
 ## Getting Started
 
@@ -22,10 +22,12 @@ CHANNEL:
 	in a wide range of configurations).
 
 OPTIONS: 
-	- OpenCV:shared={'True'|'False'}
+	- protobuf:shared={'True'|'False'}
 		Set to 'True' to build shared library, default to 'False'.
-	- OpenCV:fPIC={'True'|'False'}
-		Set to 'True' to build position independent code, default to 'True'.		
+	- protobuf:fPIC={'True'|'False'}
+		Set to 'True' to build position independent code, default to 'True'.
+	- protobuf:with_zlib={'True'|'False'}
+		Set to 'True' to build with zlib, default to 'False'.
 ```
 
 ## Authors
