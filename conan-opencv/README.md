@@ -1,14 +1,10 @@
-# conan-glew
+# conan-opencv
 
-conan recipes for glew.
+conan recipes for OpenCV.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-### Prerequisites
-
-- [OpenGL](https://www.opengl.org/) : An environment for developing portable, interactive 2D and 3D graphics applications.
 
 ### Generation
 
@@ -26,9 +22,9 @@ CHANNEL:
 	in a wide range of configurations).
 
 OPTIONS: 
-	- glew:shared={'True'|'False'}
+	- OpenCV:shared={'True'|'False'}
 		Set to 'True' to build shared library, default to 'False'.
-	- glew:fPIC={'True'|'False'}
+	- OpenCV:fPIC={'True'|'False'}
 		Set to 'True' to build position independent code, default to 'True'.		
 ```
 
