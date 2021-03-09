@@ -34,11 +34,11 @@ OPTIONS:
 	- freetype:fPIC={'True'|'False'}
 		Set to 'True' to build position independent code, default to 'True'.
 	- freetype:with_zlib={'True'|'False'}
-	    Set to 'True' to build zlib dependent component, default to 'True'.
+	    Set to 'True' to build zlib dependent component, default to 'False'.
 	- freetype:with_bzip2={'True'|'False'}
-	    Set to 'True' to build bzip2 dependent component, default to 'True'.
+	    Set to 'True' to build bzip2 dependent component, default to 'False'.
 	- freetype:with_png={'True'|'False'}
-	    Set to 'True' to build libpng dependent component, default to 'True'.
+	    Set to 'True' to build libpng dependent component, default to 'False'.
 	- freetype:with_harfbuzz={'True'|'False'}
 	    Set to 'True' to build harfbuzz dependent component, default to 'False'.
 ```

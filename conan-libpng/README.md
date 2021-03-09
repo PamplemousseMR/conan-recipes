@@ -31,7 +31,7 @@ OPTIONS:
 	- libpng:fPIC={'True'|'False'}
 		Set to 'True' to build position independent code, default to 'True'.
 	- libpng:hardware_optimizations={'True'|'False'}
-		Set to 'True' to build the library with hardware optimizations, default to 'True'.
+		Set to 'True' to build the library with hardware optimizations, default to 'False'.
 ```
 
 ## Authors

@@ -22,10 +22,24 @@ CHANNEL:
 	in a wide range of configurations).
 
 OPTIONS: 
-	- OpenCV:shared={'True'|'False'}
+	- opencv:shared={'True'|'False'}
 		Set to 'True' to build shared library, default to 'False'.
-	- OpenCV:fPIC={'True'|'False'}
-		Set to 'True' to build position independent code, default to 'True'.		
+	- opencv:fPIC={'True'|'False'}
+		Set to 'True' to build position independent code, default to 'True'.	
+	- opencv:with_png={'True'|'False'}
+		Set to 'True' to include PNG support, default to 'False'.
+	- opencv:parallel={'False'|'tbb'|'openmp'}
+		Set parallel computation mode, default to 'False'.
+	- opencv:with_cuda={'True'|'False'}
+		Set to 'True' to include NVidia Cuda runtime support, default to 'False'.
+	- opencv:with_cublas={'True'|'False'}
+		Set to 'True' to include NVidia Cuda basic linear algebra subprograms (BLAS) library support, default to 'False'.
+	- opencv:with_protobuf={'True'|'False'}
+		Set to 'True' to enable libprotobuf, default to 'False'.
+	- opencv:with_cudnn={'True'|'False'}
+		Set to 'True' to include NVIDIA CUDA deep neural network (cuDNN) library support, default to 'False'.
+	- opencv:contrib={'True'|'False'}
+		Set to 'True' to add additional OpenCV modules, default to 'False'.
 ```
 
 ## Authors

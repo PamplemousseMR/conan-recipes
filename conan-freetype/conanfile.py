@@ -22,9 +22,9 @@ class FreetypeConan(ConanFile):
     default_options = {
         "shared": True,
         "fPIC": True,
-        "with_zlib": True,
-        "with_bzip2": True,
-        "with_png": True,
+        "with_zlib": False,
+        "with_bzip2": False,
+        "with_png": False,
         "with_harfbuzz": False
     }
     short_paths = True
