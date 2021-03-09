@@ -18,7 +18,7 @@ class LibUSBConan(ConanFile):
     default_options = {
         "shared": True,
         "fPIC": True,
-        "enable_udev": True
+        "enable_udev": False
     }
     short_paths = True
 

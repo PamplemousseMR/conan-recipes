@@ -20,7 +20,7 @@ class LibpngConan(ConanFile):
     default_options = {
         "shared": True,
         "fPIC": True,
-        "hardware_optimizations": True
+        "hardware_optimizations": False
     }
     exports_sources = os.path.join("patches", "CMakeLists.txt.patch")
     short_paths = True
