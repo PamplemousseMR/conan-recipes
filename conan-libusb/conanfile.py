@@ -4,7 +4,7 @@ from conans import ConanFile, tools, AutoToolsBuildEnvironment, MSBuild
 
 class LibUSBConan(ConanFile):
     name = "libusb"
-    version = "1.0.23"
+    version = "1.0.24"
     description = "A cross-platform library to access USB devices"
     homepage = "https://github.com/libusb/libusb"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -44,7 +44,7 @@ class LibUSBConan(ConanFile):
 
     def source(self):
         tools.get("{0}/releases/download/v{1}/libusb-{1}.tar.bz2".format(self.homepage, self.version),
-                  sha256="db11c06e958a82dac52cf3c65cb4dd2c3f339c8a988665110e0d24d19312ad8d")
+                  sha256="7efd2685f7b327326dcfb85cee426d9b871fd70e22caa15bb68d595ce2a2b12a")
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def _build_visual_studio(self):
@@ -91,7 +91,7 @@ class LibUSBConan(ConanFile):
                             "listdevs_2017", "stress_2017", "testlibusb_2017", "xusb_2017"]:
                 vcxproj_path = os.path.join(self._source_folder, "msvc", "%s.vcxproj" % vcxproj)
                 tools.replace_in_file(vcxproj_path,
-                                      "<WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>", "")
+                                      "<WindowsTargetPlatformVersion Condition=\"'$(Platform)'=='ARM' Or '$(Platform)'=='ARM64'\">10.0.17763.0</WindowsTargetPlatformVersion>", "")
             self._build_visual_studio()
         else:
             self._build_autotools()

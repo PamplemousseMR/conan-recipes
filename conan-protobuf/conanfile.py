@@ -5,7 +5,7 @@ from conans import ConanFile, tools, CMake
 
 class ProtobufConan(ConanFile):
     name = "protobuf"
-    version = "3.13.0"
+    version = "3.18.0"
     description = "Protocol Buffers - Google's data interchange format"
     homepage = "https://github.com/protocolbuffers/protobuf"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -42,7 +42,7 @@ class ProtobufConan(ConanFile):
                 raise ConanInvalidConfiguration("Protobuf could not be built as shared library for Mac.")
 
         if self.settings.compiler == "Visual Studio":
-            if Version(self.settings.compiler.version) < "14":
+            if tools.Version(self.settings.compiler.version) < "14":
                 raise ConanInvalidConfiguration("On Windows Protobuf can only be built with Visual Studio 2015 or higher.")
 
     def requirements(self):
@@ -51,7 +51,7 @@ class ProtobufConan(ConanFile):
 
     def source(self):
         tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version),
-                  sha256="9b4ee22c250fe31b16f1a24d61467e40780a3fbb9b91c3b65be2a376ed913a1a")
+                  sha256="14e8042b5da37652c92ef6a2759e7d2979d295f60afd7767825e3de68c856c54")
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def build(self):

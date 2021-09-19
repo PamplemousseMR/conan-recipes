@@ -4,7 +4,7 @@ from conans import ConanFile, tools, CMake
 
 class FreetypeConan(ConanFile):
     name = "freetype"
-    version = "2.10.4"
+    version = "2.11.0"
     description = "FreeType is a freely available software library to render fonts"
     homepage = "https://download.savannah.gnu.org/releases/freetype/"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -58,7 +58,7 @@ class FreetypeConan(ConanFile):
 
     def source(self):
         tools.get("{0}/{1}-{2}.tar.gz".format(self.homepage, self.name, self.version),
-                  sha256="5eab795ebb23ac77001cfb68b7d4d50b5d6c7469247b0b01b2c953269f658dac")
+                  sha256="a45c6b403413abd5706f3582f04c8339d26397c4304b78fa552f2215df64101f")
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def build(self):

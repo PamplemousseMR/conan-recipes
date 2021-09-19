@@ -4,7 +4,7 @@ from conans import ConanFile, tools, CMake
 
 class OpenCVConan(ConanFile):
     name = "opencv"
-    version = "4.5.1"
+    version = "4.5.3"
     description = "Open Source Computer Vision Library"
     homepage = "https://github.com/opencv/opencv"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -56,16 +56,16 @@ class OpenCVConan(ConanFile):
             self.requires.add("libpng/1.6.37@{0}/{1}".format(self.user, self.channel))
 
         if self.options.with_protobuf:
-            self.requires.add("protobuf/3.13.0@{0}/{1}".format(self.user, self.channel))
+            self.requires.add("protobuf/3.18.0@{0}/{1}".format(self.user, self.channel))
 
     def source(self):
         tools.get("{0}/archive/{1}.tar.gz".format(self.homepage, self.version),
-                  sha256="e27fe5b168918ab60d58d7ace2bd82dd14a4d0bd1d3ae182952c2113f5637513")
+                  sha256="77f616ae4bea416674d8c373984b20c8bd55e7db887fd38c6df73463a0647bab")
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
         if self.options.contrib:
             tools.get("{0}_contrib/archive/{1}.tar.gz".format(self.homepage, self.version),
-                      sha256="12c3b1ddd0b8c1a7da5b743590a288df0934e5cef243e036ca290c2e45e425f5")
+                      sha256="73da052fd10e73aaba2560eaff10cc5177e2dcc58b27f8aedf7c649e24c233bc")
             os.rename("{0}_contrib-{1}".format(self.name, self.version), self._contrib_folder)
 
     def build(self):

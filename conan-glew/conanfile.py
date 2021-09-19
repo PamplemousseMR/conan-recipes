@@ -4,7 +4,7 @@ from conans import ConanFile, tools, CMake
 
 class GlewConan(ConanFile):
     name = "glew"
-    version = "2.1.0"
+    version = "2.2.0"
     description = "The OpenGL Extension Wrangler Library"
     homepage = "https://github.com/nigels-com/glew"
     url = "https://github.com/PamplemousseMR/conan-glew"
@@ -33,7 +33,7 @@ class GlewConan(ConanFile):
 
     def source(self):
         tools.get("{0}/releases/download/{1}-{2}/{1}-{2}.tgz".format(self.homepage, self.name, self.version),
-                  sha256="04de91e7e6763039bc11940095cd9c7f880baba82196a7765f727ac05a993c95")
+                  sha256="d4fc82893cfb00109578d0a1a2337fb8ca335b3ceccf97b97e5cc7f08e4353e1")
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def build(self):
