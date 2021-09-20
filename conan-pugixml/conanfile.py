@@ -4,7 +4,6 @@ from conans import ConanFile, tools, CMake
 
 class PubixmlConan(ConanFile):
     name = "pugixml"
-    version = "1.11.4"
     description = "Light-weight, simple and fast XML parser for C++ with XPath support"
     homepage = "https://github.com/zeux/pugixml"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -24,8 +23,8 @@ class PubixmlConan(ConanFile):
     }
     short_paths = True
 
-    _source_folder = "{0}-{1}_sources".format(name, version)
-    _build_folder = "{0}-{1}_build".format(name, version)
+    _source_folder = "{0}_sources".format(name)
+    _build_folder = "{0}_build".format(name)
 
     def config_options(self):
         if tools.os_info.is_windows:
@@ -43,8 +42,7 @@ class PubixmlConan(ConanFile):
             self.info.header_only()
 
     def source(self):
-        tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version),
-                  sha256="017139251c122dbff400a507cddc4cb74120a431a50c6c524f30edcc5b331ade")
+        tools.get(**self.conan_data["sources"][self.version])
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def build(self):
