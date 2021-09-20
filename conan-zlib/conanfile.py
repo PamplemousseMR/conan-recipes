@@ -37,7 +37,7 @@ class ZlibConan(ConanFile):
 
     def build(self):
         for patch in self.conan_data["patches"][self.version]:
-            tools.patch(base_path=self._source_folder, patch_file=patch, strip=0)
+            tools.patch(base_path=self._source_folder, patch_file=os.path.join("patches", patch), strip=0)
         cmake = CMake(self)
         cmake.configure(source_folder=self._source_folder, build_folder=self._build_folder)
         cmake.build()

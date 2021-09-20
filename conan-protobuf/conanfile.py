@@ -55,7 +55,7 @@ class ProtobufConan(ConanFile):
     def build(self):
         if self.conan_data["patches"][self.version]:
             for patch in self.conan_data["patches"][self.version]:
-                tools.patch(base_path=self._source_folder, patch_file=patch, strip=0)
+                tools.patch(base_path=self._source_folder, patch_file=os.path.join("patches", patch), strip=0)
         cmake = CMake(self)
         cmake.definitions["protobuf_WITH_ZLIB"] = self.options.with_zlib
         cmake.definitions["protobuf_BUILD_TESTS"] = False

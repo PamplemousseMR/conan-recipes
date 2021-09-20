@@ -19,7 +19,8 @@ class Soil2Conan(ConanFile):
         "fPIC": True
     }
     exports_sources = [
-        os.path.join("patches", "CMakeLists.txt"),
+        os.path.join("patches", "CMakeLists-1.11.txt"),
+        os.path.join("patches", "CMakeLists-1.20.txt"),
         os.path.join("patches", "SOIL2Config.cmake.in")
     ]
     short_paths = True
@@ -39,7 +40,9 @@ class Soil2Conan(ConanFile):
         tools.get(**self.conan_data["sources"][self.version])
         os.rename("SOIL2-release-{0}".format(self.version), self._source_folder)
         for export_source in self.conan_data["export_sources"][self.version]:
-            shutil.copy(export_source, self._source_folder)
+            shutil.copy(os.path.join("patches", export_source["file"]), self._source_folder)
+            os.rename(os.path.join(self._source_folder, export_source["file"]),
+                      os.path.join(self._source_folder, export_source["name"]))
 
     def build(self):
         cmake = CMake(self)

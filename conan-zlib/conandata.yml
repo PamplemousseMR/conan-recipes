@@ -5,4 +5,4 @@ sources:
 
 patches:
   "1.2.11":
-    - "patches/CMakeLists.txt.patch"
+    - "CMakeLists.txt.patch"

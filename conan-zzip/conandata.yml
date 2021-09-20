@@ -1,4 +1,7 @@
 sources:
+  "0.13.69":
+    sha256: 846246d7cdeee405d8d21e2922c6e97f55f24ecbe3b6dcf5778073a88f120544
+    url: https://github.com/gdraheim/zziplib/archive/v0.13.69.tar.gz
   "0.13.71":
     sha256: 2ee1e0fbbb78ec7cc46bde5b62857bc51f8d665dd265577cf93584344b8b9de2
     url: https://github.com/gdraheim/zziplib/archive/v0.13.71.tar.gz
@@ -7,20 +10,27 @@ sources:
     url: https://github.com/gdraheim/zziplib/archive/v0.13.72.tar.gz
 
 export_sources:
+  "0.13.69":
+    - "_config.h.cmake"
+    - "CMakeLists.txt"
   "0.13.71":
-    - "patches/_config.h.cmake"
-    - "patches/CMakeLists.txt"
+    - "_config.h.cmake"
+    - "CMakeLists.txt"
   "0.13.72":
-    - "patches/_config.h.cmake"
-    - "patches/CMakeLists.txt"
+    - "_config.h.cmake"
+    - "CMakeLists.txt"
 
 patches:
+  "0.13.69":
+    - "fseeko.h.patch"
   "0.13.71":
-    - "patches/fseeko.h.patch"
+    - "fseeko.h.patch"
   "0.13.72":
-    - "patches/fseeko.h.patch"
+    - "fseeko.h.patch"
 
 requirements:
+  "0.13.69":
+    - "zlib/1.2.11"
   "0.13.71":
     - "zlib/1.2.11"
   "0.13.72":

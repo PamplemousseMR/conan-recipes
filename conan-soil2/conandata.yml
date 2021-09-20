@@ -1,9 +1,19 @@
 sources:
+  "1.11":
+    sha256: 104a2de5bb74b58b7b7cda7592b174d9aa0585eeb73d0bec4901f419321358bc
+    url: https://github.com/SpartanJ/SOIL2/archive/release-1.11.tar.gz
   "1.20":
     sha256: abf32ed4dc3c713992d87a4fa8c9f0cce83c41f9b5dbf3a6fd0815659a3eee5e
     url: https://github.com/SpartanJ/SOIL2/archive/release-1.20.tar.gz
 
 export_sources:
+  "1.11":
+    - file: "CMakeLists-1.11.txt"
+      name: "CMakeLists.txt"
+    - file: "SOIL2Config.cmake.in"
+      name: "SOIL2Config.cmake.in"
   "1.20":
-    - "patches/CMakeLists.txt"
-    - "patches/SOIL2Config.cmake.in"
+    - file: "CMakeLists-1.20.txt"
+      name: "CMakeLists.txt"
+    - file: "SOIL2Config.cmake.in"
+      name: "SOIL2Config.cmake.in"

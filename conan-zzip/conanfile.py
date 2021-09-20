@@ -46,11 +46,11 @@ class ZZipConan(ConanFile):
         tools.get(**self.conan_data["sources"][self.version])
         os.rename("{0}lib-{1}".format(self.name, self.version), self._source_folder)
         for export_source in self.conan_data["export_sources"][self.version]:
-            shutil.copy(export_source, self._source_folder)
+            shutil.copy(os.path.join("patches", export_source), self._source_folder)
 
     def build(self):
         for patch in self.conan_data["patches"][self.version]:
-            tools.patch(base_path=self._source_folder, patch_file=patch, strip=0)
+            tools.patch(base_path=self._source_folder, patch_file=os.path.join("patches", patch), strip=0)
         cmake = CMake(self)
         cmake.configure(source_folder=self._source_folder, build_folder=self._build_folder)
         cmake.build()

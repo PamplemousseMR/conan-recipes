@@ -8,7 +8,7 @@ sources:
 
 patches:
   "3.13.0":
-    - "patches/protobuf-config.cmake.patch"
+    - "protobuf-config.cmake.patch"
   "3.18.0":
 
 zlib:
