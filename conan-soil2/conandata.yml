@@ -1,4 +1,16 @@
 sources:
+  "1.07":
+    sha256: c285b1aa430f68c76a8ec8708ad84b525fee905dc7a817e4595ac210bb35f514
+    url: https://github.com/SpartanJ/SOIL2/archive/release-1.07.tar.gz
+  "1.08":
+    sha256: f3495f9ab6a33d4f0b4c59c12e7503cd3f37484647fc0a6e90239b06ec819de0
+    url: https://github.com/SpartanJ/SOIL2/archive/release-1.08.tar.gz
+  "1.09":
+    sha256: 89af4f3d41d0b0c214319862ef90e59704d4ad901696d3e277506d5a358973b1
+    url: https://github.com/SpartanJ/SOIL2/archive/release-1.09.tar.gz
+  "1.10":
+    sha256: df348031b775ec9debb55d9ea3c0a2e4babce4e27953ae4c382696933b1e7ee4
+    url: https://github.com/SpartanJ/SOIL2/archive/release-1.10.tar.gz
   "1.11":
     sha256: 104a2de5bb74b58b7b7cda7592b174d9aa0585eeb73d0bec4901f419321358bc
     url: https://github.com/SpartanJ/SOIL2/archive/release-1.11.tar.gz
@@ -7,8 +19,28 @@ sources:
     url: https://github.com/SpartanJ/SOIL2/archive/release-1.20.tar.gz
 
 export_sources:
+  "1.07":
+    - file: "CMakeLists-1.07.txt"
+      name: "CMakeLists.txt"
+    - file: "SOIL2Config.cmake.in"
+      name: "SOIL2Config.cmake.in"
+  "1.08":
+    - file: "CMakeLists-1.07.txt"
+      name: "CMakeLists.txt"
+    - file: "SOIL2Config.cmake.in"
+      name: "SOIL2Config.cmake.in"
+  "1.09":
+    - file: "CMakeLists-1.07.txt"
+      name: "CMakeLists.txt"
+    - file: "SOIL2Config.cmake.in"
+      name: "SOIL2Config.cmake.in"
+  "1.10":
+    - file: "CMakeLists-1.10.txt"
+      name: "CMakeLists.txt"
+    - file: "SOIL2Config.cmake.in"
+      name: "SOIL2Config.cmake.in"
   "1.11":
-    - file: "CMakeLists-1.11.txt"
+    - file: "CMakeLists-1.10.txt"
       name: "CMakeLists.txt"
     - file: "SOIL2Config.cmake.in"
       name: "SOIL2Config.cmake.in"

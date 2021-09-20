@@ -19,7 +19,8 @@ class Soil2Conan(ConanFile):
         "fPIC": True
     }
     exports_sources = [
-        os.path.join("patches", "CMakeLists-1.11.txt"),
+        os.path.join("patches", "CMakeLists-1.07.txt"),
+        os.path.join("patches", "CMakeLists-1.10.txt"),
         os.path.join("patches", "CMakeLists-1.20.txt"),
         os.path.join("patches", "SOIL2Config.cmake.in")
     ]
