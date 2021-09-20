@@ -4,7 +4,6 @@ from conans import ConanFile, tools, CMake
 
 class OpenCVConan(ConanFile):
     name = "opencv"
-    version = "4.5.3"
     description = "Open Source Computer Vision Library"
     homepage = "https://github.com/opencv/opencv"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -24,19 +23,19 @@ class OpenCVConan(ConanFile):
     default_options = {
         "shared": True,
         "fPIC": True,
-        "with_png": False,
+        "with_png": True,
         "parallel": False,
         "with_cuda": False,
         "with_cublas": False,
-        "with_protobuf": False,
+        "with_protobuf": True,
         "with_cudnn": False,
-        "contrib": False
+        "contrib": True
     }
     short_paths = True
 
-    _source_folder = "{0}-{1}_sources".format(name, version)
-    _contrib_folder = "{0}-{1}_contrib".format(name, version)
-    _build_folder = "{0}-{1}_build".format(name, version)
+    _source_folder = "{0}_sources".format(name)
+    _contrib_folder = "{0}_contrib".format(name)
+    _build_folder = "{0}_build".format(name)
 
     def config_options(self):
         if tools.os_info.is_windows:
@@ -53,19 +52,17 @@ class OpenCVConan(ConanFile):
 
     def requirements(self):
         if self.options.with_png:
-            self.requires.add("libpng/1.6.37@{0}/{1}".format(self.user, self.channel))
+            self.requires.add("libpng/{0}@{1}/{2}".format(self.conan_data["libpng"][self.version], self.user, self.channel))
 
         if self.options.with_protobuf:
-            self.requires.add("protobuf/3.18.0@{0}/{1}".format(self.user, self.channel))
+            self.requires.add("protobuf/{0}@{1}/{2}".format(self.conan_data["protobuf"][self.version], self.user, self.channel))
 
     def source(self):
-        tools.get("{0}/archive/{1}.tar.gz".format(self.homepage, self.version),
-                  sha256="77f616ae4bea416674d8c373984b20c8bd55e7db887fd38c6df73463a0647bab")
+        tools.get(**self.conan_data["sources"][self.version][0])
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
         if self.options.contrib:
-            tools.get("{0}_contrib/archive/{1}.tar.gz".format(self.homepage, self.version),
-                      sha256="73da052fd10e73aaba2560eaff10cc5177e2dcc58b27f8aedf7c649e24c233bc")
+            tools.get(**self.conan_data["sources"][self.version][1])
             os.rename("{0}_contrib-{1}".format(self.name, self.version), self._contrib_folder)
 
     def build(self):
