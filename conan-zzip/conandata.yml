@@ -1,7 +1,16 @@
 sources:
+  "0.13.67":
+    sha256: 1278178bdabac832da6bbf161033d890d335a2e38493c5af553ff5ce7b9b0220
+    url: https://github.com/gdraheim/zziplib/archive/v0.13.67.tar.gz
+  "0.13.68":
+    sha256: 9460919b46592a225217cff067b1c0eb86002b32c54b4898f9c21401aaa11032
+    url: https://github.com/gdraheim/zziplib/archive/v0.13.68.tar.gz
   "0.13.69":
     sha256: 846246d7cdeee405d8d21e2922c6e97f55f24ecbe3b6dcf5778073a88f120544
     url: https://github.com/gdraheim/zziplib/archive/v0.13.69.tar.gz
+  "0.13.70":
+    sha256: a1457262d7a237dc50ce1f98ca57242bc714055ff81146f419ee53cdea1bf029
+    url: https://github.com/gdraheim/zziplib/archive/v0.13.70.tar.gz
   "0.13.71":
     sha256: 2ee1e0fbbb78ec7cc46bde5b62857bc51f8d665dd265577cf93584344b8b9de2
     url: https://github.com/gdraheim/zziplib/archive/v0.13.71.tar.gz
@@ -10,7 +19,16 @@ sources:
     url: https://github.com/gdraheim/zziplib/archive/v0.13.72.tar.gz
 
 export_sources:
+  "0.13.67":
+    - "_config.h.cmake"
+    - "CMakeLists.txt"
+  "0.13.68":
+    - "_config.h.cmake"
+    - "CMakeLists.txt"
   "0.13.69":
+    - "_config.h.cmake"
+    - "CMakeLists.txt"
+  "0.13.70":
     - "_config.h.cmake"
     - "CMakeLists.txt"
   "0.13.71":
@@ -21,7 +39,13 @@ export_sources:
     - "CMakeLists.txt"
 
 patches:
+  "0.13.67":
+    - "fseeko.h.patch"
+  "0.13.68":
+    - "fseeko.h.patch"
   "0.13.69":
+    - "fseeko.h.patch"
+  "0.13.70":
     - "fseeko.h.patch"
   "0.13.71":
     - "fseeko.h.patch"
@@ -29,7 +53,13 @@ patches:
     - "fseeko.h.patch"
 
 requirements:
+  "0.13.67":
+    - "zlib/1.2.11"
+  "0.13.68":
+    - "zlib/1.2.11"
   "0.13.69":
+    - "zlib/1.2.11"
+  "0.13.70":
     - "zlib/1.2.11"
   "0.13.71":
     - "zlib/1.2.11"
