@@ -5,7 +5,6 @@ from conans import ConanFile, tools, CMake
 
 class ProtobufConan(ConanFile):
     name = "protobuf"
-    version = "3.18.0"
     description = "Protocol Buffers - Google's data interchange format"
     homepage = "https://github.com/protocolbuffers/protobuf"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -24,8 +23,8 @@ class ProtobufConan(ConanFile):
     exports_sources = os.path.join("patches", "protobuf-config.cmake.patch")
     short_paths = True
 
-    _source_folder = "{0}-{1}_sources".format(name, version)
-    _build_folder = "{0}-{1}_build".format(name, version)
+    _source_folder = "{0}_sources".format(name)
+    _build_folder = "{0}_build".format(name)
 
     def config_options(self):
         if tools.os_info.is_windows:
@@ -47,15 +46,16 @@ class ProtobufConan(ConanFile):
 
     def requirements(self):
         if self.options.with_zlib:
-            self.requires.add("zlib/1.2.11@{0}/{1}".format(self.user, self.channel))
+            self.requires.add("zlib/{0}@{1}/{2}".format(self.conan_data["zlib"][self.version], self.user, self.channel))
 
     def source(self):
-        tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version),
-                  sha256="14e8042b5da37652c92ef6a2759e7d2979d295f60afd7767825e3de68c856c54")
+        tools.get(**self.conan_data["sources"][self.version])
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def build(self):
-        tools.patch(base_path=self._source_folder, patch_file=self.exports_sources, strip=0)
+        if self.conan_data["patches"][self.version]:
+            for patch in self.conan_data["patches"][self.version]:
+                tools.patch(base_path=self._source_folder, patch_file=patch, strip=0)
         cmake = CMake(self)
         cmake.definitions["protobuf_WITH_ZLIB"] = self.options.with_zlib
         cmake.definitions["protobuf_BUILD_TESTS"] = False

@@ -1,0 +1,18 @@
+sources:
+  "3.13.0":
+    sha256: 9b4ee22c250fe31b16f1a24d61467e40780a3fbb9b91c3b65be2a376ed913a1a
+    url: https://github.com/protocolbuffers/protobuf/archive/v3.13.0.tar.gz
+  "3.18.0":
+    sha256: 14e8042b5da37652c92ef6a2759e7d2979d295f60afd7767825e3de68c856c54
+    url: https://github.com/protocolbuffers/protobuf/archive/v3.18.0.tar.gz
+
+patches:
+  "3.13.0":
+    - "patches/protobuf-config.cmake.patch"
+  "3.18.0":
+
+zlib:
+  "3.13.0":
+    "1.2.11"
+  "3.18.0":
+    "1.2.11"
