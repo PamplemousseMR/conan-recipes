@@ -4,7 +4,6 @@ from conans import ConanFile, tools, CMake
 
 class OpenEXRConan(ConanFile):
     name = "openexr"
-    version = "3.1.1"
     description = "The OpenEXR project provides the specification and reference implementation of the EXR file format, the professional-grade image storage format of the motion picture industry"
     homepage = "https://github.com/AcademySoftwareFoundation/openexr"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -21,8 +20,8 @@ class OpenEXRConan(ConanFile):
     }
     short_paths = True
 
-    _source_folder = "{0}-{1}_sources".format(name, version)
-    _build_folder = "{0}-{1}_build".format(name, version)
+    _source_folder = "{0}_sources".format(name)
+    _build_folder = "{0}_build".format(name)
 
     def config_options(self):
         if tools.os_info.is_windows:
@@ -33,11 +32,11 @@ class OpenEXRConan(ConanFile):
         del self.settings.compiler.cppstd
 
     def requirements(self):
-        self.requires.add("zlib/1.2.11@{0}/{1}".format(self.user, self.channel))
+        for requirement in self.conan_data["requirements"][self.version]:
+            self.requires.add("{0}@{1}/{2}".format(requirement, self.user, self.channel))
 
     def source(self):
-        tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version),
-                  sha256="045254e201c0f87d1d1a4b2b5815c4ae54845af2e6ec0ab88e979b5fdb30a86e")
+        tools.get(**self.conan_data["sources"][self.version])
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def _patch_files(self):
