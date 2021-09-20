@@ -5,7 +5,6 @@ from conans import ConanFile, tools, CMake
 
 class ZZipConan(ConanFile):
     name = "zzip"
-    version = "0.13.72"
     description = "The ZZIPlib provides read access on ZIP-archives and unpacked data. It features an additional simplified API following the standard Posix API for file access"
     homepage = "https://github.com/gdraheim/zziplib"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -28,8 +27,8 @@ class ZZipConan(ConanFile):
     ]
     short_paths = True
 
-    _source_folder = "{0}-{1}_sources".format(name, version)
-    _build_folder = "{0}-{1}_build".format(name, version)
+    _source_folder = "{0}_sources".format(name)
+    _build_folder = "{0}_build".format(name)
 
     def config_options(self):
         if tools.os_info.is_windows:
@@ -40,18 +39,18 @@ class ZZipConan(ConanFile):
         del self.settings.compiler.cppstd
 
     def requirements(self):
-        self.requires.add("zlib/1.2.11@{0}/{1}".format(self.user, self.channel))
+        for requirement in self.conan_data["requirements"][self.version]:
+            self.requires.add("{0}@{1}/{2}".format(requirement, self.user, self.channel))
 
     def source(self):
-        tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version),
-                  sha256="93ef44bf1f1ea24fc66080426a469df82fa631d13ca3b2e4abaeab89538518dc")
+        tools.get(**self.conan_data["sources"][self.version])
         os.rename("{0}lib-{1}".format(self.name, self.version), self._source_folder)
-        for export_source in self.exports_sources:
+        for export_source in self.conan_data["export_sources"][self.version]:
             shutil.copy(export_source, self._source_folder)
 
     def build(self):
-        # Patch fseeko.h
-        tools.patch(base_path=self._source_folder, patch_file=self.exports_sources[2], strip=0)
+        for patch in self.conan_data["patches"][self.version]:
+            tools.patch(base_path=self._source_folder, patch_file=patch, strip=0)
         cmake = CMake(self)
         cmake.configure(source_folder=self._source_folder, build_folder=self._build_folder)
         cmake.build()
