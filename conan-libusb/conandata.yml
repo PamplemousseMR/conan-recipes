@@ -1,0 +1,47 @@
+sources:
+  "1.0.22":
+    sha256: 75aeb9d59a4fdb800d329a545c2e6799f732362193b465ea198f2aa275518157
+    url: https://github.com/libusb/libusb/releases/download/v1.0.22/libusb-1.0.22.tar.bz2
+  "1.0.22-rc1":
+    sha256: 1facd174c2edbef296800dd40d6db30e13e9362f19008090ba26421da79e4eed
+    url: https://github.com/libusb/libusb/releases/download/v1.0.22-rc1/libusb-1.0.22-rc1.tar.bz2
+  "1.0.22-rc2":
+    sha256: 5dcce6b936177d1fdfc93ed27dd2430e122ae96aa6ba8e70d4ecf7c47bf3642a
+    url: https://github.com/libusb/libusb/releases/download/v1.0.22-rc2/libusb-1.0.22-rc2.tar.bz2
+  "1.0.22-rc3":
+    sha256: e61b63432c96f72498dfdf6964783d0fbaccc87752274d9b0885084e8e26e611
+    url: https://github.com/libusb/libusb/releases/download/v1.0.22-rc3/libusb-1.0.22-rc3.tar.bz2
+  "1.0.22-rc4":
+    sha256: 0cf6871a9f49c428fee9f8685dba1f3eadb71b24003348f97f3f45e462bf88ba
+    url: https://github.com/libusb/libusb/releases/download/v1.0.22-rc4/libusb-1.0.22-rc4.tar.bz2
+  "1.0.23":
+    sha256: db11c06e958a82dac52cf3c65cb4dd2c3f339c8a988665110e0d24d19312ad8d
+    url: https://github.com/libusb/libusb/releases/download/v1.0.23/libusb-1.0.23.tar.bz2
+  "1.0.23-rc1":
+    sha256: 88156e6318901fe5cb2f81502fcb780853a49c8a5969501f9832b8215bb4806d
+    url: https://github.com/libusb/libusb/releases/download/v1.0.23-rc1/libusb-1.0.23-rc1.tar.bz2
+  "1.0.23-rc2":
+    sha256: 709a26f225910010a2e69d466f95dea03aa5f16472ac66355f61132c125b4137
+    url: https://github.com/libusb/libusb/releases/download/v1.0.23-rc2/libusb-1.0.23-rc2.tar.bz2
+  "1.0.23-rc3":
+    sha256: 8e0022d76a3aad52b008dedfaf52468b0bbe4813fe35690944552cab77b539d9
+    url: https://github.com/libusb/libusb/releases/download/v1.0.23-rc3/libusb-1.0.23-rc3.tar.bz2
+  "1.0.24":
+    sha256: 7efd2685f7b327326dcfb85cee426d9b871fd70e22caa15bb68d595ce2a2b12a
+    url: https://github.com/libusb/libusb/releases/download/v1.0.24/libusb-1.0.24.tar.bz2
+  "1.0.24-rc1":
+    sha256: 427ab012b737f8924d8ccd9b620281e201ae7a539f07ff77d19af835a18b3748
+    url: https://github.com/libusb/libusb/releases/download/v1.0.24-rc1/libusb-1.0.24-rc1.tar.bz2
+
+vcxproj:
+  "1.0.22": ""
+  "1.0.22-rc1": ""
+  "1.0.22-rc2": ""
+  "1.0.22-rc3": ""
+  "1.0.22-rc4": ""
+  "1.0.23": "<WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>"
+  "1.0.23-rc1": "<WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>"
+  "1.0.23-rc2": "<WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>"
+  "1.0.23-rc3": "<WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>"
+  "1.0.24": "<WindowsTargetPlatformVersion Condition=\"'$(Platform)'=='ARM' Or '$(Platform)'=='ARM64'\">10.0.17763.0</WindowsTargetPlatformVersion>"
+  "1.0.24-rc1": "<WindowsTargetPlatformVersion Condition=\"'$(Platform)'=='ARM' Or '$(Platform)'=='ARM64'\">10.0.17763.0</WindowsTargetPlatformVersion>"
