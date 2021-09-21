@@ -1,0 +1,15 @@
+sources:
+  "0.1":
+    url: https://github.com/craigsapp/midifile.git
+  "0.2":
+    url: https://github.com/craigsapp/midifile.git
+
+commit:
+  "0.1": "d1c2139083d1386db55860d29eac14b11a95a9c8"
+  "0.2": "de6aa0c8f82f9dff29b62dba013a65c9034d633d"
+
+patches:
+  "0.1": 
+    - "CMakeLists-0.1.txt.patch"
+  "0.2":
+    - "CMakeLists-0.2.txt.patch"

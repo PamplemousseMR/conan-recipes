@@ -1,0 +1,32 @@
+--- CMakeLists.txt	2013-04-14 03:15:42.000000000 +0200
++++ CMakeLists.txt	2019-04-30 15:50:23.734170000 +0200
+@@ -23,6 +23,8 @@ if(APPLE)
+ endif()
+ 
+ if(MSVC)
++    set(MSVC ON)
++    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+ 
+     option(STATIC_CRT "Use static CRT libraries" OFF)
+@@ -63,7 +70,7 @@ set(HDRS
+     include/Options.h
+ )
+ 
+-add_library(midifile STATIC ${SRCS} ${HDRS})
++add_library(midifile ${SRCS} ${HDRS})
+ 
+ ##############################
+ ##
+@@ -157,3 +164,10 @@ if(HAVE_HUMDRUM_H)
+     target_link_libraries(midiexcerpt midifile)
+     target_link_libraries(peep2midi midifile)
+ endif()
++
++install(FILES ${HDRS} DESTINATION "include")
++
++install(TARGETS midifile
++        RUNTIME DESTINATION "bin"
++        LIBRARY DESTINATION "lib"
++        ARCHIVE DESTINATION "lib")
+\ No newline at end of file
