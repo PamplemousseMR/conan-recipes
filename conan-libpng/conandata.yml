@@ -1,0 +1,96 @@
+sources:
+  "1.6.31":
+    sha256: 79c0391804c83a6e0b722c20be7c3a27aeb2fe09afbc3028abad243444c98aa0
+    url: https://github.com/glennrp/libpng/archive/v1.6.31.tar.gz
+  "1.6.31rc01":
+    sha256: aefb1cf94d10aa41af793a102e1d1726c3f2a91f3b75f6c61077dd1d7e171278
+    url: https://github.com/glennrp/libpng/archive/v1.6.31rc01.tar.gz
+  "1.6.31rc02":
+    sha256: b6556e0b98078ab50d6aa0fde0e104489fdaa96b7367311160c23a22c961df4d
+    url: https://github.com/glennrp/libpng/archive/v1.6.31rc02.tar.gz
+  "1.6.32":
+    sha256: 37ea6cf883f53fabc4d8be9ba52a676b42117c208ac524334c0cb944d2923c53
+    url: https://github.com/glennrp/libpng/archive/v1.6.32.tar.gz
+  "1.6.32rc01":
+    sha256: 3e3047f191745d415587a90b5dd072ea5739c2357c375e4043d4addc78c95a0b
+    url: https://github.com/glennrp/libpng/archive/v1.6.32rc01.tar.gz
+  "1.6.32rc02":
+    sha256: c54e62f2ed58084a791df72c0c0952083bc0702ac92afde1e1e8fa229e390f0c
+    url: https://github.com/glennrp/libpng/archive/v1.6.32rc02.tar.gz
+  "1.6.33":
+    sha256: 0b0681ed912f8f6b0175fc4ebe4b05367dfbfcd4a6f23b8f2498db42eca998d4
+    url: https://github.com/glennrp/libpng/archive/v1.6.33.tar.gz
+  "1.6.33rc01":
+    sha256: 345b83fb692dd4b316319f656e69c19baba7f81d166b77ced5e7e6bfd2e5e480
+    url: https://github.com/glennrp/libpng/archive/v1.6.33rc01.tar.gz
+  "1.6.33rc02":
+    sha256: b9d546906b91447928a870d2f51a970c2964496e73419d2d49b377c11831328d
+    url: https://github.com/glennrp/libpng/archive/v1.6.33rc02.tar.gz
+  "1.6.34":
+    sha256: e45ce5f68b1d80e2cb9a2b601605b374bdf51e1798ef1c2c2bd62131dfcf9eef
+    url: https://github.com/glennrp/libpng/archive/v1.6.34.tar.gz
+  "1.6.35":
+    sha256: 6d59d6a154ccbb772ec11772cb8f8beb0d382b61e7ccc62435bf7311c9f4b210
+    url: https://github.com/glennrp/libpng/archive/v1.6.35.tar.gz
+  "1.6.36":
+    sha256: 5bef5a850a9255365a2dc344671b7e9ef810de491bd479c2506ac3c337e2d84f
+    url: https://github.com/glennrp/libpng/archive/v1.6.36.tar.gz
+  "1.6.37":
+    sha256: ca74a0dace179a8422187671aee97dd3892b53e168627145271cad5b5ac81307
+    url: https://github.com/glennrp/libpng/archive/v1.6.37.tar.gz
+
+patches:
+  "1.6.31":
+    - "CMakeLists-1.6.31.txt.patch"
+  "1.6.31rc01":
+    - "CMakeLists-1.6.31.txt.patch"
+  "1.6.31rc02":
+    - "CMakeLists-1.6.31.txt.patch"
+  "1.6.32":
+    - "CMakeLists-1.6.31.txt.patch"
+  "1.6.32rc01":
+    - "CMakeLists-1.6.31.txt.patch"
+  "1.6.32rc02":
+    - "CMakeLists-1.6.31.txt.patch"
+  "1.6.33":
+    - "CMakeLists-1.6.31.txt.patch"
+  "1.6.33rc01":
+    - "CMakeLists-1.6.31.txt.patch"
+  "1.6.33rc02":
+    - "CMakeLists-1.6.31.txt.patch"
+  "1.6.34":
+    - "CMakeLists-1.6.31.txt.patch"
+  "1.6.35":
+    - "CMakeLists-1.6.31.txt.patch"
+  "1.6.36":
+    - "CMakeLists-1.6.36.txt.patch"
+  "1.6.37":
+    - "CMakeLists-1.6.36.txt.patch"
+
+requirements:
+  "1.6.31":
+    - "zlib/1.2.11"
+  "1.6.31rc01":
+    - "zlib/1.2.11"
+  "1.6.31rc02":
+    - "zlib/1.2.11"
+  "1.6.32":
+    - "zlib/1.2.11"
+  "1.6.32rc01":
+    - "zlib/1.2.11"
+  "1.6.32rc02":
+    - "zlib/1.2.11"
+  "1.6.33":
+    - "zlib/1.2.11"
+  "1.6.33rc01":
+    - "zlib/1.2.11"
+  "1.6.33rc02":
+    - "zlib/1.2.11"
+  "1.6.34":
+    - "zlib/1.2.11"
+  "1.6.35":
+    - "zlib/1.2.11"
+  "1.6.36":
+    - "zlib/1.2.11"
+  "1.6.37":
+    - "zlib/1.2.11"

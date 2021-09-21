@@ -4,7 +4,6 @@ from conans import ConanFile, tools, CMake
 
 class LibpngConan(ConanFile):
     name = "libpng"
-    version = "1.6.37"
     description = "LIBPNG: Portable Network Graphics support, official libpng repository http://libpng.sf.net"
     homepage = "https://github.com/glennrp/libpng"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -22,11 +21,14 @@ class LibpngConan(ConanFile):
         "fPIC": True,
         "hardware_optimizations": False
     }
-    exports_sources = os.path.join("patches", "CMakeLists.txt.patch")
+    exports_sources = [
+        os.path.join("patches", "CMakeLists-1.6.31.txt.patch"),
+        os.path.join("patches", "CMakeLists-1.6.36.txt.patch")
+    ]
     short_paths = True
 
-    _source_folder = "{0}-{1}_sources".format(name, version)
-    _build_folder = "{0}-{1}_build".format(name, version)
+    _source_folder = "{0}_sources".format(name)
+    _build_folder = "{0}_build".format(name)
 
     def config_options(self):
         if tools.os_info.is_windows:
@@ -37,15 +39,16 @@ class LibpngConan(ConanFile):
         del self.settings.compiler.cppstd
 
     def requirements(self):
-        self.requires.add("zlib/1.2.11@{0}/{1}".format(self.user, self.channel))
+        for requirement in self.conan_data["requirements"][self.version]:
+            self.requires.add("{0}@{1}/{2}".format(requirement, self.user, self.channel))
 
     def source(self):
-        tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version),
-                  sha256="ca74a0dace179a8422187671aee97dd3892b53e168627145271cad5b5ac81307")
+        tools.get(**self.conan_data["sources"][self.version])
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def build(self):
-        tools.patch(base_path=self._source_folder, patch_file=self.exports_sources, strip=0)
+        for patch in self.conan_data["patches"][self.version]:
+            tools.patch(base_path=self._source_folder, patch_file=os.path.join("patches", patch), strip=0)
         cmake = CMake(self)
         cmake.definitions["PNG_BUILD_ZLIB"] = False
         cmake.definitions["PNG_DEBUG"] = False if self.settings.build_type == "Release" else True
