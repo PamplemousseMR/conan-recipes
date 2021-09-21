@@ -4,7 +4,6 @@ from conans import ConanFile, tools, CMake
 
 class FreetypeConan(ConanFile):
     name = "freetype"
-    version = "2.11.0"
     description = "FreeType is a freely available software library to render fonts"
     homepage = "https://download.savannah.gnu.org/releases/freetype/"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -22,15 +21,15 @@ class FreetypeConan(ConanFile):
     default_options = {
         "shared": True,
         "fPIC": True,
-        "with_zlib": False,
-        "with_bzip2": False,
-        "with_png": False,
+        "with_zlib": True,
+        "with_bzip2": True,
+        "with_png": True,
         "with_harfbuzz": False
     }
     short_paths = True
 
-    _source_folder = "{0}-{1}_sources".format(name, version)
-    _build_folder = "{0}-{1}_build".format(name, version)
+    _source_folder = "{0}_sources".format(name)
+    _build_folder = "{0}_build".format(name)
 
     def config_options(self):
         if tools.os_info.is_windows:
@@ -42,23 +41,23 @@ class FreetypeConan(ConanFile):
 
     def requirements(self):
         if self.options.with_bzip2:
-            self.requires.add("bzip2/1.0.8@{0}/{1}".format(self.user, self.channel))
+            self.requires.add("bzip2/{0}@{1}/{2}".format(self.conan_data["bzip2"][self.version], self.user, self.channel))
 
         if self.options.with_harfbuzz:
-            self.requires.add("harfbuzz/2.6.2@{0}/{1}".format(self.user, self.channel))
+            self.requires.add("harfbuzz/{0}@{1}/{2}".format(self.conan_data["harfbuzz"][self.version], self.user, self.channel))
 
         if self.options.with_png:
-            self.requires.add("libpng/1.6.37@{0}/{1}".format(self.user, self.channel))
             if not self.options.with_zlib:
                 self.output.warn("libpng needs zlib, with_png is sets to True.")
                 self.options.with_zlib = True
+            else:
+                self.requires.add("libpng/{0}@{1}/{2}".format(self.conan_data["libpng"][self.version], self.user, self.channel))
 
         if self.options.with_zlib:
-            self.requires.add("zlib/1.2.11@{0}/{1}".format(self.user, self.channel))
+            self.requires.add("zlib/{0}@{1}/{2}".format(self.conan_data["zlib"][self.version], self.user, self.channel))
 
     def source(self):
-        tools.get("{0}/{1}-{2}.tar.gz".format(self.homepage, self.name, self.version),
-                  sha256="a45c6b403413abd5706f3582f04c8339d26397c4304b78fa552f2215df64101f")
+        tools.get(**self.conan_data["sources"][self.version])
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def build(self):
