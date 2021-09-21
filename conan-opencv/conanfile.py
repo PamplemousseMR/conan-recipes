@@ -23,13 +23,13 @@ class OpenCVConan(ConanFile):
     default_options = {
         "shared": True,
         "fPIC": True,
-        "with_png": True,
+        "with_png": False,
         "parallel": False,
         "with_cuda": False,
         "with_cublas": False,
-        "with_protobuf": True,
+        "with_protobuf": False,
         "with_cudnn": False,
-        "contrib": True
+        "contrib": False
     }
     short_paths = True
 
