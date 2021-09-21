@@ -5,7 +5,6 @@ from conans import ConanFile, tools, CMake
 
 class Soil2Conan(ConanFile):
     name = "soil2"
-    version = "1.20"
     description = "Simple OpenGL Image Library"
     homepage = "https://github.com/SpartanJ/SOIL2"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -20,13 +19,15 @@ class Soil2Conan(ConanFile):
         "fPIC": True
     }
     exports_sources = [
-        os.path.join("patches", "CMakeLists.txt"),
+        os.path.join("patches", "CMakeLists-1.07.txt"),
+        os.path.join("patches", "CMakeLists-1.10.txt"),
+        os.path.join("patches", "CMakeLists-1.20.txt"),
         os.path.join("patches", "SOIL2Config.cmake.in")
     ]
     short_paths = True
 
-    _source_folder = "{0}-{1}_sources".format(name, version)
-    _build_folder = "{0}-{1}_build".format(name, version)
+    _source_folder = "{0}_sources".format(name)
+    _build_folder = "{0}_build".format(name)
 
     def config_options(self):
         if self.settings.os == "Windows":
@@ -37,11 +38,12 @@ class Soil2Conan(ConanFile):
         del self.settings.compiler.cppstd
 
     def source(self):
-        tools.get("{0}/archive/release-{1}.tar.gz".format(self.homepage, self.version),
-                  sha256="abf32ed4dc3c713992d87a4fa8c9f0cce83c41f9b5dbf3a6fd0815659a3eee5e")
+        tools.get(**self.conan_data["sources"][self.version])
         os.rename("SOIL2-release-{0}".format(self.version), self._source_folder)
-        for export_source in self.exports_sources:
-            shutil.copy(export_source, self._source_folder)
+        for export_source in self.conan_data["export_sources"][self.version]:
+            shutil.copy(os.path.join("patches", export_source["file"]), self._source_folder)
+            os.rename(os.path.join(self._source_folder, export_source["file"]),
+                      os.path.join(self._source_folder, export_source["name"]))
 
     def build(self):
         cmake = CMake(self)

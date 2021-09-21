@@ -5,7 +5,6 @@ from conans import ConanFile, tools, CMake
 
 class Bzip2Conan(ConanFile):
     name = "bzip2"
-    version = "1.0.8"
     description = "bzip2 is a free and open-source file compression program that uses the Burrows-Wheeler algorithm"
     homepage = "https://sourceware.org/pub/bzip2"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -27,8 +26,8 @@ class Bzip2Conan(ConanFile):
     ]
     short_paths = True
 
-    _source_folder = "{0}-{1}_sources".format(name, version)
-    _build_folder = "{0}-{1}_build".format(name, version)
+    _source_folder = "{0}_sources".format(name)
+    _build_folder = "{0}_build".format(name)
 
     def config_options(self):
         if tools.os_info.is_windows:
@@ -39,11 +38,10 @@ class Bzip2Conan(ConanFile):
         del self.settings.compiler.cppstd
 
     def source(self):
-        tools.get("{0}/{1}-{2}.tar.gz".format(self.homepage, self.name, self.version),
-                  sha256="ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269")
+        tools.get(**self.conan_data["sources"][self.version])
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
-        for export_source in self.exports_sources:
-            shutil.copy(export_source, self._source_folder)
+        for export_source in self.conan_data["export_sources"][self.version]:
+            shutil.copy(os.path.join("patches", export_source), self._source_folder)
 
     def build(self):
         cmake = CMake(self)

@@ -4,7 +4,6 @@ from conans import ConanFile, tools, AutoToolsBuildEnvironment, MSBuild
 
 class LibUSBConan(ConanFile):
     name = "libusb"
-    version = "1.0.23"
     description = "A cross-platform library to access USB devices"
     homepage = "https://github.com/libusb/libusb"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -22,7 +21,7 @@ class LibUSBConan(ConanFile):
     }
     short_paths = True
 
-    _source_folder = "{0}-{1}_sources".format(name, version)
+    _source_folder = "{0}_sources".format(name)
 
     @property
     def _is_mingw(self):
@@ -43,8 +42,7 @@ class LibUSBConan(ConanFile):
         del self.settings.compiler.cppstd
 
     def source(self):
-        tools.get("{0}/releases/download/v{1}/libusb-{1}.tar.bz2".format(self.homepage, self.version),
-                  sha256="db11c06e958a82dac52cf3c65cb4dd2c3f339c8a988665110e0d24d19312ad8d")
+        tools.get(**self.conan_data["sources"][self.version])
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def _build_visual_studio(self):
@@ -90,8 +88,7 @@ class LibUSBConan(ConanFile):
             for vcxproj in ["fxload_2017", "getopt_2017", "hotplugtest_2017", "libusb_dll_2017", "libusb_static_2017",
                             "listdevs_2017", "stress_2017", "testlibusb_2017", "xusb_2017"]:
                 vcxproj_path = os.path.join(self._source_folder, "msvc", "%s.vcxproj" % vcxproj)
-                tools.replace_in_file(vcxproj_path,
-                                      "<WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>", "")
+                tools.replace_in_file(vcxproj_path, self.conan_data["vcxproj"][self.version], "")
             self._build_visual_studio()
         else:
             self._build_autotools()
@@ -103,15 +100,16 @@ class LibUSBConan(ConanFile):
             # Package header, lib, dll and pdb.
             self.copy(pattern="libusb.h", dst=os.path.join("include", "libusb-1.0"),
                       src=os.path.join(self._source_folder, "libusb"), keep_path=False)
+
             arch = "x64" if self.settings.arch == "x86_64" else "Win32"
-            source_dir = os.path.join(self._source_folder, arch, str(self.settings.build_type),
-                                      "dll" if self.options.shared else "lib")
-            self.copy(pattern="*.pdb", dst="bin", src=source_dir, keep_path=False)
-            self.copy(pattern="libusb-usbdk-1.0.dll", dst="bin", src=source_dir, keep_path=False)
-            self.copy(pattern="libusb-usbdk-1.0.lib", dst="lib", src=source_dir, keep_path=False)
+            install_dest = "dll" if self.options.shared and self.version != "1.0.22-rc4" else "lib"
+            install_dir = os.path.join(self._source_folder, arch, str(self.settings.build_type), install_dest)
+            self.copy(pattern="*.pdb", dst="bin", src=install_dir, keep_path=False)
+            self.copy(pattern="libusb-usbdk-1.0.dll", dst="bin", src=install_dir, keep_path=False)
+            self.copy(pattern="libusb-usbdk-1.0.lib", dst="lib", src=install_dir, keep_path=False)
             if self.options.shared:
-                self.copy(pattern="libusb-1.0.dll", dst="bin", src=source_dir, keep_path=False)
-                self.copy(pattern="libusb-1.0.lib", dst="lib", src=source_dir, keep_path=False)
+                self.copy(pattern="libusb-1.0.dll", dst="bin", src=install_dir, keep_path=False)
+                self.copy(pattern="libusb-1.0.lib", dst="lib", src=install_dir, keep_path=False)
         else:
             # Remove the pkg config, it contains absoluts paths. Let conan generate it.
             tools.rmdir(os.path.join(self.package_folder, "lib", "pkgconfig"))

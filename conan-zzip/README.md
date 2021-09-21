@@ -29,19 +29,7 @@ OPTIONS:
 	- zzip:shared={'True'|'False'}
 		Set to 'True' to build shared library, default to 'False'.
 	- zzip:fPIC={'True'|'False'}
-		Set to 'True' to build position independent code, default to 'True'.
-	- zzip:zlib=<ZLIB_VERSION>@<ZLIB_USER>/<ZLIB_CHANNEL>
-		Sets the zlib recipe used, default to '1.2.11@{USER}/{CHANNEL}' on Windows. On Unix the systeme
-		library will be used.
-
-		ZLIB_VERSION:
-			The version of the used zlib.
-
-		ZLIB_USER:
-			The user of the used zlib.
-
-		ZLIB_CHANNEL:
-			The channel of the used zlib.			
+		Set to 'True' to build position independent code, default to 'True'.			
 ```
 
 ## Authors

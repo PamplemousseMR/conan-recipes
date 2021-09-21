@@ -4,7 +4,6 @@ from conans import ConanFile, tools, CMake
 
 class GlfwConan(ConanFile):
     name = "glfw"
-    version = "3.3.2"
     description = "A multi-platform library for OpenGL, OpenGL ES, Vulkan, window and input https://www.glfw.org/"
     homepage = "https://github.com/glfw/glfw"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -20,8 +19,8 @@ class GlfwConan(ConanFile):
     }
     short_paths = True
 
-    _source_folder = "{0}-{1}_sources".format(name, version)
-    _build_folder = "{0}-{1}_build".format(name, version)
+    _source_folder = "{0}_sources".format(name)
+    _build_folder = "{0}_build".format(name)
 
     def config_options(self):
         if tools.os_info.is_windows:
@@ -32,8 +31,7 @@ class GlfwConan(ConanFile):
         del self.settings.compiler.cppstd
 
     def source(self):
-        tools.get("{0}/archive/{1}.tar.gz".format(self.homepage, self.version),
-                  sha256="98768e12e615fbe9f3386f5bbfeb91b5a3b45a8c4c77159cef06b1f6ff749537")
+        tools.get(**self.conan_data["sources"][self.version])
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def build(self):

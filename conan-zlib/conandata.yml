@@ -1,0 +1,23 @@
+sources:
+  "1.2.8":
+    sha256: e380bd1bdb6447508beaa50efc653fe45f4edc1dafe11a251ae093e0ee97db9a
+    url: https://github.com/madler/zlib/archive/v1.2.8.tar.gz
+  "1.2.9":
+    sha256: c1e41e777e007e908ee72ee46a4be1d48b41b55af3440313f36263c08b826c4d
+    url: https://github.com/madler/zlib/archive/v1.2.9.tar.gz
+  "1.2.10":
+    sha256: 42cd7b2bdaf1c4570e0877e61f2fdc0bce8019492431d054d3d86925e5058dc5
+    url: https://github.com/madler/zlib/archive/v1.2.10.tar.gz
+  "1.2.11":
+    sha256: 629380c90a77b964d896ed37163f5c3a34f6e6d897311f1df2a7016355c45eff
+    url: https://github.com/madler/zlib/archive/v1.2.11.tar.gz
+
+patches:
+  "1.2.8":
+    - "CMakeLists.txt.patch"
+  "1.2.9":
+    - "CMakeLists.txt.patch"
+  "1.2.10":
+    - "CMakeLists.txt.patch"
+  "1.2.11":
+    - "CMakeLists.txt.patch"

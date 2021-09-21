@@ -1,0 +1,32 @@
+sources:
+  "4.5.1":
+    - sha256: e27fe5b168918ab60d58d7ace2bd82dd14a4d0bd1d3ae182952c2113f5637513
+      url: https://github.com/opencv/opencv/archive/4.5.1.tar.gz
+    - sha256: 12c3b1ddd0b8c1a7da5b743590a288df0934e5cef243e036ca290c2e45e425f5
+      url: https://github.com/opencv/opencv_contrib/archive/4.5.1.tar.gz
+  "4.5.2":
+    - sha256: ae258ed50aa039279c3d36afdea5c6ecf762515836b27871a8957c610d0424f8
+      url: https://github.com/opencv/opencv/archive/4.5.2.tar.gz
+    - sha256: 9f52fd3114ac464cb4c9a2a6a485c729a223afb57b9c24848484e55cef0b5c2a
+      url: https://github.com/opencv/opencv_contrib/archive/4.5.2.tar.gz
+  "4.5.3":
+    - sha256: 77f616ae4bea416674d8c373984b20c8bd55e7db887fd38c6df73463a0647bab
+      url: https://github.com/opencv/opencv/archive/4.5.3.tar.gz
+    - sha256: 73da052fd10e73aaba2560eaff10cc5177e2dcc58b27f8aedf7c649e24c233bc
+      url: https://github.com/opencv/opencv_contrib/archive/4.5.3.tar.gz
+
+libpng:
+  "4.5.1":
+    "1.6.37"
+  "4.5.2":
+    "1.6.37"
+  "4.5.3":
+    "1.6.37"
+
+protobuf:
+  "4.5.1":
+    "3.18.0" 
+  "4.5.2":
+    "3.18.0" 
+  "4.5.3":
+    "3.18.0"  

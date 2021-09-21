@@ -1,0 +1,51 @@
+sources:
+  "1.0.1":
+    sha256: 8178443a8765a4f2b1ea33534e5ce78965e2d1b9b9e74bed22bab3776a58fa4e
+    url: https://sourceware.org/pub/bzip2/bzip2-1.0.1.tar.gz
+  "1.0.2":
+    sha256: 4b526afa73ca1ccd6f5f1f5fd23813f159f715c3d0e00688f1df54b51f443cdd
+    url: https://sourceware.org/pub/bzip2/bzip2-1.0.2.tar.gz
+  "1.0.3":
+    sha256: 4aaa8e7b4ecf03d91c33e8bf92d489533fa6c1f99e825c34058003f18eb68c13
+    url: https://sourceware.org/pub/bzip2/bzip2-1.0.3.tar.gz
+  "1.0.4":
+    sha256: f41c3898fbd53e68e0b052418960e538813cc98afcd72b2b604079d8de3e529c
+    url: https://sourceware.org/pub/bzip2/bzip2-1.0.4.tar.gz
+  "1.0.5":
+    sha256: f7bf5368309d76e5daf3a89d4d1bea688dac7780742e7a0ae1af19be9316fe22
+    url: https://sourceware.org/pub/bzip2/bzip2-1.0.5.tar.gz
+  "1.0.6":
+    sha256: a2848f34fcd5d6cf47def00461fcb528a0484d8edef8208d6d2e2909dc61d9cd
+    url: https://sourceware.org/pub/bzip2/bzip2-1.0.6.tar.gz
+  "1.0.7":
+    sha256: e768a87c5b1a79511499beb41500bcc4caf203726fff46a6f5f9ad27fe08ab2b
+    url: https://sourceware.org/pub/bzip2/bzip2-1.0.7.tar.gz
+  "1.0.8":
+    sha256: ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269
+    url: https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz
+
+export_sources:
+  "1.0.1":
+    - "CMakeLists.txt"
+    - "BZip2Config.cmake.in"
+  "1.0.2":
+    - "CMakeLists.txt"
+    - "BZip2Config.cmake.in"
+  "1.0.3":
+    - "CMakeLists.txt"
+    - "BZip2Config.cmake.in"
+  "1.0.4":
+    - "CMakeLists.txt"
+    - "BZip2Config.cmake.in"
+  "1.0.5":
+    - "CMakeLists.txt"
+    - "BZip2Config.cmake.in"
+  "1.0.6":
+    - "CMakeLists.txt"
+    - "BZip2Config.cmake.in"
+  "1.0.7":
+    - "CMakeLists.txt"
+    - "BZip2Config.cmake.in"
+  "1.0.8":
+    - "CMakeLists.txt"
+    - "BZip2Config.cmake.in"

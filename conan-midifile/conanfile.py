@@ -4,7 +4,6 @@ from conans import ConanFile, tools, CMake
 
 class MidifileConan(ConanFile):
     name = "midifile"
-    version = "1.0"
     description = "C++ classes for reading/writing Standard MIDI Files http://midifile.sapp.org"
     homepage = "https://github.com/craigsapp/midifile"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -18,11 +17,14 @@ class MidifileConan(ConanFile):
         "shared": True,
         "fPIC": True
     }
-    exports_sources = os.path.join("patches", "CMakeLists.txt.patch")
+    exports_sources = [
+        os.path.join("patches", "CMakeLists-0.1.txt.patch"),
+        os.path.join("patches", "CMakeLists-0.2.txt.patch")
+    ]
     short_paths = True
 
-    _source_folder = "{0}-{1}_sources".format(name, version)
-    _build_folder = "{0}-{1}_build".format(name, version)
+    _source_folder = "{0}_sources".format(name)
+    _build_folder = "{0}_build".format(name)
 
     def config_options(self):
         if tools.os_info.is_windows:
@@ -33,12 +35,15 @@ class MidifileConan(ConanFile):
         del self.settings.compiler.cppstd
 
     def source(self):
-        tools.get("{0}/archive/master.tar.gz".format(self.homepage),
-                  sha256="6dce0f303c4da6ae6df2ab5424d287ffb3e77a40d19c7ce6665513f83ad42a9c")
-        os.rename("{0}-master".format(self.name), self._source_folder)
+        git = tools.Git(folder=self._source_folder)
+        git.clone(**self.conan_data["sources"][self.version])
+        os.rename("{0}_sources".format(self.name), self._source_folder)
+        git.checkout(self.conan_data["commit"][self.version])
 
     def build(self):
-        tools.patch(base_path=self._source_folder, patch_file=self.exports_sources, strip=0)
+        if self.conan_data["patches"][self.version]:
+            for patch in self.conan_data["patches"][self.version]:
+                tools.patch(base_path=self._source_folder, patch_file=os.path.join("patches", patch), strip=0)
         cmake = CMake(self)
         cmake.configure(source_folder=self._source_folder, build_folder=self._build_folder)
         cmake.build()

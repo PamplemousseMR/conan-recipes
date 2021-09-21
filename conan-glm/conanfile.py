@@ -5,7 +5,6 @@ from distutils.dir_util import copy_tree
 
 class GlmConan(ConanFile):
     name = "glm"
-    version = "0.9.9.8"
     description = "OpenGL Mathematics (GLM)"
     homepage = "https://github.com/g-truc/glm"
     url = "https://github.com/PamplemousseMR/conan-recipes"
@@ -13,14 +12,13 @@ class GlmConan(ConanFile):
     short_paths = True
     no_copy_source = True
 
-    _source_folder = "{0}-{1}_sources".format(name, version)
+    _source_folder = "{0}_sources".format(name)
 
     def package_id(self):
         self.info.header_only()
 
     def source(self):
-        tools.get("{0}/archive/{1}.tar.gz".format(self.homepage, self.version),
-                  sha256="7d508ab72cb5d43227a3711420f06ff99b0a0cb63ee2f93631b162bfe1fe9592")
+        tools.get(**self.conan_data["sources"][self.version])
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
 
     def package(self):

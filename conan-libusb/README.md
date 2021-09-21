@@ -25,7 +25,9 @@ OPTIONS:
 	- libusb:shared={'True'|'False'}
 		Set to 'True' to build shared library, default to 'False'.
 	- libusb:fPIC={'True'|'False'}
-		Set to 'True' to build position independent code, default to 'True'.		
+		Set to 'True' to build position independent code, default to 'True'.	
+	- libusb:enable_udev={'True'|'False'}
+		Set to 'True' to enable udev, default to 'False'.
 ```
 
 ## Authors
