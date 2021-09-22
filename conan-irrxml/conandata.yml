@@ -1,0 +1,27 @@
+sources:
+  "1.0":
+    sha256: 3b44d66757cf8e5b9cff1f7e10cd7d5406a15f1c7dd6837ad074be41c9b0db59
+    url: http://prdownloads.sourceforge.net/irrlicht/irrxml-1.0.zip
+  "1.1":
+    sha256: 78ef0204238dd89d04cbc3f04b1661520a2e6f676676e3e1ae058c77e48b92c7
+    url: http://prdownloads.sourceforge.net/irrlicht/irrxml-1.1.zip
+  "1.2":
+    sha256: 9b4f80639b2dee3caddbf75862389de684747df27bea7d25f96c7330606d7079
+    url: http://prdownloads.sourceforge.net/irrlicht/irrxml-1.2.zip
+
+export_sources:
+  "1.0":
+    - "CMakeLists.txt"
+    - "IrrXMLConfig.cmake.in"
+  "1.1":
+    - "CMakeLists.txt"
+    - "IrrXMLConfig.cmake.in"
+  "1.2":
+    - "CMakeLists.txt"
+    - "IrrXMLConfig.cmake.in"
+
+patches:
+  "1.0":
+  "1.1":
+  "1.2":
+    - "irrTypes.h.patch"
