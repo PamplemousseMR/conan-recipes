@@ -13,7 +13,7 @@ add_executable(
 	${PROJECT_NAME}
 	test_package.cpp
 	)
-
+	
 #=======================================
 #                SETTINGS               
 #=======================================
@@ -29,6 +29,6 @@ set_target_properties(
 #                PACKAGE                
 #=======================================
 
-find_package(SOIL2 REQUIRED CONFIG)
+find_package(Imath REQUIRED CONFIG)
 
-target_link_libraries(${PROJECT_NAME} SOIL2::SOIL2)
+target_link_libraries(${PROJECT_NAME} Imath::Imath)

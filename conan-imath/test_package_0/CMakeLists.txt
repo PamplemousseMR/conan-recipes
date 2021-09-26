@@ -6,12 +6,19 @@ cmake_minimum_required(VERSION 3.0)
 project("test_package" VERSION 1.0 LANGUAGES CXX)
 
 #=======================================
+#                 CONAN                 
+#=======================================
+
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+
+#=======================================
 #               EXECUTABLE              
 #======================================= 
 
 add_executable(
 	${PROJECT_NAME}
-	test_package.cpp
+	../test_package/test_package.cpp
 	)
 
 #=======================================
@@ -29,6 +36,4 @@ set_target_properties(
 #                PACKAGE                
 #=======================================
 
-find_package(SOIL2 REQUIRED CONFIG)
-
-target_link_libraries(${PROJECT_NAME} SOIL2::SOIL2)
+target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})

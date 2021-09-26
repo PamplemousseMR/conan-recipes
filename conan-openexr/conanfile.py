@@ -18,7 +18,7 @@ class OpenEXRConan(ConanFile):
         "shared": True,
         "fPIC": True
     }
-    short_paths = True
+    short_paths = False
 
     _source_folder = "{0}_sources".format(name)
     _build_folder = "{0}_build".format(name)
@@ -57,7 +57,6 @@ class OpenEXRConan(ConanFile):
         if self.settings.os == "Windows":
             generator = "NMake Makefiles"  # The default generator 'Visual Studio', doesn't works for the install target.
         cmake = CMake(self, generator=generator)
-        cmake.definitions["OPENEXR_CONAN_INFO_DIR"] = self.build_folder
         cmake.definitions["PYILMBASE_ENABLE"] = False
         cmake.definitions["OPENEXR_VIEWERS_ENABLE"] = False
         cmake.definitions["OPENEXR_BUILD_BOTH_STATIC_SHARED"] = False

@@ -34,7 +34,3 @@ set_target_properties(
 find_package(OpenEXR REQUIRED CONFIG)
 
 target_link_libraries(${PROJECT_NAME} OpenEXR::IlmImfConfig OpenEXR::IlmImf OpenEXR::IlmImfUtil)
-
-find_package(IlmBase REQUIRED CONFIG)
-
-target_link_libraries(${PROJECT_NAME} IlmBase::IlmBaseConfig IlmBase::Half IlmBase::Iex IlmBase::IexMath IlmBase::Imath IlmBase::IlmThread)
