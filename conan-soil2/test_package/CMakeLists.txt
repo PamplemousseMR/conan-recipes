@@ -31,4 +31,4 @@ set_target_properties(
 
 find_package(SOIL2 REQUIRED CONFIG)
 
-target_link_libraries(${PROJECT_NAME} soil2::soil2)
+target_link_libraries(${PROJECT_NAME} SOIL2::SOIL2)
