@@ -53,7 +53,8 @@ class Soil2Conan(ConanFile):
 
     def package(self):
         # Copy the license file.
-        self.copy("LICENSE", src=self._source_folder, dst="licenses", keep_path=False)
+        if tools.Version(self.version) >= "1.20":
+            self.copy("LICENSE", src=self._source_folder, dst="licenses", keep_path=False)
 
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
