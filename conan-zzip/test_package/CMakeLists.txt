@@ -31,5 +31,9 @@ set_target_properties(
 
 find_package(ZZip REQUIRED)
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${ZZip_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} ZZip::ZZip)
+if("${ZZip_VERSION}" VERSION_LESS_EQUAL "0.13.72")
+	target_include_directories(${PROJECT_NAME} PRIVATE ${ZZip_INCLUDE_DIRS})
+	target_link_libraries(${PROJECT_NAME} PRIVATE ${ZZip_LIBRARIES})
+else()
+	message(FATAL_ERROR "Unhandle version " ${ZZip_VERSION})
+endif()
