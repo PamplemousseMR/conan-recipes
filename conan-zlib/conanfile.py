@@ -47,8 +47,7 @@ class ZlibConan(ConanFile):
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
-        self.cpp_info.libs = tools.collect_libs(self)
-
         # Set the name of conan auto generated FindZLIB.cmake.
-        self.cpp_info.names["cmake_find_package"] = "ZLIB"
-        self.cpp_info.names["cmake_find_package_multi"] = "ZLIB"
+        self.cpp_info.name = "ZLIB"
+
+        self.cpp_info.libs = tools.collect_libs(self)
