@@ -3,7 +3,7 @@
 #=======================================
 
 cmake_minimum_required(VERSION 3.0)
-project(SOIL2 VERSION 1.07 LANGUAGES C)
+project(SOIL2 VERSION 1.11 LANGUAGES C)
 
 #=======================================
 #                SETTINGS               
@@ -53,6 +53,7 @@ set(
 	src/SOIL2/etc1_utils.h
 	src/SOIL2/image_DXT.h
 	src/SOIL2/image_helper.h
+	src/SOIL2/jo_jpeg.h
 	src/SOIL2/pkm_helper.h
 	src/SOIL2/pvr_helper.h
 	src/SOIL2/SOIL2.h
