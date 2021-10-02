@@ -8,6 +8,8 @@ class PubixmlConan(ConanFile):
     homepage = "https://github.com/zeux/pugixml"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "MIT"
+    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
+    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],

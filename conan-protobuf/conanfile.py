@@ -9,6 +9,8 @@ class ProtobufConan(ConanFile):
     homepage = "https://github.com/protocolbuffers/protobuf"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "BSD-3-Clause"
+    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
+    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -20,7 +22,10 @@ class ProtobufConan(ConanFile):
         "fPIC": True,
         "with_zlib": False
     }
-    exports_sources = os.path.join("patches", "protobuf-config.cmake.patch")
+    exports_sources = [
+        "CMakeLists.txt",
+        os.path.join("patches", "protobuf-config.cmake.patch")
+    ]
     short_paths = True
 
     _source_folder = "{0}_sources".format(name)
@@ -63,7 +68,7 @@ class ProtobufConan(ConanFile):
         cmake.definitions["protobuf_BUILD_LIBPROTOC"] = True
         if self.settings.compiler == "Visual Studio":
             cmake.definitions["protobuf_MSVC_STATIC_RUNTIME"] = "MT" in str(self.settings.compiler.runtime)
-        cmake.configure(source_folder=os.path.join(self._source_folder, "cmake"), build_folder=self._build_folder)
+        cmake.configure(build_folder=self._build_folder)
         cmake.build()
         cmake.install()
 
@@ -72,16 +77,17 @@ class ProtobufConan(ConanFile):
         self.copy("LICENSE", src=self._source_folder, dst="licenses", keep_path=False)
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
+        # Remove the pkg config, it contains absoluts paths. Let conan generate it.
+        tools.rmdir(os.path.join(self.package_folder, 'lib', 'pkgconfig'))
+
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
 
         # The module name is Protobuf while the config name is protobuf.
-        self.cpp_info.filenames["cmake_find_package"] = "Protobuf"
-        self.cpp_info.filenames["cmake_find_package_multi"] = "protobuf"
+        self.cpp_info.filename = "Protobuf"
 
-        # Set the name of conan auto generated FindProtobuf.cmake.
-        self.cpp_info.names["cmake_find_package"] = "protobuf"
-        self.cpp_info.names["cmake_find_package_multi"] = "protobuf"
+        # Set the name of conan auto generated Findprotobuf.cmake.
+        self.cpp_info.name = "protobuf"
 
         # Set the package folder as CMAKE_PREFIX_PATH to find protobuf-config.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)

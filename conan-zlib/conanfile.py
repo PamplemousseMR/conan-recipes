@@ -8,6 +8,8 @@ class ZlibConan(ConanFile):
     homepage = "https://github.com/madler/zlib"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "Zlib"
+    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
+    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
