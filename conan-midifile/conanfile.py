@@ -8,6 +8,8 @@ class MidifileConan(ConanFile):
     homepage = "https://github.com/craigsapp/midifile"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "BSD-2-Clause"
+    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
+    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
