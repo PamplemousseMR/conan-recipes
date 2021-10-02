@@ -31,5 +31,9 @@ set_target_properties(
 
 find_package(LibUSB REQUIRED)
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${LibUSB_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} ${LibUSB_LIBRARIES})
+if("${LibUSB_VERSION}" VERSION_LESS_EQUAL "1.0.24")
+	target_include_directories(${PROJECT_NAME} PRIVATE ${LibUSB_INCLUDE_DIRS})
+	target_link_libraries(${PROJECT_NAME} ${LibUSB_LIBRARIES})
+else()
+	message(FATAL_ERROR "Unhandle version " ${LibUSB_VERSION})
+endif()
