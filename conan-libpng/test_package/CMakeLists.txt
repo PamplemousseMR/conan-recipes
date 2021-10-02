@@ -31,4 +31,8 @@ set_target_properties(
 
 find_package(PNG REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} PNG::PNG)
+if("${PNG_VERSION}" VERSION_LESS_EQUAL "1.6.37")
+	target_link_libraries(${PROJECT_NAME} PNG::PNG)
+else()
+	message(FATAL_ERROR "Unhandle version " ${PNG_VERSION})
+endif()

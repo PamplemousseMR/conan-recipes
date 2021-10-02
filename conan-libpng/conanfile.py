@@ -9,7 +9,7 @@ class LibpngConan(ConanFile):
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "libpng-2.0"
     author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
-    generators = "cmake_find_package"
+    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -22,6 +22,7 @@ class LibpngConan(ConanFile):
         "hardware_optimizations": False
     }
     exports_sources = [
+        "CMakeLists.txt",
         os.path.join("patches", "CMakeLists-1.6.31.txt.patch"),
         os.path.join("patches", "CMakeLists-1.6.36.txt.patch")
     ]
@@ -57,7 +58,7 @@ class LibpngConan(ConanFile):
         cmake.definitions["PNG_SHARED"] = self.options.shared
         cmake.definitions["PNG_STATIC"] = not self.options.shared
         cmake.definitions["PNG_TESTS"] = False
-        cmake.configure(source_folder=self._source_folder, build_folder=self._build_folder)
+        cmake.configure(build_folder=self._build_folder)
         cmake.build()
         cmake.install()
 
@@ -77,5 +78,4 @@ class LibpngConan(ConanFile):
         self.cpp_info.libs = tools.collect_libs(self)
 
         # Set the name of conan auto generated FindPNG.cmake.
-        self.cpp_info.names["cmake_find_package"] = "PNG"
-        self.cpp_info.names["cmake_find_package_multi"] = "PNG"
+        self.cpp_info.name = "PNG"
