@@ -31,4 +31,8 @@ set_target_properties(
 
 find_package(Imath REQUIRED CONFIG)
 
-target_link_libraries(${PROJECT_NAME} Imath::Imath)
+if("${Imath_VERSION}" VERSION_LESS_EQUAL "3.1.3")
+	target_link_libraries(${PROJECT_NAME} Imath::ImathConfig Imath::Imath)
+else()
+	message(FATAL_ERROR "Unhandle version " ${Imath_VERSION})
+endif()
