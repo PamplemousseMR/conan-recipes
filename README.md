@@ -2,9 +2,9 @@
 
 this repository contains conan recipes.
 
-## Travis
+## CI
 
-[![Build Status](https://travis-ci.com/PamplemousseMR/conan-recipes.svg?branch=master)](https://travis-ci.com/PamplemousseMR/conan-recipes)
+![Build Status](https://github.com/PamplemousseMR/conan-recipes/actions/workflows/build.yml/badge.svg)
 
 ## Getting Started
 

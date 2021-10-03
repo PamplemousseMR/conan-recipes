@@ -49,8 +49,8 @@ class FreetypeConan(ConanFile):
 
         if self.options.with_png:
             if not self.options.with_zlib:
-                self.output.warn("libpng needs zlib, with_png is sets to True.")
-                self.options.with_zlib = True
+                self.output.warn("libpng needs zlib, with_png is sets to False.")
+                self.options.with_png = False
             else:
                 self.requires.add("libpng/{0}@{1}/{2}".format(self.conan_data["libpng"][self.version], self.user, self.channel))
 

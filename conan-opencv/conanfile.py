@@ -184,6 +184,8 @@ class OpenCVConan(ConanFile):
 
         self.cpp_info.libs = tools.collect_libs(self)
 
+        self.cpp_info.includedirs.append(os.path.join(self.cpp_info.includedirs[0], "opencv4"))
+
         # Set the name of conan auto generated FindOpenCV.cmake.
         self.cpp_info.name = "OpenCV"
 
