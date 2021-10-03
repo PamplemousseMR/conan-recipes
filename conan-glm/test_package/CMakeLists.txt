@@ -31,4 +31,8 @@ set_target_properties(
 
 find_package(GLM REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} GLM::GLM)
+if("${GLM_VERSION}" VERSION_LESS_EQUAL "0.9.9.8")
+	target_link_libraries(${PROJECT_NAME} GLM::GLM)
+else()
+	message(FATAL_ERROR "Unhandle version " $GLM_VERSION})
+endif()
