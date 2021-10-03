@@ -33,4 +33,12 @@ set_target_properties(
 
 find_package(OpenEXR REQUIRED CONFIG)
 
-target_link_libraries(${PROJECT_NAME} OpenEXR::IlmImfConfig OpenEXR::IlmImf OpenEXR::IlmImfUtil)
+if("${OpenEXR_VERSION}" VERSION_LESS_EQUAL "2.5.3")
+	target_link_libraries(${PROJECT_NAME} OpenEXR::IlmImfConfig OpenEXR::IlmImf OpenEXR::IlmImfUtil)
+elseif("${OpenEXR_VERSION}" VERSION_LESS_EQUAL "3.0.5")
+	target_link_libraries(${PROJECT_NAME} OpenEXR::OpenEXRConfig OpenEXR::IexConfig OpenEXR::IlmThreadConfig OpenEXR::Iex OpenEXR::IlmThread OpenEXR::OpenEXR OpenEXR::OpenEXRUtil)
+elseif("${OpenEXR_VERSION}" VERSION_LESS_EQUAL "3.1.1")
+	target_link_libraries(${PROJECT_NAME} OpenEXR::OpenEXRConfig OpenEXR::IexConfig OpenEXR::IlmThreadConfig OpenEXR::Iex OpenEXR::IlmThread OpenEXR::OpenEXRCore OpenEXR::OpenEXR OpenEXR::OpenEXRUtil)
+else()
+	message(FATAL_ERROR "Unhandle version " ${OpenEXR_VERSION})
+endif()

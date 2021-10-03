@@ -1,7 +1,6 @@
 import os
 from conans import ConanFile, CMake
 
-
 class TestPackageConan(ConanFile):
     name = "test_package"
     settings = "os", "compiler", "build_type", "arch"
@@ -21,4 +20,4 @@ class TestPackageConan(ConanFile):
             bin_path = os.path.join(str(self.settings.build_type), self.name)
         else:
             bin_path = self.name
-        self.run(os.path.join(".", bin_path), run_environment=True)
+        self.run("{0} comp_short_decode_piz.exr".format(os.path.join(".", bin_path)), run_environment=True)
