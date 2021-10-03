@@ -1,7 +1,6 @@
 import os
 from conans import ConanFile, tools, CMake
 
-
 class FreetypeConan(ConanFile):
     name = "freetype"
     description = "FreeType is a freely available software library to render fonts"

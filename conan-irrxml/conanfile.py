@@ -2,7 +2,6 @@ import os
 import shutil
 from conans import ConanFile, tools, CMake
 
-
 class IrrXMLConan(ConanFile):
     name = "irrxml"
     description = "Simple and fast open source xml parser for C++"

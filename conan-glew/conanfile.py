@@ -1,7 +1,6 @@
 import os
 from conans import ConanFile, tools, CMake
 
-
 class GlewConan(ConanFile):
     name = "glew"
     description = "The OpenGL Extension Wrangler Library"

@@ -1,7 +1,6 @@
 import os
 from conans import ConanFile, tools, CMake
 
-
 class OpenCVConan(ConanFile):
     name = "opencv"
     description = "Open Source Computer Vision Library"

@@ -2,7 +2,6 @@ import os
 import shutil
 from conans import ConanFile, tools, CMake
 
-
 class Bzip2Conan(ConanFile):
     name = "bzip2"
     description = "bzip2 is a free and open-source file compression program that uses the Burrows-Wheeler algorithm"

@@ -2,7 +2,6 @@ import os
 import shutil
 from conans import ConanFile, tools, CMake
 
-
 class ZZipConan(ConanFile):
     name = "zzip"
     description = "The ZZIPlib provides read access on ZIP-archives and unpacked data. It features an additional simplified API following the standard Posix API for file access"

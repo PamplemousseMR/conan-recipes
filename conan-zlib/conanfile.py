@@ -1,7 +1,6 @@
 import os
 from conans import ConanFile, tools, CMake
 
-
 class ZlibConan(ConanFile):
     name = "zlib"
     description = "A massively spiffy yet delicately unobtrusive compression library. http://zlib.net/"

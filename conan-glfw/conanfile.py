@@ -1,7 +1,6 @@
 import os
 from conans import ConanFile, tools, CMake
 
-
 class GlfwConan(ConanFile):
     name = "glfw"
     description = "A multi-platform library for OpenGL, OpenGL ES, Vulkan, window and input https://www.glfw.org/"

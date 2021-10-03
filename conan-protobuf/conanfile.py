@@ -2,7 +2,6 @@ import os
 import shutil
 from conans import ConanFile, tools, CMake
 
-
 class ProtobufConan(ConanFile):
     name = "protobuf"
     description = "Protocol Buffers - Google's data interchange format"

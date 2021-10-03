@@ -1,7 +1,6 @@
 import os
 from conans import ConanFile, tools, CMake
 
-
 class LibpngConan(ConanFile):
     name = "libpng"
     description = "LIBPNG: Portable Network Graphics support, official libpng repository http://libpng.sf.net"

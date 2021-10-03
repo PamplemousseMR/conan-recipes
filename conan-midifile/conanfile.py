@@ -1,7 +1,6 @@
 import os
 from conans import ConanFile, tools, CMake
 
-
 class MidifileConan(ConanFile):
     name = "midifile"
     description = "C++ classes for reading/writing Standard MIDI Files http://midifile.sapp.org"

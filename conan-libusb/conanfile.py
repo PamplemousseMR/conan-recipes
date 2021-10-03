@@ -1,7 +1,6 @@
 import os
 from conans import ConanFile, tools, AutoToolsBuildEnvironment, MSBuild
 
-
 class LibUSBConan(ConanFile):
     name = "libusb"
     description = "A cross-platform library to access USB devices"

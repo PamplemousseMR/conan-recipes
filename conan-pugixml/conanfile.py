@@ -1,7 +1,6 @@
 import os
 from conans import ConanFile, tools, CMake
 
-
 class PubixmlConan(ConanFile):
     name = "pugixml"
     description = "Light-weight, simple and fast XML parser for C++ with XPath support"

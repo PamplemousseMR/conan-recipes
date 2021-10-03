@@ -2,7 +2,6 @@ import os
 import shutil
 from conans import ConanFile, tools, CMake
 
-
 class Soil2Conan(ConanFile):
     name = "soil2"
     description = "Simple OpenGL Image Library"

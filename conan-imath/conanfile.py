@@ -1,7 +1,6 @@
 import os
 from conans import ConanFile, tools, CMake
 
-
 class ImathConan(ConanFile):
     name = "imath"
     description = "Imath is a C++ and python library of 2D and 3D vector, matrix, and math operations for computer graphics"
