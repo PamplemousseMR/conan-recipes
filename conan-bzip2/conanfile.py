@@ -37,8 +37,10 @@ class Bzip2Conan(ConanFile):
         del self.settings.compiler.cppstd
 
     def source(self):
-        tools.get(**self.conan_data["sources"][self.version])
-        os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
+        git = tools.Git(folder=self._source_folder)
+        git.clone(**self.conan_data["sources"][self.version])
+        os.rename("{0}_sources".format(self.name), self._source_folder)
+        git.checkout(self.conan_data["commit"][self.version])
         for export_source in self.conan_data["export_sources"][self.version]:
             shutil.copy(os.path.join("patches", export_source), self._source_folder)
 
@@ -58,8 +60,7 @@ class Bzip2Conan(ConanFile):
         self.cpp_info.libs = tools.collect_libs(self)
 
         # Set the name of conan auto generated FindBZIP2.cmake.
-        self.cpp_info.names["cmake_find_package"] = "BZIP2"
-        self.cpp_info.names["cmake_find_package_multi"] = "BZIP2"
+        self.cpp_info.name = "BZIP2"
 
         # Set the package folder as CMAKE_PREFIX_PATH to find BZip2Config.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
