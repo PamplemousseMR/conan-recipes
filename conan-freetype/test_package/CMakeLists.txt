@@ -29,6 +29,10 @@ set_target_properties(
 #                PACKAGE                
 #=======================================
 
-find_package(Freetype REQUIRED)
+find_package(Freetype REQUIRED CONFIG)
 
-target_link_libraries(${PROJECT_NAME} Freetype::Freetype)
+if("${Freetype_VERSION}" VERSION_LESS_EQUAL "2.11.0")
+	target_link_libraries(${PROJECT_NAME} freetype)
+else()
+	message(FATAL_ERROR "Unhandle version " ${Freetype_VERSION})
+endif()
