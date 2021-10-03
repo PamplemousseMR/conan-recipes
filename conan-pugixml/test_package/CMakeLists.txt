@@ -31,6 +31,12 @@ set_target_properties(
 #                PACKAGE                
 #=======================================
 
-find_package(pugixml REQUIRED) 
+find_package(pugixml REQUIRED CONFIG) 
 
-target_link_libraries(${PROJECT_NAME} pugixml::pugixml)
+if("${pugixml_VERSION}" VERSION_LESS_EQUAL "1.10")
+	target_link_libraries(${PROJECT_NAME} PRIVATE pugixml)
+elseif("${pugixml_VERSION}" VERSION_LESS_EQUAL "1.11.4")
+	target_link_libraries(${PROJECT_NAME} PRIVATE pugixml::pugixml)
+else()
+	message(FATAL_ERROR "Unhandle version " ${pugixml_VERSION})
+endif()

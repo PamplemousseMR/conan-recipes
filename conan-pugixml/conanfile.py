@@ -1,13 +1,14 @@
 import os
 from conans import ConanFile, tools, CMake
 
-
 class PubixmlConan(ConanFile):
     name = "pugixml"
     description = "Light-weight, simple and fast XML parser for C++ with XPath support"
     homepage = "https://github.com/zeux/pugixml"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "MIT"
+    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
+    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -61,11 +62,12 @@ class PubixmlConan(ConanFile):
 
     def package(self):
         # Copy the license file.
-        self.copy("LICENSE.md", src=self._source_folder, dst="licenses", keep_path=False)
+        if tools.Version(self.version) >= "1.10":
+            self.copy("LICENSE.md", src=self._source_folder, dst="licenses", keep_path=False)
 
         # Remove the pkg config, it contains absoluts paths. Let conan generate it.
-        tools.rmdir(os.path.join(self.package_folder, 'lib', 'pkgconfig'))
-        tools.rmdir(os.path.join(self.package_folder, 'lib', 'cmake'))
+        if tools.Version(self.version) >= "1.10":
+            tools.rmdir(os.path.join(self.package_folder, 'lib', 'pkgconfig'))
 
         if self.options.header_only:
             source_dir = os.path.join(self._source_folder, "src")
@@ -75,10 +77,12 @@ class PubixmlConan(ConanFile):
 
     def package_info(self):
         # Set the name of conan auto generated Findpugixml.cmake.
-        self.cpp_info.names["cmake_find_package"] = "pugixml"
-        self.cpp_info.names["cmake_find_package_multi"] = "pugixml"
+        self.cpp_info.name = "pugixml"
 
         if self.options.header_only:
             self.cpp_info.defines = ["PUGIXML_HEADER_ONLY"]
         else:
             self.cpp_info.libs = tools.collect_libs(self)
+
+        # Set the package folder as CMAKE_PREFIX_PATH to find pugixml-config.cmake.
+        self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)

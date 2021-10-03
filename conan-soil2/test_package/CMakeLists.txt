@@ -29,6 +29,10 @@ set_target_properties(
 #                PACKAGE                
 #=======================================
 
-find_package(SOIL2 REQUIRED CONFIG)
+find_package(SOIL2 REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} SOIL2::SOIL2)
+if("${SOIL2_VERSION}" VERSION_LESS_EQUAL "1.20")
+	target_link_libraries(${PROJECT_NAME} PRIVATE SOIL2::SOIL2)
+else()
+	message(FATAL_ERROR "Unhandle version " ${SOIL2_VERSION})
+endif()

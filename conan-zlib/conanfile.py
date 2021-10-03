@@ -1,13 +1,14 @@
 import os
 from conans import ConanFile, tools, CMake
 
-
 class ZlibConan(ConanFile):
     name = "zlib"
     description = "A massively spiffy yet delicately unobtrusive compression library. http://zlib.net/"
     homepage = "https://github.com/madler/zlib"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "Zlib"
+    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
+    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -47,8 +48,7 @@ class ZlibConan(ConanFile):
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
-        self.cpp_info.libs = tools.collect_libs(self)
-
         # Set the name of conan auto generated FindZLIB.cmake.
-        self.cpp_info.names["cmake_find_package"] = "ZLIB"
-        self.cpp_info.names["cmake_find_package_multi"] = "ZLIB"
+        self.cpp_info.name = "ZLIB"
+
+        self.cpp_info.libs = tools.collect_libs(self)

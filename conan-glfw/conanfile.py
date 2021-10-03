@@ -1,13 +1,14 @@
 import os
 from conans import ConanFile, tools, CMake
 
-
 class GlfwConan(ConanFile):
     name = "glfw"
     description = "A multi-platform library for OpenGL, OpenGL ES, Vulkan, window and input https://www.glfw.org/"
     homepage = "https://github.com/glfw/glfw"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "Zlib"
+    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
+    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -55,11 +56,7 @@ class GlfwConan(ConanFile):
         self.cpp_info.libs = tools.collect_libs(self)
 
         # Set the name of conan auto generated Findglfw3.cmake.
-        self.cpp_info.names["cmake_find_package"] = "glfw3"
-        self.cpp_info.names["cmake_find_package_multi"] = "glfw3"
-
-        # Set the name of conan auto generated glfw3.pc.
-        self.cpp_info.names["pkg_config"] = "glfw3"
+        self.cpp_info.name = "glfw3"
 
         # Set the package folder as CMAKE_PREFIX_PATH to find glfw3Config.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)

@@ -3,7 +3,7 @@
 #=======================================
 
 cmake_minimum_required(VERSION 3.0)
-project(SOIL2 VERSION 1.07 LANGUAGES C)
+project(SOIL2 VERSION 1.08 LANGUAGES C)
 
 #=======================================
 #                SETTINGS               

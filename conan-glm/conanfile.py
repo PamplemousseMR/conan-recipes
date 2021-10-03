@@ -2,13 +2,14 @@ import os
 from conans import ConanFile, tools
 from distutils.dir_util import copy_tree
 
-
 class GlmConan(ConanFile):
     name = "glm"
     description = "OpenGL Mathematics (GLM)"
     homepage = "https://github.com/g-truc/glm"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "MIT"
+    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
+    generators = "cmake"
     short_paths = True
     no_copy_source = True
 
@@ -31,5 +32,4 @@ class GlmConan(ConanFile):
 
     def package_info(self):
         # Set the name of conan auto generated FindGLM.cmake.
-        self.cpp_info.names["cmake_find_package"] = "GLM"
-        self.cpp_info.names["cmake_find_package_multi"] = "GLM"
+        self.cpp_info.name = "GLM"

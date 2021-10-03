@@ -1,14 +1,14 @@
 import os
 from conans import ConanFile, tools, CMake
 
-
 class ImathConan(ConanFile):
     name = "imath"
     description = "Imath is a C++ and python library of 2D and 3D vector, matrix, and math operations for computer graphics"
     homepage = "https://github.com/AcademySoftwareFoundation/Imath"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "BSD-3-Clause"
-    generators = "cmake_find_package"
+    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
+    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -53,11 +53,7 @@ class ImathConan(ConanFile):
         self.cpp_info.includedirs.append(os.path.join(self.cpp_info.includedirs[0], "Imath"))
 
         # Set the name of conan auto generated FindOpenEXR.cmake.
-        self.cpp_info.names["cmake_find_package"] = "Imath"
-        self.cpp_info.names["cmake_find_package_multi"] = "Imath"
-
-        # Set the name of conan auto generated OpenEXR.pc.
-        self.cpp_info.names["pkg_config"] = "Imath"
+        self.cpp_info.name = "Imath"
 
         # Set the package folder as CMAKE_PREFIX_PATH to find OpenEXRConfig.cmake and IlmBaseConfig.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)

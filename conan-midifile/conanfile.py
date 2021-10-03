@@ -1,13 +1,14 @@
 import os
 from conans import ConanFile, tools, CMake
 
-
 class MidifileConan(ConanFile):
     name = "midifile"
     description = "C++ classes for reading/writing Standard MIDI Files http://midifile.sapp.org"
     homepage = "https://github.com/craigsapp/midifile"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "BSD-2-Clause"
+    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
+    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],

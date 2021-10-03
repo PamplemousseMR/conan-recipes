@@ -1,13 +1,14 @@
 import os
 from conans import ConanFile, tools, AutoToolsBuildEnvironment, MSBuild
 
-
 class LibUSBConan(ConanFile):
     name = "libusb"
     description = "A cross-platform library to access USB devices"
     homepage = "https://github.com/libusb/libusb"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "LGPL-2.1"
+    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
+    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -25,11 +26,11 @@ class LibUSBConan(ConanFile):
 
     @property
     def _is_mingw(self):
-        return self.settings.os == "Windows" and self.settings.compiler == "gcc"
+        return tools.os_info.is_windows and self.settings.compiler == "gcc"
 
     @property
     def _is_msvc(self):
-        return self.settings.os == "Windows" and self.settings.compiler == "Visual Studio"
+        return tools.os_info.is_windows and self.settings.compiler == "Visual Studio"
 
     def config_options(self):
         if self.settings.os != "Linux":
@@ -122,11 +123,7 @@ class LibUSBConan(ConanFile):
         self.cpp_info.libs = tools.collect_libs(self)
 
         # Set the name of conan auto generated FindLibUSB.cmake.
-        self.cpp_info.names["cmake_find_package"] = "LibUSB"
-        self.cpp_info.names["cmake_find_package_multi"] = "LibUSB"
-
-        # Set the name of conan auto generated libusb-1.0.pc.
-        self.cpp_info.names["pkg_config"] = "libusb-1.0"
+        self.cpp_info.name = "LibUSB"
 
         if self.settings.os == "Linux":
             self.cpp_info.system_libs.append("pthread")

@@ -1,4 +1,7 @@
 sources:
+  "1.9":
+    sha256: 7ac060048bf00da4b3902cf411f0ba9f048cdc5580eed1f5a27ff51be4a38243
+    url: https://github.com/zeux/pugixml/archive/v1.9.tar.gz
   "1.10":
     sha256: 10f1f0a32b559ca8435d95855928d990cfbb9796e339efb638080c897728174c
     url: https://github.com/zeux/pugixml/archive/v1.10.tar.gz

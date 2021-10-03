@@ -1,13 +1,14 @@
 import os
 from conans import ConanFile, tools, CMake
 
-
 class GlewConan(ConanFile):
     name = "glew"
     description = "The OpenGL Extension Wrangler Library"
     homepage = "https://github.com/nigels-com/glew"
     url = "https://github.com/PamplemousseMR/conan-glew"
     license = "MIT"
+    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
+    generators = "cmake"    
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -54,11 +55,7 @@ class GlewConan(ConanFile):
         self.cpp_info.libs = tools.collect_libs(self)
 
         # Set the name of conan auto generated FindSOIL.cmake.
-        self.cpp_info.names["cmake_find_package"] = "GLEW"
-        self.cpp_info.names["cmake_find_package_multi"] = "GLEW"
-
-        # Set the name of conan auto generated glew.pc.
-        self.cpp_info.names["pkg_config"] = "glew"
+        self.cpp_info.name = "GLEW"
 
         # Set the package folder as CMAKE_PREFIX_PATH to find glew-config.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)

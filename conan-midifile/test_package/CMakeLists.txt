@@ -31,4 +31,9 @@ set_target_properties(
 
 find_package(midifile REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} midifile::midifile)
+
+if("${midifile_VERSION}" VERSION_LESS_EQUAL "0.2")
+	target_link_libraries(${PROJECT_NAME} midifile::midifile)
+else()
+	message(FATAL_ERROR "Unhandle version " ${midifile_VERSION})
+endif()

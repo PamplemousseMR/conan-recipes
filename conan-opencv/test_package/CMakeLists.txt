@@ -31,5 +31,8 @@ set_target_properties(
 
 find_package(OpenCV REQUIRED CONFIG)
 
-target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE ${OpenCV_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
+if("${OpenCV_VERSION}" VERSION_LESS_EQUAL "4.5.3")
+	target_link_libraries(${PROJECT_NAME} opencv_core opencv_flann opencv_imgproc opencv_ml opencv_photo opencv_features2d opencv_imgcodecs opencv_videoio opencv_calib3d opencv_highgui opencv_objdetect opencv_stitching opencv_video)
+else()
+	message(FATAL_ERROR "Unhandle version " ${OpenCV_VERSION})
+endif()

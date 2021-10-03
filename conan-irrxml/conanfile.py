@@ -2,13 +2,14 @@ import os
 import shutil
 from conans import ConanFile, tools, CMake
 
-
 class IrrXMLConan(ConanFile):
     name = "irrxml"
     description = "Simple and fast open source xml parser for C++"
     homepage = "http://www.ambiera.com/irrxml"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "irrXML"
+    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
+    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -54,11 +55,7 @@ class IrrXMLConan(ConanFile):
         self.cpp_info.libs = tools.collect_libs(self)
 
         # Set the name of conan auto generated FindIrrXML.cmake.
-        self.cpp_info.names["cmake_find_package"] = "IRRXML"
-        self.cpp_info.names["cmake_find_package_multi"] = "IRRXML"
-
-        # Set the name of conan auto generated IrrXML.pc.
-        self.cpp_info.names["pkg_config"] = "IRRXML"
+        self.cpp_info.name = "IRRXML"
 
         # Set the package folder as CMAKE_PREFIX_PATH to find IrrXMLConfig.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)

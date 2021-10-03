@@ -2,13 +2,14 @@ import os
 import shutil
 from conans import ConanFile, tools, CMake
 
-
 class Soil2Conan(ConanFile):
     name = "soil2"
     description = "Simple OpenGL Image Library"
     homepage = "https://github.com/SpartanJ/SOIL2"
     url = "https://github.com/PamplemousseMR/conan-recipes"
     license = "Public Domain"
+    author = "MANCIAUX Romain (https://github.com/PamplemousseMR)"
+    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -20,7 +21,10 @@ class Soil2Conan(ConanFile):
     }
     exports_sources = [
         os.path.join("patches", "CMakeLists-1.07.txt"),
+        os.path.join("patches", "CMakeLists-1.08.txt"),
+        os.path.join("patches", "CMakeLists-1.09.txt"),
         os.path.join("patches", "CMakeLists-1.10.txt"),
+        os.path.join("patches", "CMakeLists-1.11.txt"),
         os.path.join("patches", "CMakeLists-1.20.txt"),
         os.path.join("patches", "SOIL2Config.cmake.in")
     ]
@@ -53,16 +57,16 @@ class Soil2Conan(ConanFile):
 
     def package(self):
         # Copy the license file.
-        self.copy("LICENSE", src=self._source_folder, dst="licenses", keep_path=False)
+        if tools.Version(self.version) >= "1.20":
+            self.copy("LICENSE", src=self._source_folder, dst="licenses", keep_path=False)
 
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
-        self.cpp_info.libs = tools.collect_libs(self)
-
         # Set the name of conan auto generated FindSOIL2.cmake.
-        self.cpp_info.names["cmake_find_package"] = "SOIL2"
-        self.cpp_info.names["cmake_find_package_multi"] = "SOIL2"
+        self.cpp_info.name = "SOIL2"
+
+        self.cpp_info.libs = tools.collect_libs(self)
 
         # Set the package folder as CMAKE_PREFIX_PATH to find SOIL2Config.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)

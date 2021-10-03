@@ -31,4 +31,8 @@ set_target_properties(
 
 find_package(IrrXML REQUIRED CONFIG)
 
-target_link_libraries(${PROJECT_NAME} IrrXML::IrrXML)
+if("${IrrXML_VERSION}" VERSION_LESS_EQUAL "1.2")
+	target_link_libraries(${PROJECT_NAME} IrrXML::IrrXML)
+else()
+	message(FATAL_ERROR "Unhandle version " ${IrrXML_VERSION})
+endif()

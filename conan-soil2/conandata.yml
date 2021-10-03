@@ -25,12 +25,12 @@ export_sources:
     - file: "SOIL2Config.cmake.in"
       name: "SOIL2Config.cmake.in"
   "1.08":
-    - file: "CMakeLists-1.07.txt"
+    - file: "CMakeLists-1.08.txt"
       name: "CMakeLists.txt"
     - file: "SOIL2Config.cmake.in"
       name: "SOIL2Config.cmake.in"
   "1.09":
-    - file: "CMakeLists-1.07.txt"
+    - file: "CMakeLists-1.09.txt"
       name: "CMakeLists.txt"
     - file: "SOIL2Config.cmake.in"
       name: "SOIL2Config.cmake.in"
@@ -40,7 +40,7 @@ export_sources:
     - file: "SOIL2Config.cmake.in"
       name: "SOIL2Config.cmake.in"
   "1.11":
-    - file: "CMakeLists-1.10.txt"
+    - file: "CMakeLists-1.11.txt"
       name: "CMakeLists.txt"
     - file: "SOIL2Config.cmake.in"
       name: "SOIL2Config.cmake.in"

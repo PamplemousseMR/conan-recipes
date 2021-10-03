@@ -31,5 +31,10 @@ set_target_properties(
 
 find_package(ZLIB REQUIRED)
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${ZLIB_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} ${ZLIB_LIBRARIES})
+
+if("${ZLIB_VERSION}" VERSION_LESS_EQUAL "1.2.11")
+	target_include_directories(${PROJECT_NAME} PRIVATE ${ZLIB_INCLUDE_DIRS})
+	target_link_libraries(${PROJECT_NAME} PRIVATE ${ZLIB_LIBRARIES})
+else()
+	message(FATAL_ERROR "Unhandle version " ${ZLIB_VERSION})
+endif()
