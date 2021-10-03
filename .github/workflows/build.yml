@@ -213,11 +213,11 @@ jobs:
       #    conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 3.1.1-rc@pamplemousseMR/testing
       #    conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 openexr/3.1.1-rc@pamplemousseMR/testing
 
-      #- name: Opencv
-      #  run: |
-      #    cd conan-opencv
-      #    conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 4.5.3@pamplemousseMR/testing
-      #    conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 opencv/4.5.3@pamplemousseMR/testing
+      - name: Opencv
+        run: |
+          cd conan-opencv
+          conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 4.5.3@pamplemousseMR/testing
+          conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 opencv/4.5.3@pamplemousseMR/testing
       #    conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 4.5.3@pamplemousseMR/testing
       #    conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 opencv/4.5.3@pamplemousseMR/testing
 
