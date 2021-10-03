@@ -33,7 +33,7 @@ find_package(glew REQUIRED CONFIG)
 
 if("${glew_VERSION}" VERSION_LESS_EQUAL "2.2.0")
 	if(TARGET GLEW::glew)
-	target_link_libraries(${PROJECT_NAME} GLEW::glew)
+		target_link_libraries(${PROJECT_NAME} GLEW::glew)
 	else()
 		target_link_libraries(${PROJECT_NAME} GLEW::glew_s)
 	endif()

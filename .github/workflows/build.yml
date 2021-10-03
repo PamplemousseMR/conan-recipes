@@ -167,27 +167,27 @@ jobs:
           conan create -o *:shared=False -o libpng:hardware_optimizations=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.6.37@pamplemousseMR/testing
           conan test -o *:shared=False -o libpng:hardware_optimizations=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 libpng/1.6.37@pamplemousseMR/testing
         
-      #- name: Freetype
-      #  run: |
-      #    cd conan-freetype
-      #    conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-      #    conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
-      #    conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-      #    conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
-      #    conan create -o *:shared=True -o freetype:with_zlib=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-      #    conan test -o *:shared=True -o freetype:with_zlib=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
-      #    conan create -o *:shared=True -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-      #    conan test -o *:shared=True -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
-      #    conan create -o *:shared=True -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-      #    conan test -o *:shared=True -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
-      #    conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-      #    conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
-      #    conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-      #    conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
-      #    conan create -o *:shared=True -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-      #    conan test -o *:shared=True -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
-      #    conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-      #    conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing 
+      - name: Freetype
+        run: |
+          cd conan-freetype
+          conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
+          conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
+          conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
+          conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
+          conan create -o *:shared=True -o freetype:with_zlib=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
+          conan test -o *:shared=True -o freetype:with_zlib=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
+          conan create -o *:shared=True -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
+          conan test -o *:shared=True -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
+          conan create -o *:shared=True -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
+          conan test -o *:shared=True -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
+          conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
+          conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
+          conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
+          conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
+          conan create -o *:shared=True -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
+          conan test -o *:shared=True -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
+          conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
+          conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing 
 
       - name: Libusb
         run: |
