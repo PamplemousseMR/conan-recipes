@@ -31,4 +31,8 @@ set_target_properties(
 
 find_package(glfw3 REQUIRED CONFIG)
 
-target_link_libraries(${PROJECT_NAME} glfw)
+if("${glfw3_VERSION}" VERSION_LESS_EQUAL "3.3.4")
+	target_link_libraries(${PROJECT_NAME} glfw)
+else()
+	message(FATAL_ERROR "Unhandle version " ${glfw3_VERSION})
+endif()
