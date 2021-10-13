@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    branches: [ feat/assimp ]
+    branches: [ master ]
 
 jobs:
   build:
