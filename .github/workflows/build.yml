@@ -85,6 +85,60 @@ jobs:
           sudo pip3 install --upgrade urllib3
           sudo pip3 install --upgrade jinja2
 
+      - name: Bzip2
+        run: |
+          cd conan-bzip2
+          conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.0.8@pamplemousseMR/testing
+          conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 bzip2/1.0.8@pamplemousseMR/testing
+          conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.0.8@pamplemousseMR/testing
+          conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 bzip2/1.0.8@pamplemousseMR/testing
+
+      - name: Glew
+        run: |
+          cd conan-glew
+          conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.2.0@pamplemousseMR/testing
+          conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 glew/2.2.0@pamplemousseMR/testing
+          conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.2.0@pamplemousseMR/testing
+          conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 glew/2.2.0@pamplemousseMR/testing
+
+      - name: Glfw
+        run: |
+          cd conan-glfw
+          conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 3.3.4@pamplemousseMR/testing
+          conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 glfw/3.3.4@pamplemousseMR/testing
+          conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 3.3.4@pamplemousseMR/testing
+          conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 glfw/3.3.4@pamplemousseMR/testing
+
+      - name: Glm
+        run: |
+          cd conan-glm
+          conan create -s build_type=Debug  -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 0.9.9.8@pamplemousseMR/testing
+          conan test -s build_type=Debug  -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 glm/0.9.9.8@pamplemousseMR/testing
+          
+      - name: Midifile
+        run: |
+          cd conan-midifile
+          conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 0.2@pamplemousseMR/testing
+          conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 midifile/0.2@pamplemousseMR/testing
+          conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 0.2@pamplemousseMR/testing
+          conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 midifile/0.2@pamplemousseMR/testing
+
+      - name: Pugixml
+        run: |
+          cd conan-pugixml
+          conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.11.4@pamplemousseMR/testing
+          conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 pugixml/1.11.4@pamplemousseMR/testing
+          conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.11.4@pamplemousseMR/testing
+          conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 pugixml/1.11.4@pamplemousseMR/testing
+
+      - name: Soil2
+        run: |
+          cd conan-soil2
+          conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.20@pamplemousseMR/testing
+          conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 soil2/1.20@pamplemousseMR/testing
+          conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.20@pamplemousseMR/testing
+          conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 soil2/1.20@pamplemousseMR/testing
+
       - name: Zlib
         run: |
           cd conan-zlib
@@ -92,22 +146,6 @@ jobs:
           conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 zlib/1.2.11@pamplemousseMR/testing
           conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.2.11@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 zlib/1.2.11@pamplemousseMR/testing
-
-      - name: Irrxml
-        run: |
-          cd conan-irrxml
-          conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.2@pamplemousseMR/testing
-          conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 irrxml/1.2@pamplemousseMR/testing
-          conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.2@pamplemousseMR/testing
-          conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 irrxml/1.2@pamplemousseMR/testing
-      
-      - name: Assimp
-        run: |
-          cd conan-assimp
-          conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 5.0.1@pamplemousseMR/testing
-          conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 assimp/5.0.1@pamplemousseMR/testing
-          conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 5.0.1@pamplemousseMR/testing
-          conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 assimp/5.0.1@pamplemousseMR/testing
 
       - name: Zzip
         run: |
@@ -190,3 +228,20 @@ jobs:
       #    conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 protobuf/3.18.0-rc2@pamplemousseMR/testing
       #    conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 3.18.0-rc2@pamplemousseMR/testing
       #    conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 protobuf/3.18.0-rc2@pamplemousseMR/testing
+
+      - name: Irrxml
+        run: |
+          cd conan-irrxml
+          conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.2@pamplemousseMR/testing
+          conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 irrxml/1.2@pamplemousseMR/testing
+          conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.2@pamplemousseMR/testing
+          conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 irrxml/1.2@pamplemousseMR/testing
+
+      - name: Assimp
+        run: |
+          cd conan-assimp
+          conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 5.0.1@pamplemousseMR/testing
+          conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 assimp/5.0.1@pamplemousseMR/testing
+          conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 5.0.1@pamplemousseMR/testing
+          conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 assimp/5.0.1@pamplemousseMR/testing
+          
