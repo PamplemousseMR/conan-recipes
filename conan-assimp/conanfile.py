@@ -18,6 +18,7 @@ class AssimpConan(ConanFile):
         "shared": True,
         "fPIC": True
     }
+    exports_sources = "CMakeLists.txt"
     short_paths = True
 
     _source_folder = "{0}_sources".format(name)
@@ -31,6 +32,10 @@ class AssimpConan(ConanFile):
         del self.settings.compiler.libcxx
         del self.settings.compiler.cppstd
 
+    def requirements(self):
+        for requirement in self.conan_data["requirements"][self.version]:
+            self.requires.add("{0}@{1}/{2}".format(requirement, self.user, self.channel))
+
     def source(self):
         tools.get(**self.conan_data["sources"][self.version])
         os.rename("{0}-{1}".format(self.name, self.version), self._source_folder)
@@ -43,7 +48,9 @@ class AssimpConan(ConanFile):
         cmake.definitions["ASSIMP_BUILD_TESTS"] = False
         cmake.definitions["ASSIMP_BUILD_SAMPLES"] = False
         cmake.definitions["ASSIMP_ANDROID_JNIIOSYSTEM"] = False
-        cmake.configure(source_folder=self._source_folder, build_folder=self._build_folder)
+        cmake.definitions["ASSIMP_BUILD_ALL_IMPORTERS_BY_DEFAULT"] = True
+        cmake.definitions["ASSIMP_BUILD_ALL_EXPORTERS_BY_DEFAULT"] = True
+        cmake.configure(build_folder=self._build_folder)
         cmake.build()
         cmake.install()
 
