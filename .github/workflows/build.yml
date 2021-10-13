@@ -88,10 +88,10 @@ jobs:
       - name: Assimp
         run: |
           cd conan-assimp
-          conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.0.8@pamplemousseMR/testing
-          conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 assimp/1.0.8@pamplemousseMR/testing
-          conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.0.8@pamplemousseMR/testing
-          conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 assimp/1.0.8@pamplemousseMR/testing
+          conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 5.0.1@pamplemousseMR/testing
+          conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 assimp/5.0.1@pamplemousseMR/testing
+          conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 5.0.1@pamplemousseMR/testing
+          conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 assimp/5.0.1@pamplemousseMR/testing
 
       - name: Bzip2
         run: |
