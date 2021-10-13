@@ -9,5 +9,7 @@ sources:
 requirements:
   "5.0.0":
     - "zlib/1.2.11"
+    - "irrxml/1.2"
   "5.0.1":
     - "zlib/1.2.11"
+    - "irrxml/1.2"
