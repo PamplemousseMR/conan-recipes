@@ -92,7 +92,7 @@ class OgreConan(ConanFile):
         "plugin_freeimage": False, # TODO Freeimage
         "plugin_pfx": True,
         "plugin_pcz": True,
-        "plugin_dot_scene": False, # TODO pugixml
+        "plugin_dot_scene": True,
         "plugin_assimp": False, # TODO Assimp
         "rendersystem_d3d9": False,
         "rendersystem_d3d11": True,
