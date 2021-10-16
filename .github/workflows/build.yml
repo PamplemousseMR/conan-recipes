@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    branches: [ refactor/managaLibstd ]
+    branches: [ master ]
 
 jobs:
   build:
