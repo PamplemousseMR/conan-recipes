@@ -31,10 +31,6 @@ class MidifileConan(ConanFile):
         if tools.os_info.is_windows:
             del self.options.fPIC
 
-    def configure(self):
-        del self.settings.compiler.libcxx
-        del self.settings.compiler.cppstd
-
     def source(self):
         git = tools.Git(folder=self._source_folder)
         git.clone(**self.conan_data["sources"][self.version])

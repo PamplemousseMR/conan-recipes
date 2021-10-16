@@ -27,10 +27,6 @@ class OpenEXRConan(ConanFile):
         if tools.os_info.is_windows:
             del self.options.fPIC
 
-    def configure(self):
-        del self.settings.compiler.libcxx
-        del self.settings.compiler.cppstd
-
     def requirements(self):
         for requirement in self.conan_data["requirements"][self.version]:
             self.requires.add("{0}@{1}/{2}".format(requirement, self.user, self.channel))
