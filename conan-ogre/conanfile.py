@@ -78,7 +78,7 @@ class OgreConan(ConanFile):
         "component_paging": True,
         "component_meshlodgenerator": True,
         "component_property": True,
-        "component_terrain": False,     # TODO, fix compiling
+        "component_terrain": True,
         "component_rtshadersystem": True,
         "rtshadersystem_shaders": True,
         "component_volume": True,
