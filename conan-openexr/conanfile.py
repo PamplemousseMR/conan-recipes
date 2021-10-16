@@ -73,7 +73,7 @@ class OpenEXRConan(ConanFile):
 
         # Remove the pkg config, it contains absoluts paths. Let conan generate it.
         if tools.Version(self.version) <= "2.5.3":
-            tools.rmdir(os.path.join(self.package_folder, 'share'))
+            tools.rmdir(os.path.join(self.package_folder, "share"))
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)

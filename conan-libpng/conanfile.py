@@ -67,11 +67,11 @@ class LibpngConan(ConanFile):
 
         # Remove executables.
         if tools.os_info.is_windows:
-            os.remove(os.path.join(self.package_folder, 'bin', 'pngfix.exe'))
-            os.remove(os.path.join(self.package_folder, 'bin', 'png-fix-itxt.exe'))
+            os.remove(os.path.join(self.package_folder, "bin", "pngfix.exe"))
+            os.remove(os.path.join(self.package_folder, "bin", "png-fix-itxt.exe"))
 
-        tools.rmdir(os.path.join(self.package_folder, 'share'))
-        tools.rmdir(os.path.join(self.package_folder, 'lib', 'libpng'))
+        tools.rmdir(os.path.join(self.package_folder, "share"))
+        tools.rmdir(os.path.join(self.package_folder, "lib", "libpng"))
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)

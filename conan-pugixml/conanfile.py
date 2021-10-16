@@ -67,7 +67,7 @@ class PubixmlConan(ConanFile):
 
         # Remove the pkg config, it contains absoluts paths. Let conan generate it.
         if tools.Version(self.version) >= "1.10":
-            tools.rmdir(os.path.join(self.package_folder, 'lib', 'pkgconfig'))
+            tools.rmdir(os.path.join(self.package_folder, "lib", "pkgconfig"))
 
         if self.options.header_only:
             source_dir = os.path.join(self._source_folder, "src")
