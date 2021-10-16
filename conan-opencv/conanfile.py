@@ -157,7 +157,7 @@ class OpenCVConan(ConanFile):
             cmake.definitions["WITH_OPENMP"] = self.options.parallel == "openmp"
 
         if self.options.contrib:
-            cmake.definitions['OPENCV_EXTRA_MODULES_PATH'] = os.path.join(self.build_folder, self._contrib_folder, 'modules')
+            cmake.definitions["OPENCV_EXTRA_MODULES_PATH"] = os.path.join(self.build_folder, self._contrib_folder, "modules")
 
         if self.settings.compiler == "Visual Studio":
             cmake.definitions["BUILD_WITH_STATIC_CRT"] = "MT" in str(self.settings.compiler.runtime)
@@ -174,7 +174,7 @@ class OpenCVConan(ConanFile):
         self.copy("LICENSE", src=self._source_folder, dst="licenses", ignore_case=True, keep_path=False)
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
-        tools.rmdir(os.path.join(self.package_folder, 'etc'))
+        tools.rmdir(os.path.join(self.package_folder, "etc"))
 
     def package_info(self):
         if tools.os_info.is_windows:

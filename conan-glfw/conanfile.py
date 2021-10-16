@@ -50,7 +50,7 @@ class GlfwConan(ConanFile):
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
         # Remove the pkg config, it contains absoluts paths. Let conan generate it.
-        tools.rmdir(os.path.join(self.package_folder, 'lib', 'pkgconfig'))
+        tools.rmdir(os.path.join(self.package_folder, "lib", "pkgconfig"))
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
@@ -62,6 +62,6 @@ class GlfwConan(ConanFile):
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
 
         if tools.os_info.is_linux:
-            self.cpp_info.libs.extend(['Xi', 'dl', 'X11', 'pthread'])
+            self.cpp_info.system_libs.extend(["Xi", "dl", "X11", "pthread"])
         elif tools.os_info.is_macos:
             self.cpp_info.frameworks.extend(["Cocoa", "IOKit", "CoreVideo"])

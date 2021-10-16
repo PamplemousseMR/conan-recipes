@@ -72,8 +72,8 @@ class Soil2Conan(ConanFile):
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
 
         if self.settings.os == "Linux":
-            self.cpp_info.libs.append('GL')
+            self.cpp_info.libs.append("GL")
         elif self.settings.os == "Macos":
             self.cpp_info.frameworks.extend(["OpenGL", "CoreFoundation"])
         elif self.settings.os == "Windows":
-            self.cpp_info.libs.append('opengl32')
+            self.cpp_info.libs.append("opengl32")
