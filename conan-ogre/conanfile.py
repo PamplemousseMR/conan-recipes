@@ -223,7 +223,6 @@ class OgreConan(ConanFile):
         cmake.definitions['OGRE_INSTALL_DOCS'] = False
         cmake.definitions['OGRE_INSTALL_TOOLS'] = False
         cmake.definitions['OGRE_INSTALL_SAMPLES'] = False
-        cmake.definitions['OGRE_INSTALL_SAMPLES_SOURCE'] = False
 
         cmake.configure(build_folder=self._build_folder)
         cmake.build()
