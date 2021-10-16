@@ -5,10 +5,6 @@ class TestPackageConan(ConanFile):
     name = "test_package"
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
-    
-    def configure(self):
-        del self.settings.compiler.libcxx
-        del self.settings.compiler.cppstd
 
     def build(self):
         cmake = CMake(self)
