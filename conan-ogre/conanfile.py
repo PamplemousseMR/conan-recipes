@@ -99,7 +99,7 @@ class OgreConan(ConanFile):
         "rendersystem_gl": True,
         "rendersystem_gl3plus": True,
         "rendersystem_gles2": False,
-        'rendersystem_metal': False,
+        "rendersystem_metal": False,
         "rendersystem_tiny": True
     }
     exports_sources = "CMakeLists.txt"
@@ -111,11 +111,11 @@ class OgreConan(ConanFile):
     def config_options(self):
         super(OgreConan, self).config_options()
 
-        if self.settings.os != 'Windows':
+        if self.settings.os != "Windows":
             del self.options.rendersystem_d3d11
             del self.options.rendersystem_d3d9
 
-        if self.settings.os != 'Macos':
+        if self.settings.os != "Macos":
             del self.options.rendersystem_metal
 
     def configure(self):
@@ -156,73 +156,73 @@ class OgreConan(ConanFile):
     def build(self):
         cmake = CMake(self)
 
-        cmake.definitions['OGRE_ASSERT_MODE'] = 1
-        cmake.definitions['OGRE_RESOURCEMANAGER_STRICT'] = '0'
-        cmake.definitions['OGRE_STATIC'] = not self.options.shared
+        cmake.definitions["OGRE_ASSERT_MODE"] = 1
+        cmake.definitions["OGRE_RESOURCEMANAGER_STRICT"] = "0"
+        cmake.definitions["OGRE_STATIC"] = not self.options.shared
 
-        cmake.definitions['OGRE_CONFIG_THREAD_PROVIDER'] = 'std'
-        cmake.definitions['OGRE_CONFIG_THREAD'] = 3
-        cmake.definitions['OGRE_CONFIG_ENABLE_GL_STATE_CACHE_SUPPORT'] = self.options.config_enable_gl_state_cache_support
-        cmake.definitions['OGRE_CONFIG_DOUBLE'] = self.options.config_double
-        cmake.definitions['OGRE_CONFIG_ENABLE_QUAD_BUFFER_STEREO'] = self.options.config_enable_quad_buffer_stereo
-        cmake.definitions['OGRE_CONFIG_ENABLE_VIEWPORT_ORIENTATIONMODE'] = self.options.config_enable_viewport_orientationmode
-        cmake.definitions['OGRE_CONFIG_FILESYSTEM_UNICODE'] = self.options.config_filesystem_unicode
-        cmake.definitions['OGRE_CONFIG_NODE_INHERIT_TRANSFORM'] = self.options.config_node_inherit_transform
-        cmake.definitions['OGRE_CONFIG_ENABLE_ASTC'] = self.options.config_enable_astc
-        cmake.definitions['OGRE_CONFIG_ENABLE_DDS'] = self.options.config_enable_dds
-        cmake.definitions['OGRE_CONFIG_ENABLE_ETC'] = self.options.config_enable_etc
-        cmake.definitions['OGRE_CONFIG_ENABLE_PVRTC'] = self.options.config_enable_pvrtc
-        cmake.definitions['OGRE_CONFIG_ENABLE_MESHLOD'] = self.options.config_enable_meshlod
-        cmake.definitions['OGRE_CONFIG_ENABLE_TBB_SCHEDULER'] = self.options.config_enable_tbb_scheduler
-        cmake.definitions['OGRE_CONFIG_ENABLE_ZIP'] = self.options.config_enable_zzip
-        cmake.definitions['OGRE_CONFIG_ENABLE_GLES2_CG_SUPPORT'] = self.options.config_enable_gles2_cg_support
-        cmake.definitions['OGRE_CONFIG_ENABLE_GLES2_GLSL_OPTIMISER'] = self.options.config_enable_gles2_glsl_optimiser
+        cmake.definitions["OGRE_CONFIG_THREAD_PROVIDER"] = "std"
+        cmake.definitions["OGRE_CONFIG_THREAD"] = 3
+        cmake.definitions["OGRE_CONFIG_ENABLE_GL_STATE_CACHE_SUPPORT"] = self.options.config_enable_gl_state_cache_support
+        cmake.definitions["OGRE_CONFIG_DOUBLE"] = self.options.config_double
+        cmake.definitions["OGRE_CONFIG_ENABLE_QUAD_BUFFER_STEREO"] = self.options.config_enable_quad_buffer_stereo
+        cmake.definitions["OGRE_CONFIG_ENABLE_VIEWPORT_ORIENTATIONMODE"] = self.options.config_enable_viewport_orientationmode
+        cmake.definitions["OGRE_CONFIG_FILESYSTEM_UNICODE"] = self.options.config_filesystem_unicode
+        cmake.definitions["OGRE_CONFIG_NODE_INHERIT_TRANSFORM"] = self.options.config_node_inherit_transform
+        cmake.definitions["OGRE_CONFIG_ENABLE_ASTC"] = self.options.config_enable_astc
+        cmake.definitions["OGRE_CONFIG_ENABLE_DDS"] = self.options.config_enable_dds
+        cmake.definitions["OGRE_CONFIG_ENABLE_ETC"] = self.options.config_enable_etc
+        cmake.definitions["OGRE_CONFIG_ENABLE_PVRTC"] = self.options.config_enable_pvrtc
+        cmake.definitions["OGRE_CONFIG_ENABLE_MESHLOD"] = self.options.config_enable_meshlod
+        cmake.definitions["OGRE_CONFIG_ENABLE_TBB_SCHEDULER"] = self.options.config_enable_tbb_scheduler
+        cmake.definitions["OGRE_CONFIG_ENABLE_ZIP"] = self.options.config_enable_zzip
+        cmake.definitions["OGRE_CONFIG_ENABLE_GLES2_CG_SUPPORT"] = self.options.config_enable_gles2_cg_support
+        cmake.definitions["OGRE_CONFIG_ENABLE_GLES2_GLSL_OPTIMISER"] = self.options.config_enable_gles2_glsl_optimiser
 
-        cmake.definitions['OGRE_BUILD_COMPONENT_BITES'] = self.options.component_bites
-        cmake.definitions['OGRE_BUILD_COMPONENT_PAGING'] = self.options.component_paging
-        cmake.definitions['OGRE_BUILD_COMPONENT_MESHLODGENERATOR'] = self.options.component_meshlodgenerator
-        cmake.definitions['OGRE_BUILD_COMPONENT_PROPERTY'] = self.options.component_property
-        cmake.definitions['OGRE_BUILD_COMPONENT_TERRAIN'] = self.options.component_terrain
-        cmake.definitions['OGRE_BUILD_COMPONENT_RTSHADERSYSTEM'] = self.options.component_rtshadersystem
-        cmake.definitions['OGRE_BUILD_RTSHADERSYSTEM_SHADERS'] = self.options.rtshadersystem_shaders
-        cmake.definitions['OGRE_BUILD_COMPONENT_VOLUME'] = self.options.component_volume
-        cmake.definitions['OGRE_BUILD_COMPONENT_OVERLAY'] = self.options.component_overlay
-        cmake.definitions['OGRE_BUILD_COMPONENT_OVERLAY_IMGUI'] = self.options.component_overlay_imgui
-        cmake.definitions['OGRE_BUILD_COMPONENT_PYTHON'] = False
-        cmake.definitions['OGRE_BUILD_COMPONENT_CSHARP'] = False
-        cmake.definitions['OGRE_BUILD_COMPONENT_JAVA'] = False
+        cmake.definitions["OGRE_BUILD_COMPONENT_BITES"] = self.options.component_bites
+        cmake.definitions["OGRE_BUILD_COMPONENT_PAGING"] = self.options.component_paging
+        cmake.definitions["OGRE_BUILD_COMPONENT_MESHLODGENERATOR"] = self.options.component_meshlodgenerator
+        cmake.definitions["OGRE_BUILD_COMPONENT_PROPERTY"] = self.options.component_property
+        cmake.definitions["OGRE_BUILD_COMPONENT_TERRAIN"] = self.options.component_terrain
+        cmake.definitions["OGRE_BUILD_COMPONENT_RTSHADERSYSTEM"] = self.options.component_rtshadersystem
+        cmake.definitions["OGRE_BUILD_RTSHADERSYSTEM_SHADERS"] = self.options.rtshadersystem_shaders
+        cmake.definitions["OGRE_BUILD_COMPONENT_VOLUME"] = self.options.component_volume
+        cmake.definitions["OGRE_BUILD_COMPONENT_OVERLAY"] = self.options.component_overlay
+        cmake.definitions["OGRE_BUILD_COMPONENT_OVERLAY_IMGUI"] = self.options.component_overlay_imgui
+        cmake.definitions["OGRE_BUILD_COMPONENT_PYTHON"] = False
+        cmake.definitions["OGRE_BUILD_COMPONENT_CSHARP"] = False
+        cmake.definitions["OGRE_BUILD_COMPONENT_JAVA"] = False
 
-        cmake.definitions['OGRE_BUILD_PLUGIN_OCTREE'] = self.options.plugin_octree
-        cmake.definitions['OGRE_BUILD_PLUGIN_BSP'] = self.options.plugin_bsp
-        cmake.definitions['OGRE_BUILD_PLUGIN_CG'] = self.options.plugin_cg
-        cmake.definitions['OGRE_BUILD_PLUGIN_EXRCODEC'] = self.options.plugin_exrcodec
-        cmake.definitions['OGRE_BUILD_PLUGIN_STBI'] = self.options.plugin_stbi
-        cmake.definitions['OGRE_BUILD_PLUGIN_FREEIMAGE'] = self.options.plugin_freeimage
-        cmake.definitions['OGRE_BUILD_PLUGIN_PFX'] = self.options.plugin_pfx
-        cmake.definitions['OGRE_BUILD_PLUGIN_PCZ'] = self.options.plugin_pcz
-        cmake.definitions['OGRE_BUILD_PLUGIN_DOT_SCENE'] = self.options.plugin_dot_scene
-        cmake.definitions['OGRE_BUILD_PLUGIN_ASSIMP'] = self.options.plugin_assimp
+        cmake.definitions["OGRE_BUILD_PLUGIN_OCTREE"] = self.options.plugin_octree
+        cmake.definitions["OGRE_BUILD_PLUGIN_BSP"] = self.options.plugin_bsp
+        cmake.definitions["OGRE_BUILD_PLUGIN_CG"] = self.options.plugin_cg
+        cmake.definitions["OGRE_BUILD_PLUGIN_EXRCODEC"] = self.options.plugin_exrcodec
+        cmake.definitions["OGRE_BUILD_PLUGIN_STBI"] = self.options.plugin_stbi
+        cmake.definitions["OGRE_BUILD_PLUGIN_FREEIMAGE"] = self.options.plugin_freeimage
+        cmake.definitions["OGRE_BUILD_PLUGIN_PFX"] = self.options.plugin_pfx
+        cmake.definitions["OGRE_BUILD_PLUGIN_PCZ"] = self.options.plugin_pcz
+        cmake.definitions["OGRE_BUILD_PLUGIN_DOT_SCENE"] = self.options.plugin_dot_scene
+        cmake.definitions["OGRE_BUILD_PLUGIN_ASSIMP"] = self.options.plugin_assimp
 
-        cmake.definitions['OGRE_BUILD_RENDERSYSTEM_D3D9'] = self.options.get_safe('rendersystem_d3d9')
-        cmake.definitions['OGRE_BUILD_RENDERSYSTEM_D3D11'] = self.options.get_safe('rendersystem_d3d11')
-        cmake.definitions['OGRE_BUILD_RENDERSYSTEM_GL'] = self.options.rendersystem_gl
-        cmake.definitions['OGRE_BUILD_RENDERSYSTEM_GL3PLUS'] = self.options.rendersystem_gl3plus
-        cmake.definitions['OGRE_BUILD_RENDERSYSTEM_GLES2'] = self.options.rendersystem_gles2
-        cmake.definitions['OGRE_BUILD_RENDERSYSTEM_METAL'] = self.options.get_safe('rendersystem_metal')
-        cmake.definitions['OGRE_BUILD_RENDERSYSTEM_TINY'] = self.options.get_safe('rendersystem_tiny')
+        cmake.definitions["OGRE_BUILD_RENDERSYSTEM_D3D9"] = self.options.get_safe("rendersystem_d3d9")
+        cmake.definitions["OGRE_BUILD_RENDERSYSTEM_D3D11"] = self.options.get_safe("rendersystem_d3d11")
+        cmake.definitions["OGRE_BUILD_RENDERSYSTEM_GL"] = self.options.rendersystem_gl
+        cmake.definitions["OGRE_BUILD_RENDERSYSTEM_GL3PLUS"] = self.options.rendersystem_gl3plus
+        cmake.definitions["OGRE_BUILD_RENDERSYSTEM_GLES2"] = self.options.rendersystem_gles2
+        cmake.definitions["OGRE_BUILD_RENDERSYSTEM_METAL"] = self.options.get_safe("rendersystem_metal")
+        cmake.definitions["OGRE_BUILD_RENDERSYSTEM_TINY"] = self.options.get_safe("rendersystem_tiny")
 
-        cmake.definitions['OGRE_BUILD_TESTS'] = False
-        cmake.definitions['OGRE_BUILD_TOOLS'] = False
-        cmake.definitions['OGRE_BUILD_SAMPLES'] = False
-        cmake.definitions['OGRE_BUILD_DEPENDENCIES'] = False
-        cmake.definitions['OGRE_COPY_DEPENDENCIES'] = False
+        cmake.definitions["OGRE_BUILD_TESTS"] = False
+        cmake.definitions["OGRE_BUILD_TOOLS"] = False
+        cmake.definitions["OGRE_BUILD_SAMPLES"] = False
+        cmake.definitions["OGRE_BUILD_DEPENDENCIES"] = False
+        cmake.definitions["OGRE_COPY_DEPENDENCIES"] = False
 
-        cmake.definitions['OGRE_INSTALL_CMAKE'] = True
-        cmake.definitions['OGRE_INSTALL_PDB'] = True
-        cmake.definitions['OGRE_INSTALL_DEPENDENCIES'] = False
-        cmake.definitions['OGRE_INSTALL_DOCS'] = False
-        cmake.definitions['OGRE_INSTALL_TOOLS'] = False
-        cmake.definitions['OGRE_INSTALL_SAMPLES'] = False
+        cmake.definitions["OGRE_INSTALL_CMAKE"] = True
+        cmake.definitions["OGRE_INSTALL_PDB"] = True
+        cmake.definitions["OGRE_INSTALL_DEPENDENCIES"] = False
+        cmake.definitions["OGRE_INSTALL_DOCS"] = False
+        cmake.definitions["OGRE_INSTALL_TOOLS"] = False
+        cmake.definitions["OGRE_INSTALL_SAMPLES"] = False
 
         cmake.configure(build_folder=self._build_folder)
         cmake.build()
@@ -233,22 +233,22 @@ class OgreConan(ConanFile):
         self.copy(pattern="LICENSE", dst="licenses", src=self._source_folder, keep_path=False)
 
         for config_file in [
-            'samples.cfg',
-            'tests.cfg',
-            'resources.cfg',
+            "samples.cfg",
+            "tests.cfg",
+            "resources.cfg",
         ]:
-            if self.settings.os == 'Windows':
-                config_file_path = os.path.join(self.package_folder, 'bin', config_file)
+            if self.settings.os == "Windows":
+                config_file_path = os.path.join(self.package_folder, "bin", config_file)
             else:
-                config_file_path = os.path.join(self.package_folder, 'share', 'OGRE', config_file)
+                config_file_path = os.path.join(self.package_folder, "share", "OGRE", config_file)
 
             os.remove(config_file_path)
 
-        if self.settings.os == 'Windows':
-            tools.rmdir(os.path.join(self.package_folder, 'Media'))
+        if self.settings.os == "Windows":
+            tools.rmdir(os.path.join(self.package_folder, "Media"))
         else:
-            tools.rmdir(os.path.join(self.package_folder, 'share', 'OGRE', 'Media'))
-            os.remove(os.path.join(self.package_folder, 'share', 'OGRE', 'GLX_backdrop.png'))
+            tools.rmdir(os.path.join(self.package_folder, "share", "OGRE", "Media"))
+            os.remove(os.path.join(self.package_folder, "share", "OGRE", "GLX_backdrop.png"))
 
     def package_info(self):
         self.cpp_info.libdirs.append(os.path.join(self.cpp_info.libdirs[0], "OGRE"))
