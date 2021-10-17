@@ -56,7 +56,7 @@ class GlewConan(ConanFile):
         self.cpp_info.filenames["cmake_find_package"] = "GLEW"
         self.cpp_info.filenames["cmake_find_package_multi"] = "GLEW"
 
-        # name of the target: GLEW::glew or GLEW::glew_s
+        # name of the target: GLEW::
         self.cpp_info.name = "GLEW"
         if self.options.shared:
             self.cpp_info.components["target"].name = "glew"

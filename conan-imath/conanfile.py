@@ -48,7 +48,7 @@ class ImathConan(ConanFile):
         self.cpp_info.filenames["cmake_find_package"] = "Imath"
         self.cpp_info.filenames["cmake_find_package_multi"] = "Imath"
 
-        # name of the target: Imath::Imath
+        # name of the target: Imath::
         self.cpp_info.name = "Imath"
         self.cpp_info.components["target"].name = "Imath"
         self.cpp_info.components["ImathConfig"].name = "ImathConfig"
