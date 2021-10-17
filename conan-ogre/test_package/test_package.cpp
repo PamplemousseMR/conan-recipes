@@ -1,6 +1,6 @@
-#include <OGRE/OgreRoot.h>
-#include <OGRE/OgreSingleton.h>
-#include <OGRE/OgrePlugin.h>
+#include <OgreRoot.h>
+#include <OgreSingleton.h>
+#include <OgrePlugin.h>
 
 #include <iostream>
 

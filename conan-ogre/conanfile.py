@@ -93,7 +93,7 @@ class OgreConan(ConanFile):
         "plugin_pfx": True,
         "plugin_pcz": True,
         "plugin_dot_scene": True,
-        "plugin_assimp": True,
+        "plugin_assimp": False, # Need assimp
         "rendersystem_d3d9": False,
         "rendersystem_d3d11": True,
         "rendersystem_gl": True,
@@ -244,23 +244,27 @@ class OgreConan(ConanFile):
 
             os.remove(config_file_path)
 
-        if self.settings.os == "Windows":
-            tools.rmdir(os.path.join(self.package_folder, "Media"))
-        else:
-            tools.rmdir(os.path.join(self.package_folder, "share", "OGRE", "Media"))
-            os.remove(os.path.join(self.package_folder, "share", "OGRE", "GLX_backdrop.png"))
+        if self.settings.os == "Linux":        
+            # Remove the pkg config, it contains absolute paths. Let conan generate them.
+            tools.rmdir(os.path.join(self.package_folder, "lib", "pkgconfig"))
 
     def package_info(self):
+        # Name of the find package file: findOGRE.cmake
+        self.cpp_info.filenames["cmake_find_package"] = "OGRE"
+        self.cpp_info.filenames["cmake_find_package_multi"] = "OGRE"
+
+        # name of the target: OGRE::OGRE
+        self.cpp_info.name = "OGRE"
+        self.cpp_info.names["pkg_config"] = "OGRE"
         self.cpp_info.libdirs.append(os.path.join(self.cpp_info.libdirs[0], "OGRE"))
+        self.cpp_info.includedirs.append(os.path.join(self.cpp_info.includedirs[0], "OGRE"))
 
-        # Set the name of conan auto generated FindOGRE.cmake.
-        self.cpp_info.names["cmake_find_package"] = "OGRE"
-        self.cpp_info.names["cmake_find_package_multi"] = "OGRE"
+        # Libraries
+        self.cpp_info.libs = tools.collect_libs(self)
 
-        # Set the package folder as CMAKE_PREFIX_PATH to find OGREConfig.cmake.
+        # Set the package folder as CMAKE_PREFIX_PATH to find SOIL2Config.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
 
-        self.cpp_info.libs = tools.collect_libs(self)
         if self.options.component_bites:
             if not any("OgreBites" in s for s in self.cpp_info.libs):
                 self.output.warn("OgreBites component as not been built.")

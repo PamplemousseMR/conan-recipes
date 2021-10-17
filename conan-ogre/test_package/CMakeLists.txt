@@ -29,6 +29,6 @@ set_target_properties(
 #                PACKAGE                
 #=======================================
 
-find_package(OGRE REQUIRED)
+find_package(OGRE REQUIRED CONFIG)
 
-target_link_libraries(${PROJECT_NAME} OGRE::OGRE)
+target_link_libraries(${PROJECT_NAME} OgreMain)
