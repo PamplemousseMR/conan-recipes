@@ -112,7 +112,7 @@ class LibUSBConan(ConanFile):
                 self.copy(pattern="libusb-1.0.dll", dst="bin", src=install_dir, keep_path=False)
                 self.copy(pattern="libusb-1.0.lib", dst="lib", src=install_dir, keep_path=False)
         else:
-            # Remove the pkg config, it contains absoluts paths. Let conan generate it.
+            # Remove the pkg config, it contains absolute paths. Let conan generate them.
             tools.rmdir(os.path.join(self.package_folder, "lib", "pkgconfig"))
             # Remove the file generate by libtool.
             la_file = os.path.join(self.package_folder, "lib", "libusb-1.0.la")

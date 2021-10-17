@@ -49,7 +49,7 @@ class GlfwConan(ConanFile):
         self.copy("LICENSE.md", src=self._source_folder, dst="licenses", ignore_case=True, keep_path=False)
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
-        # Remove the pkg config, it contains absoluts paths. Let conan generate it.
+        # Remove the pkg config, it contains absolute paths. Let conan generate them.
         tools.rmdir(os.path.join(self.package_folder, "lib", "pkgconfig"))
 
     def package_info(self):

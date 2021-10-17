@@ -85,7 +85,7 @@ class FreetypeConan(ConanFile):
         self.copy(os.path.join("docs", "LICENSE.TXT"), src=self._source_folder, dst="licenses", keep_path=False)
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
         
-        # Remove the pkg config, it contains absoluts paths. Let conan generate it.
+        # Remove the pkg config, it contains absolute paths. Let conan generate them.
         tools.rmdir(os.path.join(self.package_folder, "lib", "pkgconfig"))
 
     def package_info(self):
