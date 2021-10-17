@@ -56,18 +56,34 @@ class GlewConan(ConanFile):
         self.cpp_info.filenames["cmake_find_package"] = "GLEW"
         self.cpp_info.filenames["cmake_find_package_multi"] = "GLEW"
 
-        # name of the target: GLEW::
+        # Name of the target: GLEW::
         self.cpp_info.name = "GLEW"
+
+        # Create the target: GLEW::glew or GLEW::glew_s
         if self.options.shared:
             self.cpp_info.components["target"].name = "glew"
         else:
             self.cpp_info.components["target"].name = "glew_s"
-
-        # Libraries
         self.cpp_info.components["target"].libs = tools.collect_libs(self)
         
         if not self.options.shared:
             self.cpp_info.defines.append("GLEW_USE_STATIC_LIBS")
+
+        if self.settings.os == "Windows":
+            if self.settings.compiler == "Visual Studio":
+                if not self.options.shared:
+                    self.cpp_info.components["target"].libs.append("OpenGL32.lib")
+                    if self.settings.compiler.runtime != "MT":
+                        self.cpp_info.components["target"].exelinkflags.append("-NODEFAULTLIB:LIBCMTD")
+                        self.cpp_info.components["target"].exelinkflags.append("-NODEFAULTLIB:LIBCMT")
+            else:
+                self.cpp_info.components["target"].libs.append("opengl32")
+
+        else:
+            if self.settings.os == "Macos":
+                self.cpp_info.components["target"].exelinkflags.append("-framework OpenGL")
+            elif not self.options.shared:
+                self.cpp_info.components["target"].libs.append("GL")
 
         # Set the package folder as CMAKE_PREFIX_PATH to find glew-config.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
