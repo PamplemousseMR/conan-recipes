@@ -61,7 +61,7 @@ class OgreConan(ConanFile):
         "fPIC": True,
         "config_enable_gl_state_cache_support": False,
         "config_double": False,
-        "config_enable_quad_buffer_stereo": False, # TODO need NVAPI and AMDQBS
+        "config_enable_quad_buffer_stereo": False, # Need NVAPI and AMDQBS
         "config_enable_viewport_orientationmode": False,
         "config_filesystem_unicode": True,
         "config_node_inherit_transform": False,
@@ -86,14 +86,14 @@ class OgreConan(ConanFile):
         "component_overlay_imgui": True,
         "plugin_octree": True,
         "plugin_bsp": True,
-        "plugin_cg": False, # Todo CG
-        "plugin_exrcodec": False, # TODO openexr
-        "plugin_stbi": False, # TODO error in the test
-        "plugin_freeimage": False, # TODO Freeimage
+        "plugin_cg": False, # Need CG
+        "plugin_exrcodec": False, # Need openexr
+        "plugin_stbi": True,
+        "plugin_freeimage": False, # Need Freeimage
         "plugin_pfx": True,
         "plugin_pcz": True,
         "plugin_dot_scene": True,
-        "plugin_assimp": False, # TODO Assimp
+        "plugin_assimp": True,
         "rendersystem_d3d9": False,
         "rendersystem_d3d11": True,
         "rendersystem_gl": True,
@@ -103,7 +103,7 @@ class OgreConan(ConanFile):
         "rendersystem_tiny": True
     }
     exports_sources = "CMakeLists.txt"
-    short_paths = False # TODO set to true
+    short_paths = True
 
     _source_folder = "{0}_sources".format(name)
     _build_folder = "{0}_build".format(name)

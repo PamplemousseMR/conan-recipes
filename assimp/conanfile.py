@@ -279,8 +279,10 @@ class AssimpConan(ConanFile):
         # Remove the pkg config, it contains absolute paths. Let conan generate them.
         tools.rmdir(os.path.join(self.package_folder, "lib", "pkgconfig"))
 
-        # Remove the pkg config, it contains absolute paths. Let conan generate them.
-        tools.rmdir(os.path.join(self.package_folder, "lib", "cmake"))
+        if self.settings.build_type == "Release":
+            os.remove(os.path.join(self.package_folder, "lib", "cmake", "assimp-5.0", "assimpTargets-debug.cmake"))
+        else:
+            os.remove(os.path.join(self.package_folder, "lib", "cmake", "assimp-5.0", "assimpTargets-release.cmake"))
 
     def package_info(self):
         # Name of the find package file: Findassimp.cmake
