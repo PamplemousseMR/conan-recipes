@@ -67,7 +67,7 @@ class GlewConan(ConanFile):
         self.cpp_info.components["target"].libs = tools.collect_libs(self)
         
         if not self.options.shared:
-            self.cpp_info.defines.append("GLEW_USE_STATIC_LIBS")
+            self.cpp_info.components["target"].defines.append("GLEW_USE_STATIC_LIBS")
 
         if self.settings.os == "Windows":
             if self.settings.compiler == "Visual Studio":
