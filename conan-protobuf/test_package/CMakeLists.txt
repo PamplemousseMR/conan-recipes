@@ -30,7 +30,7 @@ set_target_properties(
 #                PACKAGE                
 #=======================================
 
-find_package(protobuf REQUIRED CONFIG)
+find_package(Protobuf REQUIRED CONFIG)
 
 find_program(PROTOC_PROGRAM protoc)
 if(NOT PROTOC_PROGRAM)
@@ -38,18 +38,16 @@ if(NOT PROTOC_PROGRAM)
 endif()
 
 if("${protobuf_VERSION}" VERSION_LESS_EQUAL "3.18.0.2")
-    if(protobuf_LITE)
+    if(TARGET protobuf::libprotobuf-lite)
         target_link_libraries(${PROJECT_NAME} protobuf::libprotobuf-lite)
-    else()
-        target_link_libraries(${PROJECT_NAME} protobuf::libprotobuf)
     endif()
+
+    target_link_libraries(${PROJECT_NAME} protobuf::libprotobuf)
 
     target_link_libraries(${PROJECT_NAME} protobuf::libprotoc)
 else()
     message(FATAL_ERROR "Unhandle version " ${protobuf_VERSION})
 endif()
-
-
 
 target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_BINARY_DIR}")
 protobuf_generate(LANGUAGE cpp TARGET ${PROJECT_NAME} PROTOS addressbook.proto)

@@ -283,9 +283,15 @@ class AssimpConan(ConanFile):
         tools.rmdir(os.path.join(self.package_folder, "lib", "cmake"))
 
     def package_info(self):
-        # Set the name of conan auto generated Findassimp.cmake.
-        self.cpp_info.name = "assimp"
+        # Name of the find package file: findassimp.cmake
+        self.cpp_info.filenames["cmake_find_package"] = "assimp"
+        self.cpp_info.filenames["cmake_find_package_multi"] = "assimp"
 
+        # name of the target: assimp::assimp
+        self.cpp_info.name = "assimp"
+        self.cpp_info.names["pkg_config"] = "assimp"
+
+        # Libraries
         self.cpp_info.libs = tools.collect_libs(self)
 
         if tools.os_info.is_linux:

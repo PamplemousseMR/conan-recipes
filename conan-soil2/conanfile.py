@@ -63,13 +63,15 @@ class Soil2Conan(ConanFile):
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
-        # Set the name of conan auto generated FindSOIL2.cmake.
+        # Name of the find package file: findSOIL2.cmake
+        self.cpp_info.filenames["cmake_find_package"] = "SOIL2"
+        self.cpp_info.filenames["cmake_find_package_multi"] = "SOIL2"
+
+        # name of the target: SOIL2::SOIL2
         self.cpp_info.name = "SOIL2"
 
+        # Libraries
         self.cpp_info.libs = tools.collect_libs(self)
-
-        # Set the package folder as CMAKE_PREFIX_PATH to find SOIL2Config.cmake.
-        self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
 
         if self.settings.os == "Linux":
             self.cpp_info.libs.append("GL")
@@ -77,3 +79,6 @@ class Soil2Conan(ConanFile):
             self.cpp_info.frameworks.extend(["OpenGL", "CoreFoundation"])
         elif self.settings.os == "Windows":
             self.cpp_info.libs.append("opengl32")
+
+        # Set the package folder as CMAKE_PREFIX_PATH to find SOIL2Config.cmake.
+        self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)

@@ -89,11 +89,17 @@ class FreetypeConan(ConanFile):
         tools.rmdir(os.path.join(self.package_folder, "lib", "pkgconfig"))
 
     def package_info(self):
+        # Name of the find package file: findFreetype.cmake
+        self.cpp_info.filenames["cmake_find_package"] = "Freetype"
+        self.cpp_info.filenames["cmake_find_package_multi"] = "Freetype"
+
+        # name of the target: Freetype::Freetype
+        self.cpp_info.name = "Freetype"
+        self.cpp_info.names["pkg_config"] = "freetype2"
+
+        # Libraries
         self.cpp_info.libs = tools.collect_libs(self)
         self.cpp_info.includedirs.append(os.path.join(self.cpp_info.includedirs[0], "freetype2"))
-
-        # Set the name of conan auto generated FindFreetype.cmake.
-        self.cpp_info.name = "Freetype"
 
         # Set the package folder as CMAKE_PREFIX_PATH to find freetype-config.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)

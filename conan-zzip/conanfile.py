@@ -63,8 +63,13 @@ class ZZipConan(ConanFile):
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
-        # Set the name of conan auto generated FindZZip.cmake.
+        # Name of the find package file: findZZip.cmake
+        self.cpp_info.filenames["cmake_find_package"] = "ZZip"
+        self.cpp_info.filenames["cmake_find_package_multi"] = "ZZip"
+
+        # name of the target: ZZip::ZZip
         self.cpp_info.name = "ZZip"
 
+        # Libraries
         self.cpp_info.libs = tools.collect_libs(self)
 

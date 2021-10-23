@@ -29,7 +29,7 @@ set_target_properties(
 #                PACKAGE                
 #=======================================
 
-find_package(SOIL2 REQUIRED)
+find_package(SOIL2 REQUIRED CONFIG)
 
 if("${SOIL2_VERSION}" VERSION_LESS_EQUAL "1.20")
 	target_link_libraries(${PROJECT_NAME} PRIVATE SOIL2::SOIL2)

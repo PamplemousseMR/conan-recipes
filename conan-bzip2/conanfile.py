@@ -57,10 +57,16 @@ class Bzip2Conan(ConanFile):
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
-        self.cpp_info.libs = tools.collect_libs(self)
+        # Name of the find package file: findBZip2.cmake
+        self.cpp_info.filenames["cmake_find_package"] = "BZip2"
+        self.cpp_info.filenames["cmake_find_package_multi"] = "BZip2"
 
-        # Set the name of conan auto generated FindBZIP2.cmake.
-        self.cpp_info.name = "BZIP2"
+        # name of the target: BZip2::bz2
+        self.cpp_info.name = "BZip2"
+        self.cpp_info.components["bz2"].name = "bz2"
+
+        # Libraries
+        self.cpp_info.components["bz2"].libs = tools.collect_libs(self)
 
         # Set the package folder as CMAKE_PREFIX_PATH to find BZip2Config.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)

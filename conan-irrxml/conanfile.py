@@ -52,10 +52,16 @@ class IrrXMLConan(ConanFile):
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
+        # Name of the find package file: findIrrXML.cmake
+        self.cpp_info.filenames["cmake_find_package"] = "IrrXML"
+        self.cpp_info.filenames["cmake_find_package_multi"] = "IrrXML"
+
+        # name of the target: IrrXML::IrrXML
+        self.cpp_info.name = "IrrXML"
+
+        # Libraries
         self.cpp_info.libs = tools.collect_libs(self)
 
-        # Set the name of conan auto generated FindIrrXML.cmake.
-        self.cpp_info.name = "IRRXML"
 
         # Set the package folder as CMAKE_PREFIX_PATH to find IrrXMLConfig.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
