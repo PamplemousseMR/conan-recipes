@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [ feat/ogre ]
 
 jobs:
   build:
@@ -89,13 +89,12 @@ jobs:
         run: |
           cd bzip2
           conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.0.8@pamplemousseMR/testing
-          conan create -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.0.8@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 bzip2/1.0.8@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 bzip2/1.0.8@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 bzip2/1.0.8@pamplemousseMR/testing
           conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.0.8@pamplemousseMR/testing
-          conan create -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.0.8@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 bzip2/1.0.8@pamplemousseMR/testing
+<<<<<<< master
           conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 bzip2/1.0.8@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 bzip2/1.0.8@pamplemousseMR/testing
 
@@ -146,17 +145,17 @@ jobs:
           conan create -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 0.2@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 midifile/0.2@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 midifile/0.2@pamplemousseMR/testing
+=======
+>>>>>>> refactor(workflow): test the CI
 
       - name: Pugixml
         run: |
           cd pugixml
           conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.11.4@pamplemousseMR/testing
-          conan create -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.11.4@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 pugixml/1.11.4@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 pugixml/1.11.4@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 pugixml/1.11.4@pamplemousseMR/testing
           conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.11.4@pamplemousseMR/testing
-          conan create -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.11.4@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 pugixml/1.11.4@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 pugixml/1.11.4@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 pugixml/1.11.4@pamplemousseMR/testing
@@ -165,12 +164,10 @@ jobs:
         run: |
           cd soil2
           conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.20@pamplemousseMR/testing
-          conan create -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.20@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 soil2/1.20@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 soil2/1.20@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 soil2/1.20@pamplemousseMR/testing
           conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.20@pamplemousseMR/testing
-          conan create -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.20@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 soil2/1.20@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 soil2/1.20@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 soil2/1.20@pamplemousseMR/testing
@@ -179,104 +176,80 @@ jobs:
         run: |
           cd zlib
           conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.2.11@pamplemousseMR/testing
-          conan create -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.2.11@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 zlib/1.2.11@pamplemousseMR/testing
-          conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 zlib/1.2.11@pamplemousseMR/testing
           conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.2.11@pamplemousseMR/testing
-          conan create -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.2.11@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 zlib/1.2.11@pamplemousseMR/testing
-          conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 zlib/1.2.11@pamplemousseMR/testing
 
       - name: Zzip
         run: |
           cd zzip
           conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 0.13.72@pamplemousseMR/testing
-          conan create -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 0.13.72@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 zzip/0.13.72@pamplemousseMR/testing
-          conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 zzip/0.13.72@pamplemousseMR/testing
           conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 0.13.72@pamplemousseMR/testing
-          conan create -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 0.13.72@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 zzip/0.13.72@pamplemousseMR/testing
-          conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 zzip/0.13.72@pamplemousseMR/testing
 
       - name: Libpng
         run: |
           cd libpng
           conan create -o *:shared=True  -o libpng:hardware_optimizations=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.6.37@pamplemousseMR/testing
-          conan create -o *:shared=True  -o libpng:hardware_optimizations=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.6.37@pamplemousseMR/testing
           conan test -o *:shared=True  -o libpng:hardware_optimizations=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 libpng/1.6.37@pamplemousseMR/testing
-          conan test -o *:shared=True  -o libpng:hardware_optimizations=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 libpng/1.6.37@pamplemousseMR/testing
           conan create -o *:shared=False -o libpng:hardware_optimizations=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.6.37@pamplemousseMR/testing
-          conan create -o *:shared=False -o libpng:hardware_optimizations=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.6.37@pamplemousseMR/testing
           conan test -o *:shared=False -o libpng:hardware_optimizations=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 libpng/1.6.37@pamplemousseMR/testing
-          conan test -o *:shared=False -o libpng:hardware_optimizations=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 libpng/1.6.37@pamplemousseMR/testing
           conan create -o *:shared=True  -o libpng:hardware_optimizations=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.6.37@pamplemousseMR/testing
-          conan create -o *:shared=True  -o libpng:hardware_optimizations=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.6.37@pamplemousseMR/testing
           conan test -o *:shared=True  -o libpng:hardware_optimizations=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 libpng/1.6.37@pamplemousseMR/testing
-          conan test -o *:shared=True  -o libpng:hardware_optimizations=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 libpng/1.6.37@pamplemousseMR/testing
           conan create -o *:shared=False -o libpng:hardware_optimizations=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.6.37@pamplemousseMR/testing
-          conan create -o *:shared=False -o libpng:hardware_optimizations=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.6.37@pamplemousseMR/testing
           conan test -o *:shared=False -o libpng:hardware_optimizations=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 libpng/1.6.37@pamplemousseMR/testing
-          conan test -o *:shared=False -o libpng:hardware_optimizations=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 libpng/1.6.37@pamplemousseMR/testing
         
       - name: Freetype
         run: |
           cd freetype
           conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-          conan create -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-          conan create -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan create -o *:shared=True -o freetype:with_zlib=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-          conan create -o *:shared=True -o freetype:with_zlib=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_zlib=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_zlib=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_zlib=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_zlib=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan create -o *:shared=True -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-          conan create -o *:shared=True -o freetype:with_bzip2=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_bzip2=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_bzip2=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan create -o *:shared=True -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-          conan create -o *:shared=True -o freetype:with_png=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_png=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_png=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-          conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-          conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_png=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_png=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_png=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan create -o *:shared=True -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-          conan create -o *:shared=True -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing
           conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
-          conan create -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 2.11.0@pamplemousseMR/testing
           conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing 
           conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing 
           conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 freetype/2.11.0@pamplemousseMR/testing 
           conan test -o *:shared=True -o freetype:with_zlib=False -o freetype:with_bzip2=False -o freetype:with_png=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 freetype/2.11.0@pamplemousseMR/testing 
 
+<<<<<<< master
       - name: Libusb
         run: |
           cd libusb
@@ -289,16 +262,16 @@ jobs:
           conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 libusb/1.0.24-rc1@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 libusb/1.0.24-rc1@pamplemousseMR/testing
       
+=======
+>>>>>>> refactor(workflow): test the CI
       - name: Imath
         run: |
           cd imath
           conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 3.1.3-rc@pamplemousseMR/testing
-          conan create -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 3.1.3-rc@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 imath/3.1.3-rc@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 imath/3.1.3-rc@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 imath/3.1.3-rc@pamplemousseMR/testing
           conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 3.1.3-rc@pamplemousseMR/testing
-          conan create -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 3.1.3-rc@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 imath/3.1.3-rc@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 imath/3.1.3-rc@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 imath/3.1.3-rc@pamplemousseMR/testing
@@ -307,8 +280,8 @@ jobs:
         run: |
           cd openexr
           conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 3.1.1-rc@pamplemousseMR/testing
-          conan create -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 3.1.1-rc@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 openexr/3.1.1-rc@pamplemousseMR/testing
+<<<<<<< master
           conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 openexr/3.1.1-rc@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 openexr/3.1.1-rc@pamplemousseMR/testing
           conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 3.1.1-rc@pamplemousseMR/testing
@@ -340,17 +313,19 @@ jobs:
       #    conan create -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 3.18.0-rc2@pamplemousseMR/testing
       #    conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 protobuf/3.18.0-rc2@pamplemousseMR/testing
       #    conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 protobuf/3.18.0-rc2@pamplemousseMR/testing
+=======
+      #    conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 3.1.1-rc@pamplemousseMR/testing
+      #    conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 openexr/3.1.1-rc@pamplemousseMR/testing
+>>>>>>> refactor(workflow): test the CI
 
       - name: Irrxml
         run: |
           cd irrxml
           conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.2@pamplemousseMR/testing
-          conan create -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.2@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 irrxml/1.2@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 irrxml/1.2@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 irrxml/1.2@pamplemousseMR/testing
           conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.2@pamplemousseMR/testing
-          conan create -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 1.2@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 irrxml/1.2@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 irrxml/1.2@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_1 irrxml/1.2@pamplemousseMR/testing
@@ -359,26 +334,18 @@ jobs:
         run: |
           cd assimp
           conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 5.0.1@pamplemousseMR/testing
-          conan create -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 5.0.1@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 assimp/5.0.1@pamplemousseMR/testing
-          conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 assimp/5.0.1@pamplemousseMR/testing
           conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 5.0.1@pamplemousseMR/testing
-          conan create -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 5.0.1@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 assimp/5.0.1@pamplemousseMR/testing
-          conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 assimp/5.0.1@pamplemousseMR/testing
           
       - name: Ogre
         run: |
           cd conan-ogre
           conan create -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 13.1.1@pamplemousseMR/testing
-          conan create -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 13.1.1@pamplemousseMR/testing
           conan test -o *:shared=True -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 ogre/13.1.1@pamplemousseMR/testing
-          conan test -o *:shared=True -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 ogre/13.1.1@pamplemousseMR/testing
 
       - name: Ogre static
         run: |
           cd conan-ogre
           conan create -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 13.1.1@pamplemousseMR/testing
-          conan create -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} . 13.1.1@pamplemousseMR/testing
           conan test -o *:shared=False -s build_type=Debug -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 ogre/13.1.1@pamplemousseMR/testing
-          conan test -o *:shared=False -s build_type=Release -s compiler=${{ matrix.COMPILER_NAME }} -s compiler.version=${{ matrix.COMPILER_VERSION }} test_package_0 ogre/13.1.1@pamplemousseMR/testing
