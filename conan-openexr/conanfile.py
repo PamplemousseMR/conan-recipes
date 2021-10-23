@@ -72,12 +72,89 @@ class OpenEXRConan(ConanFile):
             tools.rmdir(os.path.join(self.package_folder, "share"))
 
     def package_info(self):
-        self.cpp_info.libs = tools.collect_libs(self)
+        # Name of the find package file: findOpenEXR.cmake
+        self.cpp_info.filenames["cmake_find_package"] = "OpenEXR"
+        self.cpp_info.filenames["cmake_find_package_multi"] = "OpenEXR"
 
-        self.cpp_info.includedirs.append(os.path.join(self.cpp_info.includedirs[0], "OpenEXR"))
-
-        # Set the name of conan auto generated FindOpenEXR.cmake.
+        # Name of the target: OpenEXR::
         self.cpp_info.name = "OpenEXR"
 
-        # Set the package folder as CMAKE_PREFIX_PATH to find OpenEXRConfig.cmake and IlmBaseConfig.cmake.
+        parsed_version = self.version.split(".")
+        version_suffix = "-%s_%s" % (parsed_version[0], parsed_version[1])
+        if not self.options.shared:
+            version_suffix += "_s"
+        if self.settings.compiler == "Visual Studio" and self.settings.build_type == "Debug":
+            version_suffix += "_d"
+
+        if tools.Version(self.version) <= "2.5.3":
+            # Create the target: OpenEXR::IlmImfConfig
+            self.cpp_info.components["IlmImfConfig"].name = "IlmImfConfig"
+            self.cpp_info.components["IlmImfConfig"].includedirs.append(os.path.join(self.cpp_info.includedirs[0], "OpenEXR"))
+
+            # Create the target: OpenEXR::IlmImf
+            self.cpp_info.components["IlmImf"].name = "IlmImf"
+            self.cpp_info.components["IlmImf"].libs = [ "IlmImf{}".format(version_suffix), 
+                                                        "Iex{}".format(version_suffix),
+                                                        "Half{}".format(version_suffix),
+                                                        "Imath{}".format(version_suffix),
+                                                        "IlmThread{}".format(version_suffix) ]
+            self.cpp_info.components["IlmImf"].requires = ["IlmImfConfig", "zlib::zlib"]
+
+            # Create the target: OpenEXR::IlmImfConfig
+            self.cpp_info.components["IlmImfUtil"].name = "IlmImfUtil"
+            self.cpp_info.components["IlmImfUtil"].libs = [ "IlmImfUtil{}".format(version_suffix) ]
+            self.cpp_info.components["IlmImfUtil"].requires = ["IlmImfConfig", "IlmImf"]
+        
+        elif tools.Version(self.version) <= "3.1.1":
+            # Create the target: OpenEXR::OpenEXRConfig
+            self.cpp_info.components["OpenEXRConfig"].name = "OpenEXRConfig"
+            self.cpp_info.components["OpenEXRConfig"].includedirs.append(os.path.join(self.cpp_info.includedirs[0], "OpenEXR"))
+
+            # Create the target: OpenEXR::IexConfig
+            self.cpp_info.components["IexConfig"].name = "IexConfig"
+            self.cpp_info.components["IexConfig"].includedirs.append(os.path.join(self.cpp_info.includedirs[0], "OpenEXR"))
+
+            # Create the target: OpenEXR::IlmThreadConfig
+            self.cpp_info.components["IlmThreadConfig"].name = "IlmThreadConfig"
+            self.cpp_info.components["IlmThreadConfig"].includedirs.append(os.path.join(self.cpp_info.includedirs[0], "OpenEXR"))
+        
+            # Create the target: OpenEXR::Iex
+            self.cpp_info.components["Iex"].name = "Iex"
+            self.cpp_info.components["Iex"].libs = ["Iex{}".format(version_suffix)]
+            self.cpp_info.components["Iex"].requires = ["IlmThreadConfig"]
+            if self.options.shared and self.settings.os == "Windows":
+                self.cpp_info.components["Iex"].defines = ["OPENEXR_DLL"]
+
+            # Create the target: OpenEXR::IlmThread
+            self.cpp_info.components["IlmThread"].name = "IlmThread"
+            self.cpp_info.components["IlmThread"].libs = ["IlmThread{}".format(version_suffix)]
+            self.cpp_info.components["IlmThread"].requires = ["IlmThreadConfig", "Iex"]
+            if self.options.shared and self.settings.os == "Windows":
+                self.cpp_info.components["IlmThread"].defines = ["OPENEXR_DLL"]
+            if tools.os_info.is_linux:
+                self.cpp_info.components["IlmThread"].system_libs.append("pthread")
+
+            if tools.Version(self.version) > "3.0.5":
+                # Create the target: OpenEXR::OpenEXRCore
+                self.cpp_info.components["OpenEXRCore"].name = "OpenEXRCore"
+                self.cpp_info.components["OpenEXRCore"].libs = ["OpenEXRCore{}".format(version_suffix)]
+                self.cpp_info.components["OpenEXRCore"].requires = ["IlmThreadConfig", "zlib::zlib"]
+                if self.options.shared and self.settings.os == "Windows":
+                    self.cpp_info.components["OpenEXR"].defines = ["OPENEXR_DLL"]
+
+            # Create the target: OpenEXR::OpenEXR
+            self.cpp_info.components["OpenEXR"].name = "OpenEXR"
+            self.cpp_info.components["OpenEXR"].libs = ["OpenEXR{}".format(version_suffix)]
+            self.cpp_info.components["OpenEXR"].requires = ["IlmThreadConfig", "Iex", "IlmThread", "imath::imath", "zlib::zlib"]
+            if self.options.shared and self.settings.os == "Windows":
+                self.cpp_info.components["OpenEXR"].defines = ["OPENEXR_DLL"]
+
+            # Create the target: OpenEXR::OpenEXRUtil
+            self.cpp_info.components["OpenEXRUtil"].name = "OpenEXRUtil"
+            self.cpp_info.components["OpenEXRUtil"].libs = ["OpenEXRUtil{}".format(version_suffix)]
+            self.cpp_info.components["OpenEXRUtil"].requires = ["IlmThreadConfig", "OpenEXR"]
+            if self.options.shared and self.settings.os == "Windows":
+                self.cpp_info.components["OpenEXRUtil"].defines = ["OPENEXR_DLL"]
+
+        # Set the package folder as CMAKE_PREFIX_PATH to OpenEXRConfig.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
