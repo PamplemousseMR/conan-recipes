@@ -59,5 +59,5 @@ class ImathConan(ConanFile):
         self.cpp_info.components["ImathConfig"].libs = tools.collect_libs(self)
         self.cpp_info.components["ImathConfig"].includedirs.append(os.path.join(self.cpp_info.includedirs[0], "Imath"))
 
-        # Set the package folder as CMAKE_PREFIX_PATH to find OpenEXRConfig.cmake and IlmBaseConfig.cmake.
+        # Set the package folder as CMAKE_PREFIX_PATH to find ImathConfig.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)

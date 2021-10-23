@@ -63,7 +63,7 @@ class GlfwConan(ConanFile):
         # Libraries
         self.cpp_info.libs = tools.collect_libs(self)
 
-        # Set the package folder as CMAKE_PREFIX_PATH to find freetype-config.cmake.
+        # Set the package folder as CMAKE_PREFIX_PATH to find glfw-config.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
 
         if tools.os_info.is_linux:

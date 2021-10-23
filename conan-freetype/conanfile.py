@@ -27,7 +27,7 @@ class FreetypeConan(ConanFile):
         "with_harfbuzz": False
     }
     exports_sources = "CMakeLists.txt"
-    short_paths = False
+    short_paths = True
 
     _source_folder = "{0}_sources".format(name)
     _build_folder = "{0}_build".format(name)
