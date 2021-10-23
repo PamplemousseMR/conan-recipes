@@ -53,12 +53,17 @@ class GlfwConan(ConanFile):
         tools.rmdir(os.path.join(self.package_folder, "lib", "pkgconfig"))
 
     def package_info(self):
-        self.cpp_info.libs = tools.collect_libs(self)
+        # Name of the find package file: findFreetype.cmake
+        self.cpp_info.filenames["cmake_find_package"] = "glfw3"
+        self.cpp_info.filenames["cmake_find_package_multi"] = "glfw3"
 
-        # Set the name of conan auto generated Findglfw3.cmake.
+        # name of the target: glfw3::glfw3
         self.cpp_info.name = "glfw3"
 
-        # Set the package folder as CMAKE_PREFIX_PATH to find glfw3Config.cmake.
+        # Libraries
+        self.cpp_info.libs = tools.collect_libs(self)
+
+        # Set the package folder as CMAKE_PREFIX_PATH to find freetype-config.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
 
         if tools.os_info.is_linux:
