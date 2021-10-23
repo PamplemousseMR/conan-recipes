@@ -59,6 +59,7 @@ class GlfwConan(ConanFile):
 
         # name of the target: glfw3::glfw3
         self.cpp_info.name = "glfw3"
+        self.cpp_info.names["pkg_config"] = "glfw3"
 
         # Libraries
         self.cpp_info.libs = tools.collect_libs(self)

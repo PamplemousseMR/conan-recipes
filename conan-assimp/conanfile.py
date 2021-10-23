@@ -289,6 +289,7 @@ class AssimpConan(ConanFile):
 
         # name of the target: assimp::assimp
         self.cpp_info.name = "assimp"
+        self.cpp_info.names["pkg_config"] = "assimp"
 
         # Libraries
         self.cpp_info.libs = tools.collect_libs(self)

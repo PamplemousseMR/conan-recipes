@@ -126,6 +126,7 @@ class LibUSBConan(ConanFile):
 
         # name of the target: LibUSB::LibUSB
         self.cpp_info.name = "LibUSB"
+        self.cpp_info.names["pkg_config"] = "libusb-1.0"
 
         # Libraries
         self.cpp_info.libs = tools.collect_libs(self)

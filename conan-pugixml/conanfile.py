@@ -82,6 +82,7 @@ class PubixmlConan(ConanFile):
 
         # name of the target: pugixml::pugixml
         self.cpp_info.name = "pugixml"
+        self.cpp_info.names["pkg_config"] = "pugixml"
 
         # Libraries
         if self.options.header_only:

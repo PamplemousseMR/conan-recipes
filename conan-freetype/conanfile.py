@@ -95,6 +95,7 @@ class FreetypeConan(ConanFile):
 
         # name of the target: Freetype::Freetype
         self.cpp_info.name = "Freetype"
+        self.cpp_info.names["pkg_config"] = "freetype2"
 
         # Libraries
         self.cpp_info.libs = tools.collect_libs(self)

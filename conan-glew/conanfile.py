@@ -58,6 +58,7 @@ class GlewConan(ConanFile):
 
         # Name of the target: GLEW::
         self.cpp_info.name = "GLEW"
+        self.cpp_info.names["pkg_config"] = "glew"
 
         # Create the target: GLEW::glew or GLEW::glew_s
         if self.options.shared:
