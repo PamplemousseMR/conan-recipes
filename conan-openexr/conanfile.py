@@ -99,12 +99,16 @@ class OpenEXRConan(ConanFile):
                                                         "Imath{}".format(version_suffix),
                                                         "IlmThread{}".format(version_suffix) ]
             self.cpp_info.components["IlmImf"].requires = ["IlmImfConfig", "zlib::zlib"]
-
+            if self.options.shared and self.settings.os == "Windows":
+                self.cpp_info.components["IlmImf"].defines = ["OPENEXR_DLL"]
+                
             # Create the target: OpenEXR::IlmImfConfig
             self.cpp_info.components["IlmImfUtil"].name = "IlmImfUtil"
             self.cpp_info.components["IlmImfUtil"].libs = [ "IlmImfUtil{}".format(version_suffix) ]
             self.cpp_info.components["IlmImfUtil"].requires = ["IlmImfConfig", "IlmImf"]
-        
+            if self.options.shared and self.settings.os == "Windows":
+                self.cpp_info.components["IlmImfUtil"].defines = ["OPENEXR_DLL"]
+
         elif tools.Version(self.version) <= "3.1.1":
             # Create the target: OpenEXR::OpenEXRConfig
             self.cpp_info.components["OpenEXRConfig"].name = "OpenEXRConfig"

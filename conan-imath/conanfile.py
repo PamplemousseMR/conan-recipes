@@ -50,14 +50,17 @@ class ImathConan(ConanFile):
 
         # name of the target: Imath::
         self.cpp_info.name = "Imath"
-        self.cpp_info.components["target"].name = "Imath"
-        self.cpp_info.components["ImathConfig"].name = "ImathConfig"
 
-        # Libraries
-        self.cpp_info.components["target"].libs = tools.collect_libs(self)
-        self.cpp_info.components["target"].includedirs.append(os.path.join(self.cpp_info.includedirs[0], "Imath"))
-        self.cpp_info.components["ImathConfig"].libs = tools.collect_libs(self)
+        # Create the target: OpenEXR::ImathConfig
+        self.cpp_info.components["ImathConfig"].name = "ImathConfig"
         self.cpp_info.components["ImathConfig"].includedirs.append(os.path.join(self.cpp_info.includedirs[0], "Imath"))
+
+        # Create the target: OpenEXR::Imath
+        self.cpp_info.components["target"].name = "Imath"
+        self.cpp_info.components["target"].libs = tools.collect_libs(self)
+        self.cpp_info.components["target"].requires = ["ImathConfig"]
+        if self.options.shared and self.settings.os == "Windows":
+            self.cpp_info.components["target"].defines = ["IMATH_DLL"]
 
         # Set the package folder as CMAKE_PREFIX_PATH to find ImathConfig.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
