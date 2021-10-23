@@ -83,7 +83,7 @@ class OpenEXRConan(ConanFile):
         version_suffix = "-%s_%s" % (parsed_version[0], parsed_version[1])
         if not self.options.shared:
             version_suffix += "_s"
-        if self.settings.compiler == "Visual Studio" and self.settings.build_type == "Debug":
+        if self.settings.build_type == "Debug":
             version_suffix += "_d"
 
         if tools.Version(self.version) <= "2.5.3":
