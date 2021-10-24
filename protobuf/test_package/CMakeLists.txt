@@ -30,7 +30,7 @@ set_target_properties(
 #                PACKAGE                
 #=======================================
 
-find_package(Protobuf REQUIRED CONFIG)
+find_package(protobuf REQUIRED CONFIG)
 
 find_program(PROTOC_PROGRAM protoc)
 if(NOT PROTOC_PROGRAM)
