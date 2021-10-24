@@ -1,5 +1,6 @@
 import os
 import shutil
+import re
 from conans import ConanFile, tools, CMake
 
 class OgreConan(ConanFile):
@@ -247,6 +248,14 @@ class OgreConan(ConanFile):
         if self.settings.os == "Linux":        
             # Remove the pkg config, it contains absolute paths. Let conan generate them.
             tools.rmdir(os.path.join(self.package_folder, "lib", "pkgconfig"))
+
+            # Remove the plugin folder absolute path
+            with open(os.path.join(self.package_folder, "share", "OGRE", "plugins.cfg"), 'r+') as file:
+                text = file.read()
+                text = re.sub("PluginFolder.*", "PluginFolder=.", text)
+                file.seek(0)
+                file.write(text)
+                file.truncate()
 
     def package_info(self):
         # Name of the find package file: findOGRE.cmake

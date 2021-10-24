@@ -6,7 +6,7 @@
 
 int main (int argc, char * argv[]) {
 
-	const std::string configPath = "bin\\plugins.cfg";
+	const std::string configPath = "bin/plugins.cfg";
 
     ::Ogre::Root* root = OGRE_NEW::Ogre::Root(configPath);
     const ::Ogre::RenderSystemList& rsList = root->getAvailableRenderers();
