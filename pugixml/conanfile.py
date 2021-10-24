@@ -1,4 +1,5 @@
 import os
+import textwrap
 from conans import ConanFile, tools, CMake
 
 class PubixmlConan(ConanFile):
@@ -26,6 +27,14 @@ class PubixmlConan(ConanFile):
 
     _source_folder = "{0}_sources".format(name)
     _build_folder = "{0}_build".format(name)
+
+    @property
+    def _module_subfolder(self):
+        return os.path.join("lib", "cmake")
+
+    @property
+    def _module_file(self):
+        return "conan-{}-targets.cmake".format(self.name) 
 
     def config_options(self):
         if tools.os_info.is_windows:
@@ -83,6 +92,21 @@ class PubixmlConan(ConanFile):
         # name of the target: pugixml::pugixml
         self.cpp_info.name = "pugixml"
         self.cpp_info.names["pkg_config"] = "pugixml"
+
+        if tools.Version(self.version) <= "1.10":
+            # Create custom target: pugixml
+            content = textwrap.dedent("""\
+                    if(TARGET pugixml::pugixml AND NOT TARGET pugixml)
+                        add_library(pugixml INTERFACE IMPORTED)
+                        set_target_properties(pugixml PROPERTIES INTERFACE_LINK_LIBRARIES pugixml::pugixml)
+                    endif()
+                """)
+            tools.save(os.path.join(self.package_folder, self._module_subfolder, self._module_file), content)
+
+            self.cpp_info.builddirs.append(self._module_subfolder)
+            module_rel_path = os.path.join(self._module_subfolder, self._module_file)
+            self.cpp_info.build_modules["cmake_find_package"] = [module_rel_path]
+            self.cpp_info.build_modules["cmake_find_package_multi"] = [module_rel_path]
 
         # Libraries
         if self.options.header_only:
