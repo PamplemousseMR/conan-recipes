@@ -32,3 +32,4 @@ set_target_properties(
 find_package(OGRE REQUIRED CONFIG)
 
 target_link_libraries(${PROJECT_NAME} OgreMain)
+target_compile_definitions(${PROJECT_NAME} PRIVATE OGRE_PLUGIN_DIR="${OGRE_CONFIG_DIR}")

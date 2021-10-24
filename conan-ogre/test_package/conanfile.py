@@ -12,15 +12,6 @@ class TestPackageConan(ConanFile):
         cmake.configure()
         cmake.build()
 
-    def imports(self):
-        if self.settings.os == 'Windows':
-            self.copy("plugins.cfg", dst="bin", src="bin")
-        else:
-            self.copy("plugins.cfg", dst="bin", src=os.path.join("share", "OGRE"))
-        self.copy("*.dll", dst="bin", src="bin")
-        self.copy("*.dylib*", dst="bin", src="lib")
-        self.copy("*.so*", dst="bin", src="lib", keep_path=False)
-
     def test(self):
         if self.settings.compiler == "Visual Studio":
             bin_path = os.path.join(str(self.settings.build_type), self.name)

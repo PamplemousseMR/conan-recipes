@@ -252,7 +252,7 @@ class OgreConan(ConanFile):
             # Remove the plugin folder absolute path
             with open(os.path.join(self.package_folder, "share", "OGRE", "plugins.cfg"), 'r+') as file:
                 text = file.read()
-                text = re.sub("PluginFolder.*", "PluginFolder=.", text)
+                text = re.sub("PluginFolder.*", "PluginFolder=../../lib/OGRE", text)
                 file.seek(0)
                 file.write(text)
                 file.truncate()
