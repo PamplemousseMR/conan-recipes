@@ -34,7 +34,7 @@ class Soil2Conan(ConanFile):
     _build_folder = "{0}_build".format(name)
 
     def config_options(self):
-        if self.settings.os == "Windows":
+        if tools.os_info.is_windows:
             del self.options.fPIC
 
     def configure(self):
@@ -73,11 +73,11 @@ class Soil2Conan(ConanFile):
         # Libraries
         self.cpp_info.libs = tools.collect_libs(self)
 
-        if self.settings.os == "Linux":
+        if tools.os_info.is_linux:
             self.cpp_info.libs.append("GL")
-        elif self.settings.os == "Macos":
+        elif tools.os_info.is_macos:
             self.cpp_info.frameworks.extend(["OpenGL", "CoreFoundation"])
-        elif self.settings.os == "Windows":
+        elif tools.os_info.is_windows:
             self.cpp_info.libs.append("opengl32")
 
         # Set the package folder as CMAKE_PREFIX_PATH to find SOIL2Config.cmake.

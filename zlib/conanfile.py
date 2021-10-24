@@ -25,7 +25,7 @@ class ZlibConan(ConanFile):
     _build_folder = "{0}_build".format(name)
 
     def config_options(self):
-        if self.settings.os == "Windows":
+        if tools.os_info.is_windows:
             del self.options.fPIC
 
     def configure(self):

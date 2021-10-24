@@ -169,7 +169,7 @@ class AssimpConan(ConanFile):
                self.options.with_q3bsp or self.options.with_x or self.options.with_xgl
 
     def config_options(self):
-        if self.settings.os == "Windows":
+        if tools.os_info.is_windows:
             del self.options.fPIC
 
     def requirements(self):
