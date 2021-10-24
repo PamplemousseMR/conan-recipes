@@ -91,21 +91,20 @@ class ProtobufConan(ConanFile):
             tools.remove_files_by_mask(os.path.join(self.package_folder, "bin"), "libprotobuf-lite.*")
 
     def package_info(self):
-        # Name of the find package file: FindProtobuf.cmake
-        self.cpp_info.filenames["cmake_find_package"] = "Protobuf"
-        self.cpp_info.filenames["cmake_find_package_multi"] = "Protobuf"
+        # Name of the find package file: Findprotobuf.cmake
+        self.cpp_info.filenames["cmake_find_package"] = "protobuf"
+        self.cpp_info.filenames["cmake_find_package_multi"] = "protobuf"
 
         # Name of the target: protobuf::
         self.cpp_info.name = "protobuf"
         self.cpp_info.names["pkg_config"] = "protobuf_full_package" # unofficial, but required to avoid side effects (libprotobuf component "steals" the default global pkg_config name)
         
-        lib_prefix = "lib" if self.settings.compiler == "Visual Studio" else ""
         lib_suffix = "d" if self.settings.build_type == "Debug" else ""
 
         # Create the target: protobuf::libprotobuf
         self.cpp_info.components["libprotobuf"].name = "libprotobuf"
         self.cpp_info.components["libprotobuf"].names["pkg_config"] = "protobuf"
-        self.cpp_info.components["libprotobuf"].libs = [lib_prefix + "protobuf" + lib_suffix]
+        self.cpp_info.components["libprotobuf"].libs = ["libprotobuf" + lib_suffix]
         if self.settings.os == "Linux":
             self.cpp_info.components["libprotobuf"].system_libs.append("pthread")
             if (self.settings.compiler == "clang" and self.settings.arch == "x86") or "arm" in str(self.settings.arch):
@@ -113,14 +112,14 @@ class ProtobufConan(ConanFile):
 
         # Create the target: protobuf::libprotoc
         self.cpp_info.components["libprotoc"].name = "protoc"
-        self.cpp_info.components["libprotoc"].libs = [lib_prefix + "protoc" + lib_suffix]
+        self.cpp_info.components["libprotoc"].libs = ["libprotoc" + lib_suffix]
         self.cpp_info.components["libprotoc"].requires = ["libprotobuf"]
 
         # Create the target: protobuf::libprotobuf-lite
         if self.options.lite:
             self.cpp_info.components["libprotobuf-lite"].name = "libprotobuf-lite"
             self.cpp_info.components["libprotobuf-lite"].names["pkg_config"] = "protobuf-lite"
-            self.cpp_info.components["libprotobuf-lite"].libs = [lib_prefix + "protobuf-lite" + lib_suffix]
+            self.cpp_info.components["libprotobuf-lite"].libs = ["libprotobuf-lite" + lib_suffix]
         if self.settings.os == "Linux":
                 self.cpp_info.components["libprotobuf-lite"].system_libs.append("pthread")
                 if (self.settings.compiler == "clang" and self.settings.arch == "x86") or "arm" in str(self.settings.arch):
