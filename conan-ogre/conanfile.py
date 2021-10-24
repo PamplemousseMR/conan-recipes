@@ -94,7 +94,7 @@ class OgreConan(ConanFile):
         "plugin_pfx": True,
         "plugin_pcz": True,
         "plugin_dot_scene": True,
-        "plugin_assimp": False, # Need assimp
+        "plugin_assimp": True,
         "rendersystem_d3d9": False,
         "rendersystem_d3d11": True,
         "rendersystem_gl": True,
@@ -258,7 +258,7 @@ class OgreConan(ConanFile):
                 file.truncate()
 
     def package_info(self):
-        # Name of the find package file: findOGRE.cmake
+        # Name of the find package file: FindOGRE.cmake
         self.cpp_info.filenames["cmake_find_package"] = "OGRE"
         self.cpp_info.filenames["cmake_find_package_multi"] = "OGRE"
 
