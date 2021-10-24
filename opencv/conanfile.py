@@ -189,8 +189,17 @@ class OpenCVConan(ConanFile):
             install_path = os.path.join("x64" if self.settings.arch == "x86_64" else "x32", "vc" + str(self.settings.compiler.version))
             self.cpp_info.libdirs.append(os.path.join(install_path, "lib"))
             self.cpp_info.bindirs.append(os.path.join(install_path, "bin"))
+
         self.cpp_info.libs = tools.collect_libs(self)
         self.cpp_info.includedirs.append(os.path.join(self.cpp_info.includedirs[0], "opencv4"))
+
+        if tools.os_info.is_windows:
+            self.cpp_info.system_libs.extend(["comctl32", "gdi32", "ole32", "setupapi", "ws2_32", "vfw32"])
+        elif tools.os_info.is_linux:
+            self.cpp_info.system_libs.extend(["dl", "m", "pthread", "rt"])
+        elif tools.os_info.is_macos:
+            self.cpp_info.frameworks.extend(["Cocoa"])
+            self.cpp_info.frameworks.extend(["Cocoa", "Accelerate", "AVFoundation", "CoreGraphics", "CoreMedia", "CoreVideo", "QuartzCore"])
 
         # Set the package folder as CMAKE_PREFIX_PATH to find OpenCVConfig.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
