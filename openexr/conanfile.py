@@ -81,8 +81,6 @@ class OpenEXRConan(ConanFile):
 
         parsed_version = self.version.split(".")
         version_suffix = "-%s_%s" % (parsed_version[0], parsed_version[1])
-        if not self.options.shared:
-            version_suffix += "_s"
         if self.settings.build_type == "Debug":
             version_suffix += "_d"
 
