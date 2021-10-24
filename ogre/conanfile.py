@@ -112,11 +112,11 @@ class OgreConan(ConanFile):
     def config_options(self):
         super(OgreConan, self).config_options()
 
-        if self.settings.os != "Windows":
+        if not tools.os_info.is_windows:
             del self.options.rendersystem_d3d11
             del self.options.rendersystem_d3d9
 
-        if self.settings.os != "Macos":
+        if not tools.os_info.is_macos:
             del self.options.rendersystem_metal
 
     def configure(self):
@@ -238,14 +238,14 @@ class OgreConan(ConanFile):
             "tests.cfg",
             "resources.cfg",
         ]:
-            if self.settings.os == "Windows":
+            if tools.os_info.is_windows:
                 config_file_path = os.path.join(self.package_folder, "bin", config_file)
             else:
                 config_file_path = os.path.join(self.package_folder, "share", "OGRE", config_file)
 
             os.remove(config_file_path)
 
-        if self.settings.os == "Linux":        
+        if tools.os_info.is_linux:        
             # Remove the pkg config, it contains absolute paths. Let conan generate them.
             tools.rmdir(os.path.join(self.package_folder, "lib", "pkgconfig"))
 
