@@ -42,7 +42,7 @@ class ProtobufConan(ConanFile):
         if self.options.shared:
             del self.options.fPIC
 
-            if self.settings.os == "Windows" and self.settings.compiler in ["Visual Studio", "clang"] and "MT" in self.settings.compiler.runtime:
+            if tools.os_info.is_windows and self.settings.compiler in ["Visual Studio", "clang"] and "MT" in self.settings.compiler.runtime:
                 raise ConanInvalidConfiguration("Protobuf can't be built with shared + MT(d) runtimes")
 
             if tools.is_apple_os(self.settings.os):
@@ -105,7 +105,7 @@ class ProtobufConan(ConanFile):
         self.cpp_info.components["libprotobuf"].name = "libprotobuf"
         self.cpp_info.components["libprotobuf"].names["pkg_config"] = "protobuf"
         self.cpp_info.components["libprotobuf"].libs = ["libprotobuf" + lib_suffix]
-        if self.settings.os == "Linux":
+        if tools.os_info.is_linux:
             self.cpp_info.components["libprotobuf"].system_libs.append("pthread")
             if (self.settings.compiler == "clang" and self.settings.arch == "x86") or "arm" in str(self.settings.arch):
                 self.cpp_info.components["libprotobuf"].system_libs.append("atomic")
@@ -120,7 +120,7 @@ class ProtobufConan(ConanFile):
             self.cpp_info.components["libprotobuf-lite"].name = "libprotobuf-lite"
             self.cpp_info.components["libprotobuf-lite"].names["pkg_config"] = "protobuf-lite"
             self.cpp_info.components["libprotobuf-lite"].libs = ["libprotobuf-lite" + lib_suffix]
-        if self.settings.os == "Linux":
+            if tools.os_info.is_linux:
                 self.cpp_info.components["libprotobuf-lite"].system_libs.append("pthread")
                 if (self.settings.compiler == "clang" and self.settings.arch == "x86") or "arm" in str(self.settings.arch):
                     self.cpp_info.components["libprotobuf-lite"].system_libs.append("atomic")

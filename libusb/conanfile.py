@@ -33,9 +33,9 @@ class LibUSBConan(ConanFile):
         return tools.os_info.is_windows and self.settings.compiler == "Visual Studio"
 
     def config_options(self):
-        if self.settings.os != "Linux":
+        if ! tools.os_info.is_linux:
             del self.options.enable_udev
-        if self.settings.os == "Windows":
+        if tools.os_info.is_windows:
             del self.options.fPIC
 
     def configure(self):
@@ -71,7 +71,7 @@ class LibUSBConan(ConanFile):
         autotools = AutoToolsBuildEnvironment(self, win_bash=tools.os_info.is_windows)
         configure_args = ["--enable-shared" if self.options.shared else "--disable-shared"]
         configure_args.append("--enable-static" if not self.options.shared else "--disable-static")
-        if self.settings.os == "Linux":
+        if tools.os_info.is_linux:
             configure_args.append("--enable-udev" if self.options.enable_udev else "--disable-udev")
         elif self._is_mingw:
             if self.settings.arch == "x86_64":
@@ -131,11 +131,11 @@ class LibUSBConan(ConanFile):
         # Libraries
         self.cpp_info.libs = tools.collect_libs(self)
 
-        if self.settings.os == "Linux":
+        if tools.os_info.is_linux:
             self.cpp_info.system_libs.append("pthread")
             if self.options.enable_udev:
                 self.cpp_info.system_libs.append("udev")
-        elif self.settings.os == "Macos":
+        elif tools.os_info.is_macos:
             self.cpp_info.frameworks.extend(["IOKit", "CoreFoundation"])
-        elif self.settings.os == "Windows":
+        elif tools.os_info.is_windows:
             self.cpp_info.system_libs = ["advapi32"]

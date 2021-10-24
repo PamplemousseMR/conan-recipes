@@ -70,7 +70,7 @@ class GlewConan(ConanFile):
         if not self.options.shared:
             self.cpp_info.components["target"].defines.append("GLEW_USE_STATIC_LIBS")
 
-        if self.settings.os == "Windows":
+        if tools.os_info.is_windows:
             if self.settings.compiler == "Visual Studio":
                 if not self.options.shared:
                     self.cpp_info.components["target"].libs.append("OpenGL32.lib")
@@ -81,7 +81,7 @@ class GlewConan(ConanFile):
                 self.cpp_info.components["target"].libs.append("opengl32")
 
         else:
-            if self.settings.os == "Macos":
+            if tools.os_info.is_macos:
                 self.cpp_info.components["target"].exelinkflags.append("-framework OpenGL")
             elif not self.options.shared:
                 self.cpp_info.components["target"].libs.append("GL")

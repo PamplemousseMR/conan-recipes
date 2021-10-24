@@ -59,7 +59,7 @@ class ImathConan(ConanFile):
         self.cpp_info.components["target"].name = "Imath"
         self.cpp_info.components["target"].libs = tools.collect_libs(self)
         self.cpp_info.components["target"].requires = ["ImathConfig"]
-        if self.options.shared and self.settings.os == "Windows":
+        if self.options.shared and tools.os_info.is_windows:
             self.cpp_info.components["target"].defines = ["IMATH_DLL"]
 
         # Set the package folder as CMAKE_PREFIX_PATH to find ImathConfig.cmake.
