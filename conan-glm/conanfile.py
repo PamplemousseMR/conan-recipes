@@ -31,7 +31,7 @@ class GlmConan(ConanFile):
         os.remove(os.path.join(self.package_folder, "include", "glm", "CMakeLists.txt"))
 
     def package_info(self):
-        # Name of the find package file: findGLM.cmake
+        # Name of the find package file: FindGLM.cmake
         self.cpp_info.filenames["cmake_find_package"] = "GLM"
         self.cpp_info.filenames["cmake_find_package_multi"] = "GLM"
 

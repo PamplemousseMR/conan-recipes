@@ -120,7 +120,7 @@ class LibUSBConan(ConanFile):
                 os.remove(la_file)
 
     def package_info(self):
-        # Name of the find package file: findLibUSB.cmake
+        # Name of the find package file: FindLibUSB.cmake
         self.cpp_info.filenames["cmake_find_package"] = "LibUSB"
         self.cpp_info.filenames["cmake_find_package_multi"] = "LibUSB"
 

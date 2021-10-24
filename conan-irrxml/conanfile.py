@@ -52,7 +52,7 @@ class IrrXMLConan(ConanFile):
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
-        # Name of the find package file: findIrrXML.cmake
+        # Name of the find package file: FindIrrXML.cmake
         self.cpp_info.filenames["cmake_find_package"] = "IrrXML"
         self.cpp_info.filenames["cmake_find_package_multi"] = "IrrXML"
 

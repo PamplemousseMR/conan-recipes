@@ -63,7 +63,7 @@ class Soil2Conan(ConanFile):
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
-        # Name of the find package file: findSOIL2.cmake
+        # Name of the find package file: FindSOIL2.cmake
         self.cpp_info.filenames["cmake_find_package"] = "SOIL2"
         self.cpp_info.filenames["cmake_find_package_multi"] = "SOIL2"
 

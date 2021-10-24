@@ -72,7 +72,7 @@ class OpenEXRConan(ConanFile):
             tools.rmdir(os.path.join(self.package_folder, "share"))
 
     def package_info(self):
-        # Name of the find package file: findOpenEXR.cmake
+        # Name of the find package file: FindOpenEXR.cmake
         self.cpp_info.filenames["cmake_find_package"] = "OpenEXR"
         self.cpp_info.filenames["cmake_find_package_multi"] = "OpenEXR"
 

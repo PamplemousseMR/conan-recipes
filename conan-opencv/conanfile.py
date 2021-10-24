@@ -177,17 +177,20 @@ class OpenCVConan(ConanFile):
         tools.rmdir(os.path.join(self.package_folder, "etc"))
 
     def package_info(self):
+        # Name of the find package file: FindOpenCV.cmake
+        self.cpp_info.filenames["cmake_find_package"] = "OpenCV"
+        self.cpp_info.filenames["cmake_find_package_multi"] = "OpenCV"
+
+        # name of the target: OpenCV::OpenCV
+        self.cpp_info.name = "OpenCV"
+
+        # Libraries
         if tools.os_info.is_windows:
             install_path = os.path.join("x64" if self.settings.arch == "x86_64" else "x32", "vc" + str(self.settings.compiler.version))
             self.cpp_info.libdirs.append(os.path.join(install_path, "lib"))
             self.cpp_info.bindirs.append(os.path.join(install_path, "bin"))
-
         self.cpp_info.libs = tools.collect_libs(self)
-
         self.cpp_info.includedirs.append(os.path.join(self.cpp_info.includedirs[0], "opencv4"))
-
-        # Set the name of conan auto generated FindOpenCV.cmake.
-        self.cpp_info.name = "OpenCV"
 
         # Set the package folder as CMAKE_PREFIX_PATH to find OpenCVConfig.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)

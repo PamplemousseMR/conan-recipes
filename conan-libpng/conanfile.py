@@ -74,7 +74,7 @@ class LibpngConan(ConanFile):
         tools.rmdir(os.path.join(self.package_folder, "lib", "libpng"))
 
     def package_info(self):
-        # Name of the find package file: findPNG.cmake
+        # Name of the find package file: FindPNG.cmake
         self.cpp_info.filenames["cmake_find_package"] = "PNG"
         self.cpp_info.filenames["cmake_find_package_multi"] = "PNG"
 

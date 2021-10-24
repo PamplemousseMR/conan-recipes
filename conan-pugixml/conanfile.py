@@ -76,7 +76,7 @@ class PubixmlConan(ConanFile):
             self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
-        # Name of the find package file: findFreetype.cmake
+        # Name of the find package file: FindFreetype.cmake
         self.cpp_info.filenames["cmake_find_package"] = "pugixml"
         self.cpp_info.filenames["cmake_find_package_multi"] = "pugixml"
 

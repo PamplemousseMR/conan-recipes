@@ -52,7 +52,7 @@ class GlewConan(ConanFile):
         tools.rmdir(os.path.join(self.package_folder, "lib", "pkgconfig"))
 
     def package_info(self):
-        # Name of the find package file: findGLEW.cmake
+        # Name of the find package file: FindGLEW.cmake
         self.cpp_info.filenames["cmake_find_package"] = "GLEW"
         self.cpp_info.filenames["cmake_find_package_multi"] = "GLEW"
 

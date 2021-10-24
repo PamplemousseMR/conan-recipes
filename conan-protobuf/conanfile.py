@@ -91,7 +91,7 @@ class ProtobufConan(ConanFile):
             tools.remove_files_by_mask(os.path.join(self.package_folder, "bin"), "libprotobuf-lite.*")
 
     def package_info(self):
-        # Name of the find package file: findProtobuf.cmake
+        # Name of the find package file: FindProtobuf.cmake
         self.cpp_info.filenames["cmake_find_package"] = "Protobuf"
         self.cpp_info.filenames["cmake_find_package_multi"] = "Protobuf"
 

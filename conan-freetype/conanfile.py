@@ -89,7 +89,7 @@ class FreetypeConan(ConanFile):
         tools.rmdir(os.path.join(self.package_folder, "lib", "pkgconfig"))
 
     def package_info(self):
-        # Name of the find package file: findFreetype.cmake
+        # Name of the find package file: FindFreetype.cmake
         self.cpp_info.filenames["cmake_find_package"] = "Freetype"
         self.cpp_info.filenames["cmake_find_package_multi"] = "Freetype"
 

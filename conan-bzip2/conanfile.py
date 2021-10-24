@@ -57,7 +57,7 @@ class Bzip2Conan(ConanFile):
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
-        # Name of the find package file: findBZip2.cmake
+        # Name of the find package file: FindBZip2.cmake
         self.cpp_info.filenames["cmake_find_package"] = "BZip2"
         self.cpp_info.filenames["cmake_find_package_multi"] = "BZip2"
 

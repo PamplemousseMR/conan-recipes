@@ -53,7 +53,7 @@ class MidifileConan(ConanFile):
         self.copy(pattern="*.pdb", dst="bin", keep_path=False)
 
     def package_info(self):
-        # Name of the find package file: findmidifile.cmake
+        # Name of the find package file: Findmidifile.cmake
         self.cpp_info.filenames["cmake_find_package"] = "midifile"
         self.cpp_info.filenames["cmake_find_package_multi"] = "midifile"
 
