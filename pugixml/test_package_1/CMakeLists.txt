@@ -11,8 +11,10 @@ project("test_package" VERSION 1.0 LANGUAGES CXX)
 
 add_executable(
 	${PROJECT_NAME}
-	test_package.cpp
+	../test_package/test_package.cpp
 	)
+	
+file(COPY ../test_package/example.xml DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 #=======================================
 #                SETTINGS               
@@ -29,14 +31,12 @@ set_target_properties(
 #                PACKAGE                
 #=======================================
 
-find_package(GLEW REQUIRED CONFIG)
+find_package(pugixml REQUIRED) 
 
-if("${glew_VERSION}" VERSION_LESS_EQUAL "2.2.0")
-	if(TARGET GLEW::glew)
-		target_link_libraries(${PROJECT_NAME} GLEW::glew)
-	else()
-		target_link_libraries(${PROJECT_NAME} GLEW::glew_s)
-	endif()
+if("${pugixml_VERSION}" VERSION_LESS_EQUAL "1.10")
+	target_link_libraries(${PROJECT_NAME} PRIVATE pugixml)
+elseif("${pugixml_VERSION}" VERSION_LESS_EQUAL "1.11.4")
+	target_link_libraries(${PROJECT_NAME} PRIVATE pugixml::pugixml)
 else()
-	message(FATAL_ERROR "Unhandle version " ${glew_VERSION})
+	message(FATAL_ERROR "Unhandle version " ${pugixml_VERSION})
 endif()

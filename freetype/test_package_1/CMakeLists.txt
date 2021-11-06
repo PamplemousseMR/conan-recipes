@@ -11,7 +11,7 @@ project("test_package" VERSION 1.0 LANGUAGES CXX)
 
 add_executable(
 	${PROJECT_NAME}
-	test_package.cpp
+	../test_package/test_package.cpp
 	)
 
 #=======================================
@@ -29,14 +29,10 @@ set_target_properties(
 #                PACKAGE                
 #=======================================
 
-find_package(GLEW REQUIRED CONFIG)
+find_package(Freetype REQUIRED)
 
-if("${glew_VERSION}" VERSION_LESS_EQUAL "2.2.0")
-	if(TARGET GLEW::glew)
-		target_link_libraries(${PROJECT_NAME} GLEW::glew)
-	else()
-		target_link_libraries(${PROJECT_NAME} GLEW::glew_s)
-	endif()
+if("${Freetype_VERSION}" VERSION_LESS_EQUAL "2.11.0")
+	target_link_libraries(${PROJECT_NAME} freetype)
 else()
-	message(FATAL_ERROR "Unhandle version " ${glew_VERSION})
+	message(FATAL_ERROR "Unhandle version " ${Freetype_VERSION})
 endif()

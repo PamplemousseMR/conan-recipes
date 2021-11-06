@@ -11,9 +11,9 @@ project("test_package" VERSION 1.0 LANGUAGES CXX)
 
 add_executable(
 	${PROJECT_NAME}
-	test_package.cpp
+	../test_package/test_package.cpp
 	)
-
+	
 #=======================================
 #                SETTINGS               
 #=======================================
@@ -29,14 +29,10 @@ set_target_properties(
 #                PACKAGE                
 #=======================================
 
-find_package(GLEW REQUIRED CONFIG)
+find_package(Imath REQUIRED)
 
-if("${glew_VERSION}" VERSION_LESS_EQUAL "2.2.0")
-	if(TARGET GLEW::glew)
-		target_link_libraries(${PROJECT_NAME} GLEW::glew)
-	else()
-		target_link_libraries(${PROJECT_NAME} GLEW::glew_s)
-	endif()
+if("${Imath_VERSION}" VERSION_LESS_EQUAL "3.1.3")
+	target_link_libraries(${PROJECT_NAME} Imath::ImathConfig Imath::Imath)
 else()
-	message(FATAL_ERROR "Unhandle version " ${glew_VERSION})
+	message(FATAL_ERROR "Unhandle version " ${Imath_VERSION})
 endif()

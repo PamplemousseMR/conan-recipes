@@ -11,7 +11,7 @@ project("test_package" VERSION 1.0 LANGUAGES CXX)
 
 add_executable(
 	${PROJECT_NAME}
-	test_package.cpp
+	../test_package/test_package.cpp
 	)
 
 #=======================================
@@ -29,7 +29,7 @@ set_target_properties(
 #                PACKAGE                
 #=======================================
 
-find_package(GLEW REQUIRED CONFIG)
+find_package(GLEW REQUIRED)
 
 if("${glew_VERSION}" VERSION_LESS_EQUAL "2.2.0")
 	if(TARGET GLEW::glew)

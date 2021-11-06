@@ -58,33 +58,33 @@ class GlewConan(ConanFile):
 
         # Name of the target: GLEW::
         self.cpp_info.name = "GLEW"
-        self.cpp_info.names["pkg_config"] = "glew"
+        self.cpp_info.names["pkg_config"] = "GLEW"
 
         # Create the target: GLEW::glew or GLEW::glew_s
         if self.options.shared:
-            self.cpp_info.name = "glew"
+            self.cpp_info.components["glewlib"].name = "glew"
         else:
-            self.cpp_info.name = "glew_s"
-        self.cpp_info.libs = tools.collect_libs(self)
+            self.cpp_info.components["glewlib"].name = "glew_s"
+        self.cpp_info.components["glewlib"].libs = tools.collect_libs(self)
         
         if not self.options.shared:
-            self.cpp_info.defines.append("GLEW_USE_STATIC_LIBS")
+            self.cpp_info.components["glewlib"].defines.append("GLEW_USE_STATIC_LIBS")
 
         if tools.os_info.is_windows:
             if self.settings.compiler == "Visual Studio":
                 if not self.options.shared:
-                    self.cpp_info.libs.append("OpenGL32.lib")
+                    self.cpp_info.components["glewlib"].libs.append("OpenGL32.lib")
                     if self.settings.compiler.runtime != "MT":
-                        self.cpp_info.exelinkflags.append("-NODEFAULTLIB:LIBCMTD")
-                        self.cpp_info.exelinkflags.append("-NODEFAULTLIB:LIBCMT")
+                        self.cpp_info.components["glewlib"].exelinkflags.append("-NODEFAULTLIB:LIBCMTD")
+                        self.cpp_info.components["glewlib"].exelinkflags.append("-NODEFAULTLIB:LIBCMT")
             else:
-                self.cpp_info.libs.append("opengl32")
+                self.cpp_info.components["glewlib"].libs.append("opengl32")
 
         else:
             if tools.os_info.is_macos:
-                self.cpp_info.exelinkflags.append("-framework OpenGL")
+                self.cpp_info.components["glewlib"].exelinkflags.append("-framework OpenGL")
             elif not self.options.shared:
-                self.cpp_info.libs.append("GL")
+                self.cpp_info.components["glewlib"].libs.append("GL")
 
         # Set the package folder as CMAKE_PREFIX_PATH to find glew-config.cmake.
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
